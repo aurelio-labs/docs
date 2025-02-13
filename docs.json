@@ -1,101 +1,109 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Aurelio AI",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
     "dark": "#15803D"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.ico",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Aurelio SDK",
         "groups": [
           {
             "group": "Get Started",
+            "pages": ["aurelio-sdk/introduction", "aurelio-sdk/quickstart"]
+          },
+          {
+            "group": "API Reference",
             "pages": [
-              "introduction",
-              "quickstart",
-              "development"
+              {
+                "group": "Chunk",
+                "pages": [
+                  "aurelio-sdk/api-reference/v1/chunk/post",
+                  "aurelio-sdk/api-reference/v1/chunk/get"
+                ]
+              },
+              {
+                "group": "Extract",
+                "pages": [
+                  "aurelio-sdk/api-reference/v1/extract/post_file",
+                  "aurelio-sdk/api-reference/v1/extract/post_url",
+                  "aurelio-sdk/api-reference/v1/extract/get_document",
+                  "aurelio-sdk/api-reference/v1/extract/list_documents"
+                ]
+              },
+              {
+                "group": "Embeddings",
+                "pages": ["aurelio-sdk/api-reference/v1/embeddings/post"]
+              }
             ]
           },
           {
-            "group": "Essentials",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
-            ]
+            "group": "Client Reference",
+            "pages": []
           }
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "Semantic Router",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "Get Started",
             "pages": [
-              "api-reference/introduction"
+              "semantic-router/introduction",
+              "semantic-router/quickstart"
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "Route Layer",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete"
+              "semantic-router/route-layer/introduction",
+              "semantic-router/route-layer/dynamic-routes",
+              "semantic-router/route-layer/local-execution",
+              "semantic-router/route-layer/route-filter",
+              "semantic-router/route-layer/save-load-from-file",
+              "semantic-router/route-layer/sync",
+              "semantic-router/route-layer/threshold-optimization"
             ]
+          },
+          {
+            "group": "Client Reference",
+            "pages": []
           }
         ]
       }
     ],
     "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
+      "anchors": []
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/logo/dark.png",
+    "dark": "/images/logo/light.png"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "https://github.com/aurelio-labs/aurelio-sdk/issues"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Get Started",
+      "href": "https://github.com/aurelio-labs/aurelio-sdk"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/AurelioAI_",
+      "github": "https://github.com/aurelio-labs",
+      "linkedin": "https://linkedin.com/company/aurelio-ai",
+      "youtube": "https://www.youtube.com/@jamesbriggs"
     }
   }
 }
