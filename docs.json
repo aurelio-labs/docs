@@ -41,6 +41,10 @@
                 "pages": ["aurelio-sdk/api-reference/v1/embeddings/post"]
               }
             ]
+          },
+          {
+            "group": "Client Reference",
+            "pages": []
           }
         ]
       },
@@ -65,6 +69,10 @@
               "semantic-router/route-layer/sync",
               "semantic-router/route-layer/threshold-optimization"
             ]
+          },
+          {
+            "group": "Client Reference",
+            "pages": []
           }
         ]
       }
