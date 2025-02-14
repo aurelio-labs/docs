@@ -15,7 +15,10 @@
         "groups": [
           {
             "group": "Get Started",
-            "pages": ["aurelio-sdk/introduction", "aurelio-sdk/quickstart"]
+            "pages": [
+              "aurelio-sdk/introduction",
+              "aurelio-sdk/quickstart"
+            ]
           },
           {
             "group": "API Reference",
@@ -38,7 +41,9 @@
               },
               {
                 "group": "Embeddings",
-                "pages": ["aurelio-sdk/api-reference/v1/embeddings/post"]
+                "pages": [
+                  "aurelio-sdk/api-reference/v1/embeddings/post"
+                ]
               }
             ]
           },
@@ -72,7 +77,70 @@
           },
           {
             "group": "Client Reference",
-            "pages": []
+            "pages": [
+              "semantic-router/client-reference/linear",
+              "semantic-router/client-reference/route",
+              "semantic-router/client-reference/schema",
+              {
+                "group": "encoders",
+                "pages": [
+                  "semantic-router/client-reference/encoders/aurelio",
+                  "semantic-router/client-reference/encoders/base",
+                  "semantic-router/client-reference/encoders/bedrock",
+                  "semantic-router/client-reference/encoders/bm25",
+                  "semantic-router/client-reference/encoders/clip",
+                  "semantic-router/client-reference/encoders/cohere",
+                  "semantic-router/client-reference/encoders/fastembed",
+                  "semantic-router/client-reference/encoders/google",
+                  "semantic-router/client-reference/encoders/huggingface",
+                  "semantic-router/client-reference/encoders/mistral",
+                  "semantic-router/client-reference/encoders/openai",
+                  "semantic-router/client-reference/encoders/tfidf",
+                  "semantic-router/client-reference/encoders/vit",
+                  "semantic-router/client-reference/encoders/zure"
+                ]
+              },
+              {
+                "group": "index",
+                "pages": [
+                  "semantic-router/client-reference/index/base",
+                  "semantic-router/client-reference/index/hybrid_local",
+                  "semantic-router/client-reference/index/local",
+                  "semantic-router/client-reference/index/pinecone",
+                  "semantic-router/client-reference/index/postgres",
+                  "semantic-router/client-reference/index/qdrant"
+                ]
+              },
+              {
+                "group": "llms",
+                "pages": [
+                  "semantic-router/client-reference/llms/base",
+                  "semantic-router/client-reference/llms/cohere",
+                  "semantic-router/client-reference/llms/llamacpp",
+                  "semantic-router/client-reference/llms/mistral",
+                  "semantic-router/client-reference/llms/ollama",
+                  "semantic-router/client-reference/llms/openai",
+                  "semantic-router/client-reference/llms/openrouter",
+                  "semantic-router/client-reference/llms/zure"
+                ]
+              },
+              {
+                "group": "routers",
+                "pages": [
+                  "semantic-router/client-reference/routers/base",
+                  "semantic-router/client-reference/routers/hybrid",
+                  "semantic-router/client-reference/routers/semantic"
+                ]
+              },
+              {
+                "group": "utils",
+                "pages": [
+                  "semantic-router/client-reference/utils/defaults",
+                  "semantic-router/client-reference/utils/function_call",
+                  "semantic-router/client-reference/utils/logger"
+                ]
+              }
+            ]
           }
         ]
       }

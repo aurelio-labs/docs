@@ -1,0 +1,110 @@
+---
+sidebarTitle: base
+title: semantic_router.encoders.base
+---
+
+## DenseEncoder Objects
+
+```python
+class DenseEncoder(BaseModel)
+```
+
+#### set\_score\_threshold
+
+```python
+@field_validator("score_threshold")
+def set_score_threshold(cls, v: float | None) -> float | None
+```
+
+Set the score threshold. If None, the score threshold is not used.
+
+**Arguments**:
+
+- `v` (`float | None`): The score threshold.
+
+**Returns**:
+
+`float | None`: The score threshold.
+
+#### \_\_call\_\_
+
+```python
+def __call__(docs: List[Any]) -> List[List[float]]
+```
+
+Encode a list of documents. Documents can be any type, but the encoder must
+
+be built to handle that data type. Typically, these types are strings or
+arrays representing images.
+
+**Arguments**:
+
+- `docs` (`List[Any]`): The documents to encode.
+
+**Returns**:
+
+`List[List[float]]`: The encoded documents.
+
+#### acall
+
+```python
+def acall(docs: List[Any]) -> Coroutine[Any, Any, List[List[float]]]
+```
+
+Encode a list of documents asynchronously. Documents can be any type, but the
+
+encoder must be built to handle that data type. Typically, these types are
+strings or arrays representing images.
+
+**Arguments**:
+
+- `docs` (`List[Any]`): The documents to encode.
+
+**Returns**:
+
+`List[List[float]]`: The encoded documents.
+
+## SparseEncoder Objects
+
+```python
+class SparseEncoder(BaseModel)
+```
+
+An encoder that encodes documents into a sparse format.
+
+#### \_\_call\_\_
+
+```python
+def __call__(docs: List[str]) -> List[SparseEmbedding]
+```
+
+Encode a list of documents. Documents must be strings, sparse encoders do not
+
+support other types.
+
+**Arguments**:
+
+- `docs` (`List[str]`): The documents to encode.
+
+**Returns**:
+
+`List[SparseEmbedding]`: The encoded documents.
+
+#### acall
+
+```python
+async def acall(docs: List[str]) -> list[SparseEmbedding]
+```
+
+Encode a list of documents. Documents must be strings, sparse encoders do not
+
+support other types.
+
+**Arguments**:
+
+- `docs` (`List[str]`): The documents to encode.
+
+**Returns**:
+
+`List[SparseEmbedding]`: The encoded documents.
+

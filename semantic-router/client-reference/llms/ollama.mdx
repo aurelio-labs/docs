@@ -1,0 +1,52 @@
+---
+sidebarTitle: ollama
+title: semantic_router.llms.ollama
+---
+
+## OllamaLLM Objects
+
+```python
+class OllamaLLM(BaseLLM)
+```
+
+LLM for Ollama. Enables fully local LLM use, helpful for local implementation of
+dynamic routes.
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: str = "openhermes",
+             temperature: float = 0.2,
+             max_tokens: Optional[int] = 200,
+             stream: bool = False)
+```
+
+Initialize the OllamaLLM.
+
+**Arguments**:
+
+- `name` (`str`): The name of the Ollama model to use.
+- `temperature` (`float`): The temperature of the LLM.
+- `max_tokens` (`Optional[int]`): The maximum number of tokens to generate.
+- `stream` (`bool`): Whether to stream the response.
+
+#### \_\_call\_\_
+
+```python
+def __call__(messages: List[Message],
+             temperature: Optional[float] = None,
+             name: Optional[str] = None,
+             max_tokens: Optional[int] = None,
+             stream: Optional[bool] = None) -> str
+```
+
+Call the OllamaLLM.
+
+**Arguments**:
+
+- `messages` (`List[Message]`): The messages to pass to the OllamaLLM.
+- `temperature` (`Optional[float]`): The temperature of the LLM.
+- `name` (`Optional[str]`): The name of the Ollama model to use.
+- `max_tokens` (`Optional[int]`): The maximum number of tokens to generate.
+- `stream` (`Optional[bool]`): Whether to stream the response.
+

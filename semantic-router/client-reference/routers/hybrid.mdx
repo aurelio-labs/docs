@@ -1,0 +1,106 @@
+---
+sidebarTitle: hybrid
+title: semantic_router.routers.hybrid
+---
+
+## HybridRouter Objects
+
+```python
+class HybridRouter(BaseRouter)
+```
+
+A hybrid layer that uses both dense and sparse embeddings to classify routes.
+
+#### \_\_init\_\_
+
+```python
+def __init__(encoder: DenseEncoder,
+             sparse_encoder: Optional[SparseEncoder] = None,
+             llm: Optional[BaseLLM] = None,
+             routes: Optional[List[Route]] = None,
+             index: Optional[HybridLocalIndex] = None,
+             top_k: int = 5,
+             aggregation: str = "mean",
+             auto_sync: Optional[str] = None,
+             alpha: float = 0.3)
+```
+
+Initialize the HybridRouter.
+
+**Arguments**:
+
+- `encoder` (`DenseEncoder`): The dense encoder to use.
+- `sparse_encoder` (`Optional[SparseEncoder]`): The sparse encoder to use.
+
+#### add
+
+```python
+def add(routes: List[Route] | Route)
+```
+
+Add a route to the local HybridRouter and index.
+
+**Arguments**:
+
+- `route` (`Route`): The route to add.
+
+#### \_\_call\_\_
+
+```python
+def __call__(
+    text: Optional[str] = None,
+    vector: Optional[List[float] | np.ndarray] = None,
+    simulate_static: bool = False,
+    route_filter: Optional[List[str]] = None,
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None
+) -> RouteChoice
+```
+
+Call the HybridRouter.
+
+**Arguments**:
+
+- `text` (`Optional[str]`): The text to encode.
+- `vector` (`Optional[List[float] | np.ndarray]`): The vector to encode.
+- `simulate_static` (`bool`): Whether to simulate a static route.
+- `route_filter` (`Optional[List[str]]`): The route filter to use.
+- `sparse_vector` (`dict[int, float] | SparseEmbedding | None`): The sparse vector to use.
+
+#### fit
+
+```python
+def fit(X: List[str],
+        y: List[str],
+        batch_size: int = 500,
+        max_iter: int = 500,
+        local_execution: bool = False)
+```
+
+Fit the HybridRouter.
+
+**Arguments**:
+
+- `X` (`List[str]`): The input data.
+- `y` (`List[str]`): The output data.
+- `batch_size` (`int`): The batch size to use for fitting.
+- `max_iter` (`int`): The maximum number of iterations to use for fitting.
+- `local_execution` (`bool`): Whether to execute the fitting locally.
+
+#### evaluate
+
+```python
+def evaluate(X: List[str], y: List[str], batch_size: int = 500) -> float
+```
+
+Evaluate the accuracy of the route selection.
+
+**Arguments**:
+
+- `X` (`List[str]`): The input data.
+- `y` (`List[str]`): The output data.
+- `batch_size` (`int`): The batch size to use for evaluation.
+
+**Returns**:
+
+`float`: The accuracy of the route selection.
+

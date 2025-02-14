@@ -1,0 +1,23 @@
+---
+sidebarTitle: bm25
+title: semantic_router.encoders.bm25
+---
+
+## BM25Encoder Objects
+
+```python
+class BM25Encoder(TfidfEncoder)
+```
+
+#### fit
+
+```python
+def fit(routes: List[Route])
+```
+
+Trains the encoder weights on the provided routes.
+
+**Arguments**:
+
+- `routes` (`List[Route]`): List of routes to train the encoder on.
+

@@ -1,0 +1,131 @@
+---
+sidebarTitle: hybrid_local
+title: semantic_router.index.hybrid_local
+---
+
+## HybridLocalIndex Objects
+
+```python
+class HybridLocalIndex(LocalIndex)
+```
+
+#### add
+
+```python
+def add(embeddings: List[List[float]],
+        routes: List[str],
+        utterances: List[str],
+        function_schemas: Optional[List[Dict[str, Any]]] = None,
+        metadata_list: List[Dict[str, Any]] = [],
+        sparse_embeddings: Optional[List[SparseEmbedding]] = None,
+        **kwargs)
+```
+
+Add embeddings to the index.
+
+**Arguments**:
+
+- `embeddings` (`List[List[float]]`): List of embeddings to add to the index.
+- `routes` (`List[str]`): List of routes to add to the index.
+- `utterances` (`List[str]`): List of utterances to add to the index.
+- `function_schemas` (`Optional[List[Dict[str, Any]]]`): List of function schemas to add to the index.
+- `metadata_list` (`List[Dict[str, Any]]`): List of metadata to add to the index.
+- `List[List[float]]`0 (`List[List[float]]`1): List of sparse embeddings to add to the index.
+
+#### get\_utterances
+
+```python
+def get_utterances(include_metadata: bool = False) -> List[Utterance]
+```
+
+Gets a list of route and utterance objects currently stored in the index.
+
+**Arguments**:
+
+- `include_metadata` (`bool`): Whether to include function schemas and metadata in
+the returned Utterance objects - HybridLocalIndex doesn&#x27;t include metadata so
+this parameter is ignored.
+
+**Returns**:
+
+`List[Utterance]`: A list of Utterance objects.
+
+#### query
+
+```python
+def query(
+    vector: np.ndarray,
+    top_k: int = 5,
+    route_filter: Optional[List[str]] = None,
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None
+) -> Tuple[np.ndarray, List[str]]
+```
+
+Search the index for the query and return top_k results.
+
+**Arguments**:
+
+- `vector` (`np.ndarray`): The query vector to search for.
+- `top_k` (`int, optional`): The number of top results to return, defaults to 5.
+- `route_filter` (`Optional[List[str]], optional`): A list of route names to filter the search results, defaults to None.
+- `sparse_vector` (`dict[int, float]`): The sparse vector to search for, must be provided.
+
+#### aquery
+
+```python
+async def aquery(
+    vector: np.ndarray,
+    top_k: int = 5,
+    route_filter: Optional[List[str]] = None,
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None
+) -> Tuple[np.ndarray, List[str]]
+```
+
+Search the index for the query and return top_k results. This method calls the
+
+sync `query` method as everything uses numpy computations which is CPU-bound
+and so no benefit can be gained from making this async.
+
+**Arguments**:
+
+- `vector` (`np.ndarray`): The query vector to search for.
+- `top_k` (`int, optional`): The number of top results to return, defaults to 5.
+- `route_filter` (`Optional[List[str]], optional`): A list of route names to filter the search results, defaults to None.
+- `sparse_vector` (`dict[int, float]`): The sparse vector to search for, must be provided.
+
+#### aget\_routes
+
+```python
+def aget_routes()
+```
+
+Get all routes from the index.
+
+**Returns**:
+
+`List[str]`: A list of routes.
+
+#### delete
+
+```python
+def delete(route_name: str)
+```
+
+Delete all records of a specific route from the index.
+
+**Arguments**:
+
+- `route_name` (`str`): The name of the route to delete.
+
+#### delete\_index
+
+```python
+def delete_index()
+```
+
+Deletes the index, effectively clearing it and setting it to None.
+
+**Returns**:
+
+`None`: None
+
