@@ -81,6 +81,7 @@
               "semantic-router/client-reference/linear",
               "semantic-router/client-reference/route",
               "semantic-router/client-reference/schema",
+              "semantic-router/client-reference/tokenizers",
               {
                 "group": "encoders",
                 "pages": [

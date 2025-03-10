@@ -6,7 +6,7 @@ title: semantic_router.encoders.cohere
 ## CohereEncoder Objects
 
 ```python
-class CohereEncoder(DenseEncoder)
+class CohereEncoder(DenseEncoder, AsymmetricDenseMixin)
 ```
 
 Dense encoder that uses Cohere API to embed documents. Supports text only. Requires
@@ -17,8 +17,7 @@ a Cohere API key from https://dashboard.cohere.com/api-keys.
 ```python
 def __init__(name: Optional[str] = None,
              cohere_api_key: Optional[str] = None,
-             score_threshold: float = 0.3,
-             input_type: Optional[str] = "search_query")
+             score_threshold: float = 0.3)
 ```
 
 Initialize the Cohere encoder.

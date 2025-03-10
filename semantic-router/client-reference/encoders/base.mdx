@@ -48,7 +48,7 @@ arrays representing images.
 #### acall
 
 ```python
-def acall(docs: List[Any]) -> Coroutine[Any, Any, List[List[float]]]
+async def acall(docs: List[Any]) -> List[List[float]]
 ```
 
 Encode a list of documents asynchronously. Documents can be any type, but the
@@ -78,13 +78,14 @@ An encoder that encodes documents into a sparse format.
 def __call__(docs: List[str]) -> List[SparseEmbedding]
 ```
 
-Encode a list of documents. Documents must be strings, sparse encoders do not
+Sparsely encode a list of documents. Documents can be any type, but the encoder must
 
-support other types.
+be built to handle that data type. Typically, these types are strings or
+arrays representing images.
 
 **Arguments**:
 
-- `docs` (`List[str]`): The documents to encode.
+- `docs` (`List[Any]`): The documents to encode.
 
 **Returns**:
 
@@ -93,18 +94,95 @@ support other types.
 #### acall
 
 ```python
-async def acall(docs: List[str]) -> list[SparseEmbedding]
+async def acall(docs: List[Any]) -> List[SparseEmbedding]
 ```
 
-Encode a list of documents. Documents must be strings, sparse encoders do not
+Encode a list of documents asynchronously. Documents can be any type, but the
 
-support other types.
+encoder must be built to handle that data type. Typically, these types are
+strings or arrays representing images.
 
 **Arguments**:
 
-- `docs` (`List[str]`): The documents to encode.
+- `docs` (`List[Any]`): The documents to encode.
 
 **Returns**:
 
 `List[SparseEmbedding]`: The encoded documents.
+
+## AsymmetricDenseMixin Objects
+
+```python
+class AsymmetricDenseMixin()
+```
+
+#### encode\_queries
+
+```python
+def encode_queries(docs: List[str]) -> List[List[float]]
+```
+
+Convert query texts to dense embeddings optimized for querying
+
+#### encode\_documents
+
+```python
+def encode_documents(docs: List[str]) -> List[List[float]]
+```
+
+Convert document texts to dense embeddings optimized for storage
+
+#### aencode\_queries
+
+```python
+async def aencode_queries(docs: List[str]) -> List[List[float]]
+```
+
+Async version of encode_queries
+
+#### aencode\_documents
+
+```python
+async def aencode_documents(docs: List[str]) -> List[List[float]]
+```
+
+Async version of encode_documents
+
+## AsymmetricSparseMixin Objects
+
+```python
+class AsymmetricSparseMixin()
+```
+
+#### encode\_queries
+
+```python
+def encode_queries(docs: List[str]) -> List[SparseEmbedding]
+```
+
+Convert query texts to dense embeddings optimized for querying
+
+#### encode\_documents
+
+```python
+def encode_documents(docs: List[str]) -> List[SparseEmbedding]
+```
+
+Convert document texts to dense embeddings optimized for storage
+
+#### aencode\_queries
+
+```python
+async def aencode_queries(docs: List[str]) -> List[SparseEmbedding]
+```
+
+Async version of encode_queries
+
+#### aencode\_documents
+
+```python
+async def aencode_documents(docs: List[str]) -> List[SparseEmbedding]
+```
+
+Async version of encode_documents
 

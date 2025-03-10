@@ -6,7 +6,7 @@ title: semantic_router.encoders.aurelio
 ## AurelioSparseEncoder Objects
 
 ```python
-class AurelioSparseEncoder(SparseEncoder)
+class AurelioSparseEncoder(SparseEncoder, AsymmetricSparseMixin)
 ```
 
 Sparse encoder using Aurelio Platform&#x27;s embedding API. Requires an API key from
@@ -31,17 +31,8 @@ Initialize the AurelioSparseEncoder.
 def __call__(docs: list[str]) -> list[SparseEmbedding]
 ```
 
-Encode a list of documents using the Aurelio Platform embedding API. Documents
-
+Encode a list of queries using the Aurelio Platform embedding API. Documents
 must be strings, sparse encoders do not support other types.
-
-**Arguments**:
-
-- `docs` (`list[str]`): The documents to encode.
-
-**Returns**:
-
-`list[SparseEmbedding]`: The encoded documents.
 
 #### acall
 
@@ -54,13 +45,13 @@ Asynchronously encode a list of documents using the Aurelio Platform
 embedding API. Documents must be strings, sparse encoders do not support other
 types.
 
-**Arguments**:
+:param docs: The documents to encode.
+:type docs: list[str]
+:param input_type:
+:type semantic_router.encoders.encode_input_type.EncodeInputType
+:return: The encoded documents.
+:rtype: list[SparseEmbedding]
 
-- `docs` (`list[str]`): The documents to encode.
-
-**Returns**:
-
-`list[SparseEmbedding]`: The encoded documents.
 
 #### fit
 
