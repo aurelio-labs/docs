@@ -86,6 +86,7 @@
                 "group": "encoders",
                 "pages": [
                   "semantic-router/client-reference/encoders/aurelio",
+                  "semantic-router/client-reference/encoders/azure_openai",
                   "semantic-router/client-reference/encoders/base",
                   "semantic-router/client-reference/encoders/bedrock",
                   "semantic-router/client-reference/encoders/bm25",
@@ -97,8 +98,7 @@
                   "semantic-router/client-reference/encoders/mistral",
                   "semantic-router/client-reference/encoders/openai",
                   "semantic-router/client-reference/encoders/tfidf",
-                  "semantic-router/client-reference/encoders/vit",
-                  "semantic-router/client-reference/encoders/zure"
+                  "semantic-router/client-reference/encoders/vit"
                 ]
               },
               {
