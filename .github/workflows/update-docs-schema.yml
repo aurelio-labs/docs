@@ -1,0 +1,42 @@
+name: Update Documentation Schema
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - 'aurelio-sdk/**/*.mdx'
+    - 'semantic-router/**/*.mdx'
+    - '!docs.json'
+
+jobs:
+  update-schema:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.PAT }}
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Run schema update script
+      run: |
+        python3 scripts/update_docs_schema.py
+
+    - name: Check for changes
+      id: git-check
+      run: |
+        git diff --exit-code --quiet docs.json || echo "changes=true" >> $GITHUB_OUTPUT
+
+    - name: Commit and push if schema changed
+      if: steps.git-check.outputs.changes == 'true'
+      run: |
+        git config --local user.email "admin@aurelio.ai"
+        git config --local user.name "aurelio-bot"
+        git add docs.json
+        git commit -m "Auto-update documentation schema [skip ci]"
+        git push 
