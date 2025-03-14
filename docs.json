@@ -21,44 +21,6 @@
             ]
           },
           {
-            "group": "User Guide",
-            "pages": [
-              {
-                "group": "Components",
-                "pages": [
-                  "semantic-router/user-guide/components/encoders",
-                  "semantic-router/user-guide/components/indexes",
-                  "semantic-router/user-guide/components/routers"
-                ]
-              },
-              {
-                "group": "Concepts",
-                "pages": [
-                  "semantic-router/user-guide/concepts/architecture",
-                  "semantic-router/user-guide/concepts/overview"
-                ]
-              },
-              {
-                "group": "Features",
-                "pages": [
-                  "semantic-router/user-guide/features/dynamic-routes",
-                  "semantic-router/user-guide/features/route-filter",
-                  "semantic-router/user-guide/features/sync",
-                  "semantic-router/user-guide/features/threshold-optimization"
-                ]
-              },
-              {
-                "group": "Guides",
-                "pages": [
-                  "semantic-router/user-guide/guides/local-execution",
-                  "semantic-router/user-guide/guides/migration-to-v1",
-                  "semantic-router/user-guide/guides/save-load-from-file",
-                  "semantic-router/user-guide/guides/semantic-router"
-                ]
-              }
-            ]
-          },
-          {
             "group": "Client Reference",
             "pages": [
               "semantic-router/client-reference/linear",
@@ -125,6 +87,44 @@
                 ]
               }
             ]
+          },
+          {
+            "group": "User Guide",
+            "pages": [
+              {
+                "group": "Components",
+                "pages": [
+                  "semantic-router/user-guide/components/encoders",
+                  "semantic-router/user-guide/components/indexes",
+                  "semantic-router/user-guide/components/routers"
+                ]
+              },
+              {
+                "group": "Concepts",
+                "pages": [
+                  "semantic-router/user-guide/concepts/architecture",
+                  "semantic-router/user-guide/concepts/overview"
+                ]
+              },
+              {
+                "group": "Features",
+                "pages": [
+                  "semantic-router/user-guide/features/dynamic-routes",
+                  "semantic-router/user-guide/features/route-filter",
+                  "semantic-router/user-guide/features/sync",
+                  "semantic-router/user-guide/features/threshold-optimization"
+                ]
+              },
+              {
+                "group": "Guides",
+                "pages": [
+                  "semantic-router/user-guide/guides/local-execution",
+                  "semantic-router/user-guide/guides/migration-to-v1",
+                  "semantic-router/user-guide/guides/save-load-from-file",
+                  "semantic-router/user-guide/guides/semantic-router"
+                ]
+              }
+            ]
           }
         ]
       },
@@ -134,35 +134,23 @@
           {
             "group": "Get Started",
             "pages": [
-              "aurelio-sdk/introduction",
               "aurelio-sdk/quickstart"
             ]
           },
           {
-            "group": "API Reference",
+            "group": "Core Concepts",
+            "pages": []
+          },
+          {
+            "group": "Overview",
+            "pages": []
+          },
+          {
+            "group": "User Guide",
             "pages": [
-              {
-                "group": "Chunk",
-                "pages": [
-                  "aurelio-sdk/api-reference/v1/chunk/post",
-                  "aurelio-sdk/api-reference/v1/chunk/get"
-                ]
-              },
-              {
-                "group": "Extract",
-                "pages": [
-                  "aurelio-sdk/api-reference/v1/extract/post_file",
-                  "aurelio-sdk/api-reference/v1/extract/post_url",
-                  "aurelio-sdk/api-reference/v1/extract/get_document",
-                  "aurelio-sdk/api-reference/v1/extract/list_documents"
-                ]
-              },
-              {
-                "group": "Embeddings",
-                "pages": [
-                  "aurelio-sdk/api-reference/v1/embeddings/post"
-                ]
-              }
+              "aurelio-sdk/user-guide/chunking",
+              "aurelio-sdk/user-guide/embeddings",
+              "aurelio-sdk/user-guide/file-extraction"
             ]
           }
         ],
