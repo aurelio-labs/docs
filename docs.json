@@ -57,10 +57,15 @@
         "tab": "Semantic Router",
         "groups": [
           {
+            "group": "Get Started",
+            "pages": [
+              "semantic-router/get-started/introduction",
+              "semantic-router/get-started/quickstart"
+            ]
+          },
+          {
             "group": "Essentials",
             "pages": [
-              "semantic-router/essentials/introduction",
-              "semantic-router/essentials/quickstart",
               "semantic-router/essentials/semantic-router",
               "semantic-router/essentials/route-filter",
               "semantic-router/essentials/dynamic-routes",
