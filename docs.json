@@ -46,10 +46,6 @@
                 ]
               }
             ]
-          },
-          {
-            "group": "Client Reference",
-            "pages": []
           }
         ]
       },
@@ -60,22 +56,7 @@
             "group": "Get Started",
             "pages": [
               "semantic-router/get-started/introduction",
-              "semantic-router/get-started/quickstart",
-              "semantic-router/introduction",
-              "semantic-router/quickstart"
-            ]
-          },
-          {
-            "group": "Essentials",
-            "pages": [
-              "semantic-router/essentials/semantic-router",
-              "semantic-router/essentials/route-filter",
-              "semantic-router/essentials/dynamic-routes",
-              "semantic-router/essentials/save-load-from-file",
-              "semantic-router/essentials/sync",
-              "semantic-router/essentials/threshold-optimization",
-              "semantic-router/essentials/local-execution",
-              "semantic-router/essentials/migration-to-v1"
+              "semantic-router/get-started/quickstart"
             ]
           },
           {

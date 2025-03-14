@@ -238,6 +238,60 @@ def add_to_client_reference_group(group: Dict, files: List[str]) -> None:
         if all(isinstance(p, str) for p in subgroup.get('pages', [])):
             subgroup['pages'] = sorted(subgroup['pages'])
 
+def remove_nonexistent_files_from_schema(schema: Dict, all_files: List[str]) -> Dict:
+    """Remove files from schema that no longer exist in the filesystem"""
+    # Create a deep copy to avoid modifying the original
+    updated_schema = copy.deepcopy(schema)
+    
+    # Get paths in the current schema
+    existing_paths = get_existing_paths(schema)
+    
+    # Find paths that exist in schema but not in the filesystem
+    removed_files = [f for f in existing_paths if f not in all_files]
+    
+    if not removed_files:
+        print("No files to remove from the schema.")
+        return updated_schema
+    
+    print(f"Found {len(removed_files)} files to remove from the schema:")
+    for f in removed_files:
+        print(f"  - {f}")
+    
+    # Process each tab in the schema
+    for tab in updated_schema.get('navigation', {}).get('tabs', []):
+        remove_files_from_tab(tab, removed_files)
+    
+    return updated_schema
+
+def remove_files_from_tab(tab: Dict, removed_files: List[str]) -> None:
+    """Remove files from a tab structure in the schema"""
+    for group in tab.get('groups', []):
+        remove_files_from_group(group, removed_files)
+        
+        # After removing files, check if group is empty
+        if 'pages' in group and (not group['pages'] or len(group['pages']) == 0):
+            # Mark empty groups for removal
+            group['_empty'] = True
+    
+    # Remove empty groups
+    tab['groups'] = [g for g in tab.get('groups', []) if not g.get('_empty', False)]
+
+def remove_files_from_group(group: Dict, removed_files: List[str]) -> None:
+    """Recursively remove files from a group structure"""
+    if 'pages' not in group:
+        return
+    
+    # Process nested groups first
+    for item in list(group['pages']):
+        if isinstance(item, dict) and 'pages' in item:
+            remove_files_from_group(item, removed_files)
+            # Remove empty nested groups
+            if not item['pages'] or len(item['pages']) == 0:
+                group['pages'].remove(item)
+    
+    # Remove string items that are in the removed_files list
+    group['pages'] = [p for p in group['pages'] if not (isinstance(p, str) and p in removed_files)]
+
 def update_docs_schema():
     """
     Main function to update the docs.json schema
@@ -249,8 +303,11 @@ def update_docs_schema():
         # Scan directories for all markdown files
         all_files = scan_directory('aurelio-sdk') + scan_directory('semantic-router')
         
+        # Remove files that no longer exist
+        updated_schema = remove_nonexistent_files_from_schema(current_schema, all_files)
+        
         # Add new files to schema
-        updated_schema = add_new_files_to_schema(current_schema, all_files)
+        updated_schema = add_new_files_to_schema(updated_schema, all_files)
         
         # Write updated schema back to docs.json
         with open('docs.json', 'w') as f:
