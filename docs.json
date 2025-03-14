@@ -145,6 +145,24 @@
                 ]
               }
             ]
+          },
+          {
+            "group": "User Guide",
+            "pages": [
+              "semantic-router/user-guide/components/encoders",
+              "semantic-router/user-guide/components/indexes",
+              "semantic-router/user-guide/components/routers",
+              "semantic-router/user-guide/concepts/architecture",
+              "semantic-router/user-guide/concepts/overview",
+              "semantic-router/user-guide/features/dynamic-routes",
+              "semantic-router/user-guide/features/route-filter",
+              "semantic-router/user-guide/features/sync",
+              "semantic-router/user-guide/features/threshold-optimization",
+              "semantic-router/user-guide/guides/local-execution",
+              "semantic-router/user-guide/guides/migration-to-v1",
+              "semantic-router/user-guide/guides/save-load-from-file",
+              "semantic-router/user-guide/guides/semantic-router"
+            ]
           }
         ]
       }
