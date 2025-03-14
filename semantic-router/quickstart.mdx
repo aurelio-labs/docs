@@ -1,19 +1,15 @@
----
-title: "Quickstart"
-# description: 
----
+# Quickstart
 
 To get started with *semantic-router* we install it like so:
 
-```python
+```bash
 pip install -qU semantic-router
 ```
 
-<Warning>
-If wanting to use a fully local version of semantic router you can use `HuggingFaceEncoder` and `LlamaCppLLM` (`pip install -qU "semantic-router[local]"`, see [here](https://github.com/aurelio-labs/semantic-router/blob/main/docs/05-local-execution.ipynb)). To use the `HybridRouteLayer` you must `pip install -qU "semantic-router[hybrid]"`.
-</Warning>
+> **Warning**
+> If wanting to use a fully local version of semantic router you can use `HuggingFaceEncoder` and `LlamaCppLLM` (`pip install -qU "semantic-router[local]"`, see [here](https://github.com/aurelio-labs/semantic-router/blob/main/docs/05-local-execution.ipynb)). To use the `HybridRouteLayer` you must `pip install -qU "semantic-router[hybrid]"`.
 
-We begin by defining a set of `Route` objects. These are the decision paths that the semantic router can decide to use, let’s try two simple routes for now — one for talk on *politics* and another for *chitchat*:
+We begin by defining a set of `Route` objects. These are the decision paths that the semantic router can decide to use, let's try two simple routes for now — one for talk on *politics* and another for *chitchat*:
 
 ```python
 from semantic_router import Route
@@ -70,23 +66,23 @@ from semantic_router.layer import RouteLayer
 rl = RouteLayer(encoder=encoder, routes=routes)
 ```
 
-We can now use our route layer to make super fast decisions based on user queries. Let’s try with two queries that should trigger our route decisions:
+We can now use our route layer to make super fast decisions based on user queries. Let's try with two queries that should trigger our route decisions:
 
 ```python
 rl("don't you love politics?").name
 ```
 
-```default
+```
 [Out]: 'politics'
 ```
 
-Correct decision, let’s try another:
+Correct decision, let's try another:
 
 ```python
 rl("how's the weather today?").name
 ```
 
-```default
+```
 [Out]: 'chitchat'
 ```
 
@@ -96,7 +92,7 @@ We get both decisions correct! Now lets try sending an unrelated query:
 rl("I'm interested in learning about llama 2").name
 ```
 
-```default
+```
 [Out]:
 ```
 

@@ -1,0 +1,60 @@
+---
+sidebar_label: clip
+title: semantic_router.encoders.clip
+---
+
+## CLIPEncoder Objects
+
+```python
+class CLIPEncoder(DenseEncoder)
+```
+
+Multi-modal dense encoder for text and images using CLIP-type models via
+
+HuggingFace.
+
+**Arguments**:
+
+- `name` (`str`): The name of the model to use.
+- `tokenizer_kwargs` (`Dict`): Keyword arguments for the tokenizer.
+- `processor_kwargs` (`Dict`): Keyword arguments for the processor.
+- `model_kwargs` (`Dict`): Keyword arguments for the model.
+- `device` (`Optional[str]`): The device to use for the model.
+- `str`0 (`str`1): The tokenizer for the model.
+- `str`2 (`str`1): The processor for the model.
+- `str`4 (`str`1): The model.
+- `str`6 (`str`1): The torch library.
+- `str`8 (`str`1): The PIL library.
+
+#### \_\_init\_\_
+
+```python
+def __init__(**data)
+```
+
+Initialize the CLIPEncoder.
+
+**Arguments**:
+
+- `**data` (`Dict`): Keyword arguments for the encoder.
+
+#### \_\_call\_\_
+
+```python
+def __call__(docs: List[Any],
+             batch_size: int = 32,
+             normalize_embeddings: bool = True) -> List[List[float]]
+```
+
+Encode a list of documents. Can handle both text and images.
+
+**Arguments**:
+
+- `docs` (`List[Any]`): The documents to encode.
+- `batch_size` (`int`): The batch size for the encoding.
+- `normalize_embeddings` (`bool`): Whether to normalize the embeddings.
+
+**Returns**:
+
+`List[List[float]]`: A list of embeddings.
+

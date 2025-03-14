@@ -1,0 +1,48 @@
+---
+sidebar_label: mistral
+title: semantic_router.encoders.mistral
+---
+
+This file contains the MistralEncoder class which is used to encode text using MistralAI
+
+## MistralEncoder Objects
+
+```python
+class MistralEncoder(DenseEncoder)
+```
+
+Class to encode text using MistralAI. Requires a MistralAI API key from
+https://console.mistral.ai/api-keys/
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: Optional[str] = None,
+             mistralai_api_key: Optional[str] = None,
+             score_threshold: float = 0.82)
+```
+
+Initialize the MistralEncoder.
+
+**Arguments**:
+
+- `name` (`str`): The name of the embedding model to use.
+- `mistralai_api_key` (`str`): The MistralAI API key.
+- `score_threshold`: The score threshold for the embeddings.
+
+#### \_\_call\_\_
+
+```python
+def __call__(docs: List[str]) -> List[List[float]]
+```
+
+Encode a list of documents into embeddings using MistralAI.
+
+**Arguments**:
+
+- `docs` (`List[str]`): The documents to encode.
+
+**Returns**:
+
+`List[List[float]]`: The embeddings for the documents.
+

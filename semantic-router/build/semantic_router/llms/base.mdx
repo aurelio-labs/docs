@@ -1,0 +1,66 @@
+---
+sidebar_label: base
+title: semantic_router.llms.base
+---
+
+## BaseLLM Objects
+
+```python
+class BaseLLM(BaseModel)
+```
+
+Base class for LLMs typically used by dynamic routes.
+
+This class provides a base implementation for LLMs. It defines the common
+configuration and methods for all LLM classes.
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: str, **kwargs)
+```
+
+Initialize the BaseLLM.
+
+**Arguments**:
+
+- `name` (`str`): The name of the LLM.
+- `**kwargs` (`dict`): Additional keyword arguments for the LLM.
+
+#### \_\_call\_\_
+
+```python
+def __call__(messages: List[Message]) -> Optional[str]
+```
+
+Call the LLM.
+
+Must be implemented by subclasses.
+
+**Arguments**:
+
+- `messages` (`List[Message]`): The messages to pass to the LLM.
+
+**Returns**:
+
+`Optional[str]`: The response from the LLM.
+
+#### extract\_function\_inputs
+
+```python
+def extract_function_inputs(
+        query: str, function_schemas: List[Dict[str,
+                                                Any]]) -> List[Dict[str, Any]]
+```
+
+Extract the function inputs from the query.
+
+**Arguments**:
+
+- `query` (`str`): The query to extract the function inputs from.
+- `function_schemas` (`List[Dict[str, Any]]`): The function schemas to extract the function inputs from.
+
+**Returns**:
+
+`List[Dict[str, Any]]`: The function inputs.
+

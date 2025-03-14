@@ -1,0 +1,310 @@
+---
+sidebar_label: pinecone
+title: semantic_router.index.pinecone
+---
+
+#### build\_records
+
+```python
+def build_records(
+    embeddings: List[List[float]],
+    routes: List[str],
+    utterances: List[str],
+    function_schemas: Optional[Optional[List[Dict[str, Any]]]] = None,
+    metadata_list: List[Dict[str, Any]] = [],
+    sparse_embeddings: Optional[Optional[List[SparseEmbedding]]] = None
+) -> List[Dict]
+```
+
+Build records for Pinecone upsert.
+
+**Arguments**:
+
+- `embeddings` (`List[List[float]]`): List of embeddings to upsert.
+- `routes` (`List[str]`): List of routes to upsert.
+- `utterances` (`List[str]`): List of utterances to upsert.
+- `function_schemas` (`Optional[List[Dict[str, Any]]]`): List of function schemas to upsert.
+- `metadata_list` (`List[Dict[str, Any]]`): List of metadata to upsert.
+- `List[List[float]]`0 (`List[List[float]]`1): List of sparse embeddings to upsert.
+
+**Returns**:
+
+`List[List[float]]`2: List of records to upsert.
+
+## PineconeRecord Objects
+
+```python
+class PineconeRecord(BaseModel)
+```
+
+#### metadata
+
+Additional metadata dictionary
+
+#### \_\_init\_\_
+
+```python
+def __init__(**data)
+```
+
+Initialize PineconeRecord.
+
+**Arguments**:
+
+- `**data` (`dict`): Keyword arguments to pass to the BaseModel constructor.
+
+#### to\_dict
+
+```python
+def to_dict()
+```
+
+Convert PineconeRecord to a dictionary.
+
+**Returns**:
+
+`dict`: Dictionary representation of the PineconeRecord.
+
+## PineconeIndex Objects
+
+```python
+class PineconeIndex(BaseIndex)
+```
+
+#### \_\_init\_\_
+
+```python
+def __init__(api_key: Optional[str] = None,
+             index_name: str = "index",
+             dimensions: Optional[int] = None,
+             metric: str = "dotproduct",
+             cloud: str = "aws",
+             region: str = "us-east-1",
+             host: str = "",
+             namespace: Optional[str] = "",
+             base_url: Optional[str] = "https://api.pinecone.io",
+             init_async_index: bool = False)
+```
+
+Initialize PineconeIndex.
+
+**Arguments**:
+
+- `api_key` (`Optional[str]`): Pinecone API key.
+- `index_name` (`str`): Name of the index.
+- `dimensions` (`Optional[int]`): Dimensions of the index.
+- `metric` (`str`): Metric of the index.
+- `cloud` (`str`): Cloud provider of the index.
+- `Optional[str]`0 (`str`): Region of the index.
+- `Optional[str]`2 (`str`): Host of the index.
+- `Optional[str]`4 (`Optional[str]`): Namespace of the index.
+- `Optional[str]`6 (`Optional[str]`): Base URL of the Pinecone API.
+- `Optional[str]`8 (`Optional[str]`9): Whether to initialize the index asynchronously.
+
+#### add
+
+```python
+def add(embeddings: List[List[float]],
+        routes: List[str],
+        utterances: List[str],
+        function_schemas: Optional[Optional[List[Dict[str, Any]]]] = None,
+        metadata_list: List[Dict[str, Any]] = [],
+        batch_size: int = 100,
+        sparse_embeddings: Optional[Optional[List[SparseEmbedding]]] = None,
+        **kwargs)
+```
+
+Add vectors to Pinecone in batches.
+
+**Arguments**:
+
+- `embeddings` (`List[List[float]]`): List of embeddings to upsert.
+- `routes` (`List[str]`): List of routes to upsert.
+- `utterances` (`List[str]`): List of utterances to upsert.
+- `function_schemas` (`Optional[List[Dict[str, Any]]]`): List of function schemas to upsert.
+- `metadata_list` (`List[Dict[str, Any]]`): List of metadata to upsert.
+- `List[List[float]]`0 (`List[List[float]]`1): Number of vectors to upsert in a single batch.
+- `List[List[float]]`2 (`List[List[float]]`3): List of sparse embeddings to upsert.
+
+#### aadd
+
+```python
+async def aadd(
+        embeddings: List[List[float]],
+        routes: List[str],
+        utterances: List[str],
+        function_schemas: Optional[Optional[List[Dict[str, Any]]]] = None,
+        metadata_list: List[Dict[str, Any]] = [],
+        batch_size: int = 100,
+        sparse_embeddings: Optional[Optional[List[SparseEmbedding]]] = None,
+        **kwargs)
+```
+
+Add vectors to Pinecone in batches.
+
+**Arguments**:
+
+- `embeddings` (`List[List[float]]`): List of embeddings to upsert.
+- `routes` (`List[str]`): List of routes to upsert.
+- `utterances` (`List[str]`): List of utterances to upsert.
+- `function_schemas` (`Optional[List[Dict[str, Any]]]`): List of function schemas to upsert.
+- `metadata_list` (`List[Dict[str, Any]]`): List of metadata to upsert.
+- `List[List[float]]`0 (`List[List[float]]`1): Number of vectors to upsert in a single batch.
+- `List[List[float]]`2 (`List[List[float]]`3): List of sparse embeddings to upsert.
+
+#### delete
+
+```python
+def delete(route_name: str) -> list[str]
+```
+
+Delete specified route from index if it exists. Returns the IDs of the vectors
+
+deleted.
+
+**Arguments**:
+
+- `route_name` (`str`): Name of the route to delete.
+
+**Returns**:
+
+`list[str]`: List of IDs of the vectors deleted.
+
+#### adelete
+
+```python
+async def adelete(route_name: str) -> list[str]
+```
+
+Asynchronously delete specified route from index if it exists. Returns the IDs
+
+of the vectors deleted.
+
+**Arguments**:
+
+- `route_name` (`str`): Name of the route to delete.
+
+**Returns**:
+
+`list[str]`: List of IDs of the vectors deleted.
+
+#### delete\_all
+
+```python
+def delete_all()
+```
+
+Delete all routes from index if it exists.
+
+**Returns**:
+
+`None`: None
+
+#### describe
+
+```python
+def describe() -> IndexConfig
+```
+
+Describe the index.
+
+**Returns**:
+
+`IndexConfig`: IndexConfig
+
+#### is\_ready
+
+```python
+def is_ready() -> bool
+```
+
+Checks if the index is ready to be used.
+
+**Returns**:
+
+`bool`: True if the index is ready, False otherwise.
+
+#### query
+
+```python
+def query(
+    vector: np.ndarray,
+    top_k: int = 5,
+    route_filter: Optional[List[str]] = None,
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None
+) -> Tuple[np.ndarray, List[str]]
+```
+
+Search the index for the query vector and return the top_k results.
+
+**Arguments**:
+
+- `vector` (`np.ndarray`): The query vector to search for.
+- `top_k` (`int, optional`): The number of top results to return, defaults to 5.
+- `route_filter` (`Optional[List[str]], optional`): A list of route names to filter the search results, defaults to None.
+- `sparse_vector` (`Optional[SparseEmbedding]`): An optional sparse vector to include in the query.
+- `kwargs` (`Any`): Additional keyword arguments for the query, including sparse_vector.
+
+**Raises**:
+
+- `np.ndarray`0: If the index is not populated.
+
+**Returns**:
+
+`np.ndarray`1: A tuple containing an array of scores and a list of route names.
+
+#### aquery
+
+```python
+async def aquery(
+    vector: np.ndarray,
+    top_k: int = 5,
+    route_filter: Optional[List[str]] = None,
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None
+) -> Tuple[np.ndarray, List[str]]
+```
+
+Asynchronously search the index for the query vector and return the top_k results.
+
+**Arguments**:
+
+- `vector` (`np.ndarray`): The query vector to search for.
+- `top_k` (`int, optional`): The number of top results to return, defaults to 5.
+- `route_filter` (`Optional[List[str]], optional`): A list of route names to filter the search results, defaults to None.
+- `kwargs` (`Any`): Additional keyword arguments for the query, including sparse_vector.
+- `sparse_vector` (`Optional[dict]`): An optional sparse vector to include in the query.
+
+**Raises**:
+
+- `np.ndarray`0: If the index is not populated.
+
+**Returns**:
+
+`np.ndarray`1: A tuple containing an array of scores and a list of route names.
+
+#### aget\_routes
+
+```python
+async def aget_routes() -> list[tuple]
+```
+
+Asynchronously get a list of route and utterance objects currently
+
+stored in the index.
+
+**Returns**:
+
+`List[Tuple]`: A list of (route_name, utterance) objects.
+
+#### delete\_index
+
+```python
+def delete_index()
+```
+
+Delete the index.
+
+**Returns**:
+
+`None`: None
+
