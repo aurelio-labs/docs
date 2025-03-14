@@ -57,21 +57,18 @@
         "tab": "Semantic Router",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Essentials",
             "pages": [
-              "semantic-router/get-started"
-            ]
-          },
-          {
-            "group": "Route Layer",
-            "pages": [
-              "semantic-router/route-layer/introduction",
-              "semantic-router/route-layer/dynamic-routes",
-              "semantic-router/route-layer/local-execution",
-              "semantic-router/route-layer/route-filter",
-              "semantic-router/route-layer/save-load-from-file",
-              "semantic-router/route-layer/sync",
-              "semantic-router/route-layer/threshold-optimization"
+              "semantic-router/essentials/introduction",
+              "semantic-router/essentials/quickstart",
+              "semantic-router/essentials/semantic-router",
+              "semantic-router/essentials/route-filter",
+              "semantic-router/essentials/dynamic-routes",
+              "semantic-router/essentials/save-load-from-file",
+              "semantic-router/essentials/sync",
+              "semantic-router/essentials/threshold-optimization",
+              "semantic-router/essentials/local-execution",
+              "semantic-router/essentials/migration-to-v1"
             ]
           },
           {
