@@ -11,45 +11,6 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Aurelio SDK",
-        "groups": [
-          {
-            "group": "Get Started",
-            "pages": [
-              "aurelio-sdk/introduction",
-              "aurelio-sdk/quickstart"
-            ]
-          },
-          {
-            "group": "API Reference",
-            "pages": [
-              {
-                "group": "Chunk",
-                "pages": [
-                  "aurelio-sdk/api-reference/v1/chunk/post",
-                  "aurelio-sdk/api-reference/v1/chunk/get"
-                ]
-              },
-              {
-                "group": "Extract",
-                "pages": [
-                  "aurelio-sdk/api-reference/v1/extract/post_file",
-                  "aurelio-sdk/api-reference/v1/extract/post_url",
-                  "aurelio-sdk/api-reference/v1/extract/get_document",
-                  "aurelio-sdk/api-reference/v1/extract/list_documents"
-                ]
-              },
-              {
-                "group": "Embeddings",
-                "pages": [
-                  "aurelio-sdk/api-reference/v1/embeddings/post"
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
         "tab": "Semantic Router",
         "groups": [
           {
@@ -161,6 +122,45 @@
                   "semantic-router/user-guide/guides/migration-to-v1",
                   "semantic-router/user-guide/guides/save-load-from-file",
                   "semantic-router/user-guide/guides/semantic-router"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Aurelio SDK",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "aurelio-sdk/introduction",
+              "aurelio-sdk/quickstart"
+            ]
+          },
+          {
+            "group": "API Reference",
+            "pages": [
+              {
+                "group": "Chunk",
+                "pages": [
+                  "aurelio-sdk/api-reference/v1/chunk/post",
+                  "aurelio-sdk/api-reference/v1/chunk/get"
+                ]
+              },
+              {
+                "group": "Extract",
+                "pages": [
+                  "aurelio-sdk/api-reference/v1/extract/post_file",
+                  "aurelio-sdk/api-reference/v1/extract/post_url",
+                  "aurelio-sdk/api-reference/v1/extract/get_document",
+                  "aurelio-sdk/api-reference/v1/extract/list_documents"
+                ]
+              },
+              {
+                "group": "Embeddings",
+                "pages": [
+                  "aurelio-sdk/api-reference/v1/embeddings/post"
                 ]
               }
             ]
