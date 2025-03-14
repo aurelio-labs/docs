@@ -165,6 +165,19 @@
               }
             ]
           }
+        ],
+        "pages": [
+          "aurelio-sdk/core-concepts",
+          "aurelio-sdk/overview",
+          "aurelio-sdk/quickstart",
+          {
+            "group": "user-guide",
+            "pages": [
+              "aurelio-sdk/user-guide/chunking",
+              "aurelio-sdk/user-guide/embeddings",
+              "aurelio-sdk/user-guide/file-extraction"
+            ]
+          }
         ]
       }
     ],
