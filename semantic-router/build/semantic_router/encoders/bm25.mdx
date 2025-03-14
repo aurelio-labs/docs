@@ -56,7 +56,7 @@ Returns BM25 scores for queries using precomputed corpus scores.
 
 **Returns**:
 
-`np.ndarray`: BM25 scores for each query against the corpus
+`list[SparseEmbedding]`: BM25 scores for each query against the corpus
 
 #### encode\_documents
 
@@ -69,7 +69,7 @@ Returns document term frequency normed by itself &amp; average trained corpus le
 
 (This is the right-hand side of the BM25 equation, which gets matmul-ed with the query IDF component)
 
-LaTeX: \frac{f(d_i, D)}{f(d_i, D) + k_1 \times (1 - b + b \times \frac{|D|}{avgdl})}
+LaTeX: $\frac{f(d_i, D)}{f(d_i, D) + k_1 \times (1 - b + b \times \frac{|D|}{avgdl})}$
 where:
     f(d_i, D) is frequency of term `d_i ∈ D`
     |D| is the document length
@@ -81,7 +81,7 @@ where:
 
 **Returns**:
 
-`:class:`scipy.sparse.csr_matrix`, list[dict]`: Encoded queries (as either sparse or dict)
+`list[SparseEmbedding]`: Encoded queries (as either sparse or dict)
 
 #### model
 
