@@ -144,17 +144,70 @@ def add_files_to_tab(tab: Dict, new_files: List[str]) -> None:
             target_group = {'group': category, 'pages': []}
             tab.get('groups', []).append(target_group)
         
-        # Handle API Reference specially - it has nested structure
+        # Handle different categories with specific functions
         if category == "API Reference":
             add_to_api_reference_group(target_group, files)
         elif category == "Client Reference":
             add_to_client_reference_group(target_group, files)
         else:
-            # Add to group directly
-            target_group.get('pages', []).extend(files)
-            # Keep pages sorted
-            if all(isinstance(p, str) for p in target_group.get('pages', [])):
-                target_group['pages'] = sorted(target_group['pages'])
+            # For other categories, handle subdirectories generically
+            add_to_generic_group_with_subdirs(target_group, files)
+
+def add_to_generic_group_with_subdirs(group: Dict, files: List[str]) -> None:
+    """Add files to a group, organizing subdirectories as nested groups"""
+    # Group files by subdirectory structure
+    base_dir = None
+    if files:
+        # Determine base directory from the first file path
+        # e.g., 'semantic-router/user-guide' for 'semantic-router/user-guide/guides/file.mdx'
+        parts = files[0].split('/')
+        if len(parts) >= 2:
+            base_dir = f"{parts[0]}/{parts[1]}"
+    
+    if not base_dir:
+        # If we can't determine base directory, fall back to simple flat structure
+        group.get('pages', []).extend(files)
+        if all(isinstance(p, str) for p in group.get('pages', [])):
+            group['pages'] = sorted(group['pages'])
+        return
+    
+    # Organize files by level
+    top_level_files = []
+    subdir_files: Dict[str, List[str]] = {}
+    
+    for file in files:
+        parts = file.split('/')
+        file_path_parts = parts[2:] if len(parts) > 2 else []
+        
+        if len(file_path_parts) == 1:
+            # Files directly in the base directory
+            top_level_files.append(file)
+        elif len(file_path_parts) >= 2:
+            # Files in subdirectories
+            subdir = file_path_parts[0]
+            subdir_title = dir_to_title(subdir)
+            subdir_files.setdefault(subdir_title, []).append(file)
+    
+    # Start with an empty pages list to avoid duplication
+    group['pages'] = []
+    
+    # Add top-level files directly
+    group['pages'].extend(top_level_files)
+    
+    # Create or find subgroups for subdirectory files
+    for subdir_title, subdir_file_list in subdir_files.items():
+        # Create new subgroup
+        subgroup = {'group': subdir_title, 'pages': []}
+        
+        # Add files to subgroup
+        subgroup['pages'] = sorted(list(set(subdir_file_list)))  # Use set to remove duplicates
+        
+        # Add subgroup to the group
+        group['pages'].append(subgroup)
+    
+    # Sort top-level pages
+    if all(isinstance(p, str) for p in group['pages']):
+        group['pages'] = sorted(group['pages'])
 
 def add_to_api_reference_group(group: Dict, files: List[str]) -> None:
     """Add files to API Reference group, which has nested structure"""
@@ -303,11 +356,59 @@ def update_docs_schema():
         # Scan directories for all markdown files
         all_files = scan_directory('aurelio-sdk') + scan_directory('semantic-router')
         
+        # Check for user-guide section
+        user_guide_files = [f for f in all_files if 'semantic-router/user-guide' in f]
+        if user_guide_files:
+            print(f"Found {len(user_guide_files)} files in semantic-router/user-guide - will reorganize this section")
+            
+            # Remove user-guide files from the schema
+            for tab in current_schema.get('navigation', {}).get('tabs', []):
+                if tab.get('tab') == 'Semantic Router':
+                    for group in tab.get('groups', []):
+                        if group.get('group') == 'User Guide':
+                            # Clear the pages to force rebuild
+                            group['pages'] = []
+                            break
+                    # If User Guide group doesn't exist, create it
+                    user_guide_group = None
+                    for group in tab.get('groups', []):
+                        if group.get('group') == 'User Guide':
+                            user_guide_group = group
+                            break
+                    if not user_guide_group:
+                        user_guide_group = {'group': 'User Guide', 'pages': []}
+                        tab.get('groups', []).append(user_guide_group)
+                    break
+        
         # Remove files that no longer exist
         updated_schema = remove_nonexistent_files_from_schema(current_schema, all_files)
         
         # Add new files to schema
         updated_schema = add_new_files_to_schema(updated_schema, all_files)
+        
+        # Special case for user-guide: force it to be treated as new files
+        if user_guide_files:
+            user_guide_tab = None
+            for tab in updated_schema.get('navigation', {}).get('tabs', []):
+                if tab.get('tab') == 'Semantic Router':
+                    user_guide_tab = tab
+                    break
+            
+            if user_guide_tab:
+                # Find or create User Guide group
+                user_guide_group = None
+                for group in user_guide_tab.get('groups', []):
+                    if group.get('group') == 'User Guide':
+                        user_guide_group = group
+                        break
+                
+                if not user_guide_group:
+                    user_guide_group = {'group': 'User Guide', 'pages': []}
+                    user_guide_tab.get('groups', []).append(user_guide_group)
+                
+                # Force add all user_guide_files to this group
+                add_to_generic_group_with_subdirs(user_guide_group, user_guide_files)
+                print(f"Reorganized User Guide section with {len(user_guide_files)} files into subgroups")
         
         # Write updated schema back to docs.json
         with open('docs.json', 'w') as f:
