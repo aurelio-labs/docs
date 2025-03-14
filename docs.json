@@ -59,8 +59,8 @@
           {
             "group": "Get Started",
             "pages": [
-              "semantic-router/get-started/introduction",
-              "semantic-router/get-started/quickstart"
+              "semantic-router/introduction",
+              "semantic-router/quickstart"
             ]
           },
           {
