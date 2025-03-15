@@ -134,32 +134,13 @@
           {
             "group": "Get Started",
             "pages": [
-              "aurelio-sdk/quickstart"
+              "aurelio-sdk/overview",
+              "aurelio-sdk/quickstart",
+              "aurelio-sdk/core-concepts"
             ]
-          },
-          {
-            "group": "Core Concepts",
-            "pages": []
-          },
-          {
-            "group": "Overview",
-            "pages": []
           },
           {
             "group": "User Guide",
-            "pages": [
-              "aurelio-sdk/user-guide/chunking",
-              "aurelio-sdk/user-guide/embeddings",
-              "aurelio-sdk/user-guide/file-extraction"
-            ]
-          }
-        ],
-        "pages": [
-          "aurelio-sdk/core-concepts",
-          "aurelio-sdk/overview",
-          "aurelio-sdk/quickstart",
-          {
-            "group": "user-guide",
             "pages": [
               "aurelio-sdk/user-guide/chunking",
               "aurelio-sdk/user-guide/embeddings",
