@@ -254,7 +254,8 @@ Check for a matching route in the routes list.
 def __call__(text: Optional[str] = None,
              vector: Optional[List[float] | np.ndarray] = None,
              simulate_static: bool = False,
-             route_filter: Optional[List[str]] = None) -> RouteChoice
+             route_filter: Optional[List[str]] = None,
+             limit: int | None = 1) -> RouteChoice | List[RouteChoice]
 ```
 
 Call the router to get a route choice.
@@ -265,18 +266,22 @@ Call the router to get a route choice.
 - `vector` (`Optional[List[float] | np.ndarray]`): The vector to route.
 - `simulate_static` (`bool`): Whether to simulate a static route.
 - `route_filter` (`Optional[List[str]]`): The route filter to use.
+- `limit` (`int | None`): The number of routes to return, defaults to 1. If set to None, no
+limit is applied and all routes are returned.
 
 **Returns**:
 
-`RouteChoice`: The route choice.
+`Optional[str]`0: The route choice.
 
 #### acall
 
 ```python
-async def acall(text: Optional[str] = None,
-                vector: Optional[List[float] | np.ndarray] = None,
-                simulate_static: bool = False,
-                route_filter: Optional[List[str]] = None) -> RouteChoice
+async def acall(
+    text: Optional[str] = None,
+    vector: Optional[List[float] | np.ndarray] = None,
+    simulate_static: bool = False,
+    route_filter: Optional[List[str]] = None
+) -> RouteChoice | list[RouteChoice]
 ```
 
 Asynchronously call the router to get a route choice.
@@ -583,24 +588,6 @@ def group_scores_by_class(query_results: List[Dict]) -> Dict[str, List[float]]
 ```
 
 Group the scores by class.
-
-**Arguments**:
-
-- `query_results` (`List[Dict]`): The query results to group. Expected format is a list of
-dictionaries with &quot;route&quot; and &quot;score&quot; keys.
-
-**Returns**:
-
-`Dict[str, List[float]]`: A dictionary of route names and their associated scores.
-
-#### async\_group\_scores\_by\_class
-
-```python
-async def async_group_scores_by_class(
-        query_results: List[Dict]) -> Dict[str, List[float]]
-```
-
-Group the scores by class asynchronously.
 
 **Arguments**:
 
