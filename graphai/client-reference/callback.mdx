@@ -1,0 +1,46 @@
+---
+sidebarTitle: callback
+title: graphai.callback
+---
+
+## Callback Objects
+
+```python
+class Callback()
+```
+
+#### aiter
+
+```python
+async def aiter() -> AsyncIterator[str]
+```
+
+Used by receiver to get the tokens from the stream queue. Creates
+a generator that yields tokens from the queue until the END token is
+received.
+
+#### start\_node
+
+```python
+async def start_node(node_name: str, active: bool = True)
+```
+
+Starts a new node and emits the start token.
+
+#### end\_node
+
+```python
+async def end_node(node_name: str)
+```
+
+Emits the end token for the current node.
+
+#### close
+
+```python
+async def close()
+```
+
+Close the stream and prevent further tokens from being added.
+This will send an END token and set the done flag to True.
+

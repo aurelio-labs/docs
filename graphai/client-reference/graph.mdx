@@ -1,0 +1,56 @@
+---
+sidebarTitle: graph
+title: graphai.graph
+---
+
+## Graph Objects
+
+```python
+class Graph()
+```
+
+#### get\_state
+
+```python
+def get_state() -> Dict[str, Any]
+```
+
+Get the current graph state.
+
+#### set\_state
+
+```python
+def set_state(state: Dict[str, Any])
+```
+
+Set the graph state.
+
+#### update\_state
+
+```python
+def update_state(values: Dict[str, Any])
+```
+
+Update the graph state with new values.
+
+#### reset\_state
+
+```python
+def reset_state()
+```
+
+Reset the graph state to an empty dict.
+
+#### add\_edge
+
+```python
+def add_edge(source: _Node | str, destination: _Node | str)
+```
+
+Adds an edge between two nodes that already exist in the graph.
+
+**Arguments**:
+
+- `source` - The source node or its name.
+- `destination` - The destination node or its name.
+
