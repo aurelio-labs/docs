@@ -3,9 +3,15 @@ function updatePageStyles() {
   if (currentPath.startsWith("/semantic-router")) {
     document.body.classList.add("semantic-router");
     document.body.classList.remove("aurelio-sdk");
+    document.body.classList.remove("graphai");
   } else if (currentPath.startsWith("/aurelio-sdk")) {
     document.body.classList.remove("semantic-router");
     document.body.classList.add("aurelio-sdk");
+    document.body.classList.remove("graphai");
+  } else if (currentPath.startsWith("/graphai")) {
+    document.body.classList.remove("semantic-router");
+    document.body.classList.remove("aurelio-sdk");
+    document.body.classList.add("graphai");
   }
 }
 

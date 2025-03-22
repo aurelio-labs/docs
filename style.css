@@ -3,3 +3,15 @@
   --primary-light: 237 34 139;
   --primary-dark: 237 34 139;
 }
+
+.aurelio-sdk {
+  --primary: 9 189 225;
+  --primary-light: 9 189 225;
+  --primary-dark: 9 189 225;
+}
+
+.graphai {
+  --primary: 240 166 31;
+  --primary-light: 240 166 31;
+  --primary-dark: 240 166 31;
+}
