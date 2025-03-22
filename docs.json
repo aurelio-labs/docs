@@ -148,6 +148,40 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "GraphAI",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "graphai/get-started/introduction",
+              "graphai/get-started/quickstart"
+            ]
+          },
+          {
+            "group": "User Guide",
+            "pages": [
+              {
+                "group": "Components",
+                "pages": [
+                  "graphai/user-guide/components/graphs",
+                  "graphai/user-guide/components/nodes",
+                  "graphai/user-guide/components/state",
+                  "graphai/user-guide/components/callbacks"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Client Reference",
+            "pages": [
+              "graphai/client-reference/graph",
+              "graphai/client-reference/callback",
+              "graphai/client-reference/utils"
+            ]
+          }
+        ]
       }
     ],
     "global": {
