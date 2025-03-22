@@ -91,6 +91,7 @@ def add_new_files_to_schema(schema: Dict, all_files: List[str]) -> Dict:
     # Group new files by their prefix (aurelio-sdk or semantic-router)
     sdk_files = [f for f in new_files if f.startswith('aurelio-sdk')]
     router_files = [f for f in new_files if f.startswith('semantic-router')]
+    graphai_files = [f for f in new_files if f.startswith('graphai')]
     
     # Add new files to the schema
     for tab in updated_schema.get('navigation', {}).get('tabs', []):
@@ -98,7 +99,8 @@ def add_new_files_to_schema(schema: Dict, all_files: List[str]) -> Dict:
             add_files_to_tab(tab, sdk_files)
         elif tab.get('tab') == 'Semantic Router' and router_files:
             add_files_to_tab(tab, router_files)
-    
+        elif tab.get('tab') == 'GraphAI' and graphai_files:
+            add_files_to_tab(tab, graphai_files)
     return updated_schema
 
 def add_files_to_tab(tab: Dict, new_files: List[str]) -> None:
@@ -354,7 +356,9 @@ def update_docs_schema():
         current_schema = get_current_schema()
         
         # Scan directories for all markdown files
-        all_files = scan_directory('aurelio-sdk') + scan_directory('semantic-router')
+        all_files = scan_directory('aurelio-sdk') \
+            + scan_directory('semantic-router') \
+            + scan_directory('graphai')
         
         # Check for user-guide section
         user_guide_files = [f for f in all_files if 'semantic-router/user-guide' in f]
