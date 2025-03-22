@@ -384,6 +384,54 @@ def update_docs_schema():
                         tab.get('groups', []).append(user_guide_group)
                     break
         
+        # Check for Aurelio SDK user-guide section
+        aurelio_user_guide_files = [f for f in all_files if 'aurelio-sdk/user-guide' in f]
+        if aurelio_user_guide_files:
+            print(f"Found {len(aurelio_user_guide_files)} files in aurelio-sdk/user-guide - will reorganize this section")
+            
+            # Remove user-guide files from the schema
+            for tab in current_schema.get('navigation', {}).get('tabs', []):
+                if tab.get('tab') == 'Aurelio SDK':
+                    for group in tab.get('groups', []):
+                        if group.get('group') == 'User Guide':
+                            # Clear the pages to force rebuild
+                            group['pages'] = []
+                            break
+                    # If User Guide group doesn't exist, create it
+                    user_guide_group = None
+                    for group in tab.get('groups', []):
+                        if group.get('group') == 'User Guide':
+                            user_guide_group = group
+                            break
+                    if not user_guide_group:
+                        user_guide_group = {'group': 'User Guide', 'pages': []}
+                        tab.get('groups', []).append(user_guide_group)
+                    break
+        
+        # Check for GraphAI user-guide section
+        graphai_user_guide_files = [f for f in all_files if 'graphai/user-guide' in f]
+        if graphai_user_guide_files:
+            print(f"Found {len(graphai_user_guide_files)} files in graphai/user-guide - will reorganize this section")
+            
+            # Remove user-guide files from the schema
+            for tab in current_schema.get('navigation', {}).get('tabs', []):
+                if tab.get('tab') == 'GraphAI':
+                    for group in tab.get('groups', []):
+                        if group.get('group') == 'User Guide':
+                            # Clear the pages to force rebuild
+                            group['pages'] = []
+                            break
+                    # If User Guide group doesn't exist, create it
+                    user_guide_group = None
+                    for group in tab.get('groups', []):
+                        if group.get('group') == 'User Guide':
+                            user_guide_group = group
+                            break
+                    if not user_guide_group:
+                        user_guide_group = {'group': 'User Guide', 'pages': []}
+                        tab.get('groups', []).append(user_guide_group)
+                    break
+                    
         # Remove files that no longer exist
         updated_schema = remove_nonexistent_files_from_schema(current_schema, all_files)
         
@@ -413,6 +461,54 @@ def update_docs_schema():
                 # Force add all user_guide_files to this group
                 add_to_generic_group_with_subdirs(user_guide_group, user_guide_files)
                 print(f"Reorganized User Guide section with {len(user_guide_files)} files into subgroups")
+        
+        # Special case for Aurelio SDK user-guide
+        if aurelio_user_guide_files:
+            aurelio_user_guide_tab = None
+            for tab in updated_schema.get('navigation', {}).get('tabs', []):
+                if tab.get('tab') == 'Aurelio SDK':
+                    aurelio_user_guide_tab = tab
+                    break
+            
+            if aurelio_user_guide_tab:
+                # Find or create User Guide group
+                user_guide_group = None
+                for group in aurelio_user_guide_tab.get('groups', []):
+                    if group.get('group') == 'User Guide':
+                        user_guide_group = group
+                        break
+                
+                if not user_guide_group:
+                    user_guide_group = {'group': 'User Guide', 'pages': []}
+                    aurelio_user_guide_tab.get('groups', []).append(user_guide_group)
+                
+                # Force add all aurelio_user_guide_files to this group
+                add_to_generic_group_with_subdirs(user_guide_group, aurelio_user_guide_files)
+                print(f"Reorganized Aurelio SDK User Guide section with {len(aurelio_user_guide_files)} files into subgroups")
+        
+        # Special case for GraphAI user-guide
+        if graphai_user_guide_files:
+            graphai_user_guide_tab = None
+            for tab in updated_schema.get('navigation', {}).get('tabs', []):
+                if tab.get('tab') == 'GraphAI':
+                    graphai_user_guide_tab = tab
+                    break
+            
+            if graphai_user_guide_tab:
+                # Find or create User Guide group
+                user_guide_group = None
+                for group in graphai_user_guide_tab.get('groups', []):
+                    if group.get('group') == 'User Guide':
+                        user_guide_group = group
+                        break
+                
+                if not user_guide_group:
+                    user_guide_group = {'group': 'User Guide', 'pages': []}
+                    graphai_user_guide_tab.get('groups', []).append(user_guide_group)
+                
+                # Force add all graphai_user_guide_files to this group
+                add_to_generic_group_with_subdirs(user_guide_group, graphai_user_guide_files)
+                print(f"Reorganized GraphAI User Guide section with {len(graphai_user_guide_files)} files into subgroups")
         
         # Write updated schema back to docs.json
         with open('docs.json', 'w') as f:
