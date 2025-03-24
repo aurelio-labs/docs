@@ -157,7 +157,8 @@
             "pages": [
               "aurelio-sdk/user-guide/chunking",
               "aurelio-sdk/user-guide/embeddings",
-              "aurelio-sdk/user-guide/file-extraction"
+              "aurelio-sdk/user-guide/file-extraction",
+              "aurelio-sdk/user-guide/migration-v0.0.19"
             ]
           }
         ]
