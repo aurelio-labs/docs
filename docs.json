@@ -191,8 +191,8 @@
           {
             "group": "Client Reference",
             "pages": [
-              "graphai/client-reference/graph",
               "graphai/client-reference/callback",
+              "graphai/client-reference/graph",
               "graphai/client-reference/utils"
             ]
           }

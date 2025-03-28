@@ -13,7 +13,7 @@ This guide will help you build a simple LLM-powered agent using GraphAI and the 
 ## Installation
 
 ```bash
-pip install graphai
+pip install graphai-lib
 ```
 
 ## Building a Simple Agent
