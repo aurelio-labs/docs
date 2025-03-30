@@ -3,12 +3,79 @@ sidebarTitle: utils
 title: graphai.utils
 ---
 
+## CustomFormatter Objects
+
+```python
+class CustomFormatter(colorlog.ColoredFormatter)
+```
+
+Custom formatter for the logger.
+
+#### add\_coloured\_handler
+
+```python
+def add_coloured_handler(logger)
+```
+
+Add a coloured handler to the logger.
+
+#### setup\_custom\_logger
+
+```python
+def setup_custom_logger(name)
+```
+
+Setup a custom logger.
+
+## Parameter Objects
+
+```python
+class Parameter(BaseModel)
+```
+
+Parameter for a function.
+
+**Arguments**:
+
+- `name` (`str`): The name of the parameter.
+- `description` (`Optional[str]`): The description of the parameter.
+- `type` (`str`): The type of the parameter.
+- `default` (`Any`): The default value of the parameter.
+- `required` (`bool`): Whether the parameter is required.
+
+#### to\_dict
+
+```python
+def to_dict() -> dict[str, Any]
+```
+
+Convert the parameter to a dictionary for an standard dictionary-based function schema.
+
+This is the most common format used by LLM providers, including OpenAI, Ollama, and others.
+
+**Returns**:
+
+`dict[str, Any]`: The parameter in dictionary format.
+
 ## FunctionSchema Objects
 
 ```python
-class FunctionSchema()
+class FunctionSchema(BaseModel)
 ```
 
 Class that consumes a function and can return a schema required by
 different LLMs for function calling.
+
+#### from\_callable
+
+```python
+@classmethod
+def from_callable(cls, function: Callable) -> "FunctionSchema"
+```
+
+Initialize the FunctionSchema.
+
+**Arguments**:
+
+- `function` (`Callable`): The function to consume.
 
