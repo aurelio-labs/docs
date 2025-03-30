@@ -177,10 +177,12 @@
           {
             "group": "User Guide",
             "pages": [
+              "graphai/user-guide/release-notes",
               {
                 "group": "Components",
                 "pages": [
                   "graphai/user-guide/components/callbacks",
+                  "graphai/user-guide/components/function-schema",
                   "graphai/user-guide/components/graphs",
                   "graphai/user-guide/components/nodes",
                   "graphai/user-guide/components/state"
