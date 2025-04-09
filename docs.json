@@ -78,6 +78,7 @@
                   "semantic-router/client-reference/encoders/fastembed",
                   "semantic-router/client-reference/encoders/google",
                   "semantic-router/client-reference/encoders/huggingface",
+                  "semantic-router/client-reference/encoders/litellm",
                   "semantic-router/client-reference/encoders/mistral",
                   "semantic-router/client-reference/encoders/openai",
                   "semantic-router/client-reference/encoders/tfidf",

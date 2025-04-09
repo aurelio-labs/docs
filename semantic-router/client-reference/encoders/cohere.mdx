@@ -6,7 +6,7 @@ title: semantic_router.encoders.cohere
 ## CohereEncoder Objects
 
 ```python
-class CohereEncoder(DenseEncoder, AsymmetricDenseMixin)
+class CohereEncoder(LiteLLMEncoder)
 ```
 
 Dense encoder that uses Cohere API to embed documents. Supports text only. Requires
@@ -15,8 +15,8 @@ a Cohere API key from https://dashboard.cohere.com/api-keys.
 #### \_\_init\_\_
 
 ```python
-def __init__(name: Optional[str] = None,
-             cohere_api_key: Optional[str] = None,
+def __init__(name: str | None = None,
+             cohere_api_key: str | None = None,
              score_threshold: float = 0.3)
 ```
 
@@ -24,25 +24,9 @@ Initialize the Cohere encoder.
 
 **Arguments**:
 
-- `name` (`str`): The name of the embedding model to use.
+- `name` (`str`): The name of the embedding model to use such as &quot;embed-english-v3.0&quot; or
+&quot;embed-multilingual-v3.0&quot;.
 - `cohere_api_key` (`str`): The API key for the Cohere client, can also
 be set via the COHERE_API_KEY environment variable.
 - `score_threshold` (`float`): The threshold for the score of the embedding.
-- `input_type` (`str`): The type of input to embed.
-
-#### \_\_call\_\_
-
-```python
-def __call__(docs: List[str]) -> List[List[float]]
-```
-
-Embed a list of documents. Supports text only.
-
-**Arguments**:
-
-- `docs` (`List[str]`): The documents to embed.
-
-**Returns**:
-
-`List[List[float]]`: The vector embeddings of the documents.
 
