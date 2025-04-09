@@ -1,0 +1,31 @@
+---
+sidebarTitle: voyage
+title: semantic_router.encoders.voyage
+---
+
+This file contains the VoyageEncoder class which is used to encode text using Voyage
+
+## VoyageEncoder Objects
+
+```python
+class VoyageEncoder(LiteLLMEncoder)
+```
+
+Class to encode text using Voyage. Requires a Voyage API key from
+https://voyageai.com/api-keys/
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: str | None = None,
+             api_key: str | None = None,
+             score_threshold: float = 0.4)
+```
+
+Initialize the VoyageEncoder.
+
+**Arguments**:
+
+- `name` (`str`): The name of the embedding model to use such as &quot;voyage-embed&quot;.
+- `voyage_api_key` (`str`): The Voyage API key.
+
