@@ -225,6 +225,14 @@
       "href": "https://github.com/aurelio-labs/aurelio-sdk"
     }
   },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude"
+    ]
+  },
   "footer": {
     "socials": {
       "x": "https://x.com/AurelioAI_",
