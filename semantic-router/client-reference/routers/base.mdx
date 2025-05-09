@@ -279,6 +279,7 @@ limit is applied and all routes are returned.
 async def acall(
     text: Optional[str] = None,
     vector: Optional[List[float] | np.ndarray] = None,
+    limit: int | None = 1,
     simulate_static: bool = False,
     route_filter: Optional[List[str]] = None
 ) -> RouteChoice | list[RouteChoice]

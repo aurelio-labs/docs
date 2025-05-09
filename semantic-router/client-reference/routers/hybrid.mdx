@@ -73,6 +73,34 @@ limit is applied and all routes are returned.
 
 `Optional[str]`2: A RouteChoice or a list of RouteChoices.
 
+#### acall
+
+```python
+async def acall(
+    text: Optional[str] = None,
+    vector: Optional[List[float] | np.ndarray] = None,
+    limit: int | None = 1,
+    simulate_static: bool = False,
+    route_filter: Optional[List[str]] = None,
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None
+) -> RouteChoice | list[RouteChoice]
+```
+
+Asynchronously call the router to get a route choice.
+
+**Arguments**:
+
+- `text` (`Optional[str]`): The text to route.
+- `vector` (`Optional[List[float] | np.ndarray]`): The vector to route.
+- `simulate_static` (`bool`): Whether to simulate a static route (ie avoid dynamic route
+LLM calls during fit or evaluate).
+- `route_filter` (`Optional[List[str]]`): The route filter to use.
+- `sparse_vector` (`dict[int, float] | SparseEmbedding | None`): The sparse vector to use.
+
+**Returns**:
+
+`Optional[str]`0: The route choice.
+
 #### fit
 
 ```python
