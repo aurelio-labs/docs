@@ -3,6 +3,14 @@ sidebarTitle: graph
 title: graphai.graph
 ---
 
+## NodeProtocol Objects
+
+```python
+class NodeProtocol(Protocol)
+```
+
+Protocol defining the interface of a decorated node.
+
 ## Graph Objects
 
 ```python
@@ -44,7 +52,7 @@ Reset the graph state to an empty dict.
 #### add\_edge
 
 ```python
-def add_edge(source: _Node | str, destination: _Node | str)
+def add_edge(source: NodeProtocol | str, destination: NodeProtocol | str)
 ```
 
 Adds an edge between two nodes that already exist in the graph.
@@ -53,4 +61,30 @@ Adds an edge between two nodes that already exist in the graph.
 
 - `source` - The source node or its name.
 - `destination` - The destination node or its name.
+
+#### get\_callback
+
+```python
+def get_callback()
+```
+
+Get a new instance of the callback class.
+
+**Returns**:
+
+`Callback`: A new instance of the callback class.
+
+#### set\_callback
+
+```python
+def set_callback(callback_class: Type[Callback])
+```
+
+Set the callback class that is returned by the `get_callback` method and used
+
+as the default callback when no callback is passed to the `execute` method.
+
+**Arguments**:
+
+- `callback_class` (`Type[Callback]`): The callback class to use as the default callback.
 
