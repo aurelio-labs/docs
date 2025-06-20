@@ -1,0 +1,31 @@
+---
+sidebarTitle: nvidia_nim
+title: semantic_router.encoders.nvidia_nim
+---
+
+This file contains the NimEncoder class which is used to encode text using Nim
+
+## NimEncoder Objects
+
+```python
+class NimEncoder(LiteLLMEncoder)
+```
+
+Class to encode text using Nvidia NIM. Requires a Nim API key from
+https://nim.ai/api-keys/
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: str | None = None,
+             api_key: str | None = None,
+             score_threshold: float = 0.4)
+```
+
+Initialize the NimEncoder.
+
+**Arguments**:
+
+- `name` (`str`): The name of the embedding model to use such as &quot;nv-embedqa-e5-v5&quot;.
+- `nim_api_key` (`str`): The Nim API key.
+

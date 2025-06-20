@@ -81,6 +81,7 @@
                   "semantic-router/client-reference/encoders/jina",
                   "semantic-router/client-reference/encoders/litellm",
                   "semantic-router/client-reference/encoders/mistral",
+                  "semantic-router/client-reference/encoders/nvidia_nim",
                   "semantic-router/client-reference/encoders/openai",
                   "semantic-router/client-reference/encoders/tfidf",
                   "semantic-router/client-reference/encoders/vit",
