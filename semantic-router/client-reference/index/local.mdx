@@ -144,6 +144,21 @@ Delete all records of a specific route from the index.
 
 - `route_name` (`str`): The name of the route to delete.
 
+#### adelete
+
+```python
+async def adelete(route_name: str)
+```
+
+Delete all records of a specific route from the index. Note that this just points
+
+to the sync delete method as async makes no difference for the local computations
+of the LocalIndex.
+
+**Arguments**:
+
+- `route_name` (`str`): The name of the route to delete.
+
 #### delete\_index
 
 ```python
@@ -151,6 +166,21 @@ def delete_index()
 ```
 
 Deletes the index, effectively clearing it and setting it to None.
+
+**Returns**:
+
+`None`: None
+
+#### adelete\_index
+
+```python
+async def adelete_index()
+```
+
+Deletes the index, effectively clearing it and setting it to None. Note that this just points
+
+to the sync delete_index method as async makes no difference for the local computations
+of the LocalIndex.
 
 **Returns**:
 

@@ -272,15 +272,13 @@ Not yet implemented for PostgresIndex.
 def __len__()
 ```
 
-Returns the total number of vectors in the index.
+Returns the total number of vectors in the index. If the index is not initialized
 
-**Raises**:
-
-- `TypeError`: If the database connection is not established.
+returns 0.
 
 **Returns**:
 
-`int`: The total number of vectors.
+The total number of vectors.
 
 #### close
 
