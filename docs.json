@@ -23,6 +23,7 @@
           {
             "group": "User Guide",
             "pages": [
+              "semantic-router/user-guide/changelog",
               {
                 "group": "Components",
                 "pages": [
