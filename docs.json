@@ -51,6 +51,7 @@
               {
                 "group": "Guides",
                 "pages": [
+                  "semantic-router/user-guide/guides/configuration",
                   "semantic-router/user-guide/guides/local-execution",
                   "semantic-router/user-guide/guides/migration-to-v1",
                   "semantic-router/user-guide/guides/save-load-from-file",
