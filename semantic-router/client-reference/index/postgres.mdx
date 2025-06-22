@@ -120,6 +120,10 @@ Initializes the Postgres index with the specified parameters.
 #### setup\_index
 
 ```python
+@deprecated(
+    "Use _init_index or sync methods such as `auto_sync` (read more "
+    "https://docs.aurelio.ai/semantic-router/user-guide/features/sync). "
+    "This method will be removed in 0.2.0")
 def setup_index() -> None
 ```
 
@@ -277,4 +281,20 @@ Returns the total number of vectors in the index.
 **Returns**:
 
 `int`: The total number of vectors.
+
+#### close
+
+```python
+def close()
+```
+
+Closes the psycopg connection if it exists.
+
+#### has\_connection
+
+```python
+def has_connection() -> bool
+```
+
+Returns True if there is an active and valid psycopg connection, otherwise False.
 
