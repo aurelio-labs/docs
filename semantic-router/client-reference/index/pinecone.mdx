@@ -316,6 +316,24 @@ async def adelete_index()
 
 Asynchronously delete the index.
 
+#### ais\_ready
+
+```python
+async def ais_ready(client_only: bool = False) -> bool
+```
+
+Checks if class attributes exist to be used for async operations.
+
+**Arguments**:
+
+- `client_only` (`bool, optional`): Whether to check only the client attributes. If False
+attributes will be checked for both client and index operations. If True
+only attributes for client operations will be checked. Defaults to False.
+
+**Returns**:
+
+`bool`: True if the class attributes exist, False otherwise.
+
 #### \_\_len\_\_
 
 ```python
@@ -325,6 +343,20 @@ def __len__()
 Returns the total number of vectors in the index. If the index is not initialized
 
 returns 0.
+
+**Returns**:
+
+`int`: The total number of vectors.
+
+#### alen
+
+```python
+async def alen()
+```
+
+Async version of __len__. Returns the total number of vectors in the index.
+
+If the index is not initialized, initializes it first or returns 0.
 
 **Returns**:
 

@@ -172,6 +172,20 @@ This method should be implemented by subclasses.
 
 `bool`: True if the index is ready, False otherwise.
 
+#### ais\_ready
+
+```python
+async def ais_ready() -> bool
+```
+
+Checks if the index is ready to be used asynchronously.
+
+This method should be implemented by subclasses.
+
+**Returns**:
+
+`bool`: True if the index is ready, False otherwise.
+
 #### query
 
 ```python
@@ -311,6 +325,34 @@ async def alock(value: bool,
 
 Lock/unlock the index for a given scope (if applicable). If index
 already locked/unlocked, raises ValueError.
+
+#### \_\_len\_\_
+
+```python
+def __len__()
+```
+
+Returns the total number of vectors in the index. If the index is not initialized
+
+returns 0.
+
+**Returns**:
+
+`int`: The total number of vectors.
+
+#### alen
+
+```python
+async def alen()
+```
+
+Async version of __len__. Returns the total number of vectors in the index.
+
+Default implementation just calls the sync version.
+
+**Returns**:
+
+`int`: The total number of vectors.
 
 #### parse\_route\_info
 

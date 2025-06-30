@@ -103,7 +103,8 @@ def __init__(connection_string: Optional[str] = None,
              index_name: str = "index",
              metric: Metric = Metric.COSINE,
              namespace: Optional[str] = "",
-             dimensions: int | None = None)
+             dimensions: int | None = None,
+             init_async_index: bool = False)
 ```
 
 Initializes the Postgres index with the specified parameters.
@@ -116,6 +117,7 @@ Initializes the Postgres index with the specified parameters.
 - `dimensions` (`int`): The number of dimensions for the vectors.
 - `metric` (`Metric`): The metric used for vector comparisons.
 - `Optional[str]`0 (`Optional[str]`): An optional namespace for the index.
+- `Optional[str]`2 (`Optional[str]`3): Whether to initialize the index asynchronously.
 
 #### setup\_index
 
@@ -160,6 +162,34 @@ Adds records to the index.
 - `List[List[float]]`0: If the vector embeddings being added do not match the expected dimensions.
 - `List[List[float]]`1: If the database connection is not established.
 
+#### aadd
+
+```python
+async def aadd(embeddings: List[List[float]],
+               routes: List[str],
+               utterances: List[str],
+               function_schemas: Optional[List[Dict[str, Any]]] = None,
+               metadata_list: List[Dict[str, Any]] = [],
+               batch_size: int = 100,
+               **kwargs) -> None
+```
+
+Asynchronously adds records to the index in batches.
+
+**Arguments**:
+
+- `embeddings`: A list of vector embeddings to add.
+- `routes`: A list of route names corresponding to the embeddings.
+- `utterances`: A list of utterances corresponding to the embeddings.
+- `function_schemas`: (Optional) List of function schemas.
+- `metadata_list`: (Optional) List of metadata dictionaries.
+- `batch_size`: Number of records per batch insert.
+
+**Raises**:
+
+- `ValueError`: If the vector embeddings don&#x27;t match expected dimensions.
+- `TypeError`: If connection is not an async Postgres connection.
+
 #### delete
 
 ```python
@@ -175,6 +205,24 @@ Deletes records with the specified route name.
 **Raises**:
 
 - `TypeError`: If the database connection is not established.
+
+#### adelete
+
+```python
+async def adelete(route_name: str) -> list[str]
+```
+
+Asynchronously delete specified route from index if it exists. Returns the IDs
+
+of the vectors deleted.
+
+**Arguments**:
+
+- `route_name` (`str`): Name of the route to delete.
+
+**Returns**:
+
+`list[str]`: List of IDs of the vectors deleted.
 
 #### describe
 
@@ -192,6 +240,18 @@ Describes the index by returning its type, dimensions, and total vector count.
 
 ```python
 def is_ready() -> bool
+```
+
+Checks if the index is ready to be used.
+
+**Returns**:
+
+`bool`: True if the index is ready, False otherwise.
+
+#### ais\_ready
+
+```python
+async def ais_ready() -> bool
 ```
 
 Checks if the index is ready to be used.
@@ -228,6 +288,34 @@ Searches the index for the query vector and returns the top_k results.
 
 `Tuple[np.ndarray, List[str]]`: A tuple containing the scores and routes of the top_k results.
 
+#### aquery
+
+```python
+async def aquery(
+    vector: np.ndarray,
+    top_k: int = 5,
+    route_filter: Optional[List[str]] = None,
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None
+) -> Tuple[np.ndarray, List[str]]
+```
+
+Asynchronously search the index for the query vector and return the top_k results.
+
+**Arguments**:
+
+- `vector` (`np.ndarray`): The query vector to search for.
+- `top_k` (`int, optional`): The number of top results to return, defaults to 5.
+- `route_filter` (`Optional[List[str]], optional`): A list of route names to filter the search results, defaults to None.
+- `sparse_vector` (`dict[int, float] | SparseEmbedding | None`): An optional sparse vector to include in the query.
+
+**Raises**:
+
+- `TypeError`: If the database connection is not established.
+
+**Returns**:
+
+`Tuple[np.ndarray, List[str]]`: A tuple containing an array of scores and a list of route names.
+
 #### delete\_all
 
 ```python
@@ -252,19 +340,35 @@ Deletes the entire table for the index.
 
 - `TypeError`: If the database connection is not established.
 
+#### adelete\_index
+
+```python
+async def adelete_index() -> None
+```
+
+Asynchronously delete the entire table for the index.
+
+**Raises**:
+
+- `TypeError`: If the async database connection is not established.
+
 #### aget\_routes
 
 ```python
-def aget_routes()
+async def aget_routes() -> list[tuple]
 ```
 
-Asynchronously get all routes from the index.
+Asynchronously get a list of route and utterance objects currently
 
-Not yet implemented for PostgresIndex.
+stored in the index.
+
+**Raises**:
+
+- `TypeError`: If the database connection is not established.
 
 **Returns**:
 
-`List[str]`: A list of routes.
+`List[Tuple]`: A list of (route_name, utterance) objects.
 
 #### \_\_len\_\_
 
@@ -279,6 +383,18 @@ returns 0.
 **Returns**:
 
 The total number of vectors.
+
+#### alen
+
+```python
+async def alen()
+```
+
+Async version of __len__. Returns the total number of vectors in the index.
+
+**Returns**:
+
+`int`: The total number of vectors.
 
 #### close
 

@@ -32,6 +32,32 @@ Add embeddings to the index.
 - `metadata_list` (`List[Dict[str, Any]]`): List of metadata to add to the index.
 - `List[List[float]]`0 (`List[List[float]]`1): List of sparse embeddings to add to the index.
 
+#### aadd
+
+```python
+async def aadd(embeddings: List[List[float]],
+               routes: List[str],
+               utterances: List[str],
+               function_schemas: Optional[List[Dict[str, Any]]] = None,
+               metadata_list: List[Dict[str, Any]] = [],
+               sparse_embeddings: Optional[List[SparseEmbedding]] = None,
+               **kwargs)
+```
+
+Add embeddings to the index - note that this is not truly async as it is a
+
+local index and there is no sense to make this method async. Instead, it will
+call the sync `add` method.
+
+**Arguments**:
+
+- `embeddings` (`List[List[float]]`): List of embeddings to add to the index.
+- `routes` (`List[str]`): List of routes to add to the index.
+- `utterances` (`List[str]`): List of utterances to add to the index.
+- `function_schemas` (`Optional[List[Dict[str, Any]]]`): List of function schemas to add to the index.
+- `metadata_list` (`embeddings`0): List of metadata to add to the index.
+- `embeddings`1 (`embeddings`2): List of sparse embeddings to add to the index.
+
 #### get\_utterances
 
 ```python

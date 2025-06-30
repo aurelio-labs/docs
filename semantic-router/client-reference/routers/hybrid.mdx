@@ -22,7 +22,8 @@ def __init__(encoder: DenseEncoder,
              top_k: int = 5,
              aggregation: str = "mean",
              auto_sync: Optional[str] = None,
-             alpha: float = 0.3)
+             alpha: float = 0.3,
+             init_async_index: bool = False)
 ```
 
 Initialize the HybridRouter.
@@ -43,6 +44,18 @@ Add a route to the local HybridRouter and index.
 **Arguments**:
 
 - `route` (`Route`): The route to add.
+
+#### aadd
+
+```python
+async def aadd(routes: List[Route] | Route)
+```
+
+Add a route to the local HybridRouter and index asynchronously.
+
+**Arguments**:
+
+- `routes` (`List[Route] | Route`): The route(s) to add.
 
 #### \_\_call\_\_
 
