@@ -227,3 +227,25 @@ async def ais_ready() -> bool
 
 Checks if the index is ready to be used asynchronously.
 
+#### aadd
+
+```python
+async def aadd(embeddings: List[List[float]],
+               routes: List[str],
+               utterances: List[str],
+               function_schemas: Optional[List[Dict[str, Any]]] = None,
+               metadata_list: List[Dict[str, Any]] = [],
+               batch_size: int = DEFAULT_UPLOAD_BATCH_SIZE,
+               **kwargs)
+```
+
+Asynchronously add records to the index, including metadata in the payload.
+
+#### aget\_utterances
+
+```python
+async def aget_utterances(include_metadata: bool = False) -> List[Utterance]
+```
+
+Asynchronously gets a list of route and utterance objects currently stored in the index, including metadata.
+
