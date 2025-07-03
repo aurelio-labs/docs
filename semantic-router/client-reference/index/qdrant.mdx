@@ -191,3 +191,39 @@ returns 0.
 
 `int`: The total number of vectors.
 
+#### adelete
+
+```python
+async def adelete(route_name: str) -> list[str]
+```
+
+Asynchronously delete records from the index by route name.
+
+**Arguments**:
+
+- `route_name` (`str`): The name of the route to delete.
+
+**Returns**:
+
+`list[str]`: List of IDs of the vectors deleted (empty list, as Qdrant does not return IDs).
+
+#### adelete\_index
+
+```python
+async def adelete_index()
+```
+
+Asynchronously delete the index (collection) from Qdrant.
+
+**Returns**:
+
+`None`: None
+
+#### ais\_ready
+
+```python
+async def ais_ready() -> bool
+```
+
+Checks if the index is ready to be used asynchronously.
+
