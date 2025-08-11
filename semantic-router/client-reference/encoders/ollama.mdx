@@ -1,0 +1,76 @@
+---
+sidebarTitle: ollama
+title: semantic_router.encoders.ollama
+---
+
+## OllamaEncoder Objects
+
+```python
+class OllamaEncoder(DenseEncoder)
+```
+
+OllamaEncoder class for generating embeddings using OLLAMA.
+
+https://ollama.com/search?c=embedding
+
+Example usage:
+
+
+```python
+from semantic_router.encoders.ollama import OllamaEncoder
+
+encoder = OllamaEncoder(base_url="http://localhost:11434")
+embeddings = encoder(["document1", "document2"])
+```
+
+**Attributes**:
+
+- `client` - An instance of the TextEmbeddingModel client.
+- `type` - The type of the encoder, which is &quot;ollama&quot;.
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: Optional[str] = None,
+             score_threshold: float = 0.5,
+             base_url: str | None = None)
+```
+
+Initializes the OllamaEncoder.
+
+**Arguments**:
+
+- `model_name` (`str`): The name of the pre-trained model to use for embedding.
+If not provided, the default model specified in EncoderDefault will
+be used.
+- `score_threshold` (`float`): The threshold for similarity scores.
+- `base_url` (`str`): The API endpoint for OLLAMA.
+If not provided, it will be retrieved from the `OLLAMA_BASE_URL` environment variable.
+
+**Raises**:
+
+- `ValueError`: If the hosted base url is not provided properly or if the ollama
+client fails to initialize.
+
+#### \_\_call\_\_
+
+```python
+def __call__(docs: List[str]) -> List[List[float]]
+```
+
+Generates embeddings for the given documents.
+
+**Arguments**:
+
+- `docs` (`List[str]`): A list of strings representing the documents to embed.
+
+**Raises**:
+
+- `ValueError`: If the Google AI Platform client is not initialized or if the
+API call fails.
+
+**Returns**:
+
+`List[List[float]]`: A list of lists, where each inner list contains the embedding values for a
+document.
+
