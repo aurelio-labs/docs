@@ -3,13 +3,13 @@ sidebarTitle: utils
 title: graphai.utils
 ---
 
-## CustomFormatter Objects
+## ColoredFormatter Objects
 
 ```python
-class CustomFormatter(colorlog.ColoredFormatter)
+class ColoredFormatter(logging.Formatter)
 ```
 
-Custom formatter for the logger.
+Custom colored formatter for the logger using ANSI escape codes.
 
 #### add\_coloured\_handler
 
@@ -38,7 +38,7 @@ Parameter for a function.
 **Arguments**:
 
 - `name` (`str`): The name of the parameter.
-- `description` (`Optional[str]`): The description of the parameter.
+- `description` (`str | None`): The description of the parameter.
 - `type` (`str`): The type of the parameter.
 - `default` (`Any`): The default value of the parameter.
 - `required` (`bool`): Whether the parameter is required.

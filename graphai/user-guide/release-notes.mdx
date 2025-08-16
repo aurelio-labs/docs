@@ -1,5 +1,16 @@
 See below for all notable changes to the GraphAI library.
 
+## [0.0.7] - 2025-08-16
+
+### Added
+- Graph constructor methods [`add_node`, `add_router`, `add_edge`, `set_callback`, `set_state`, `update_state`, `reset_state`, `set_start_node`, `set_end_node`, `compile`] can now be chained
+- Moved `Callback` class to top-level import, you can now import it with `from graphai import Callback`
+
+### Changed
+- Dropped `networkx`, `matplotlib`, and `colorlog` dependencies (note if using `Graph.visualize` one of `networkx` or `matplotlib` must be installed)
+- Updated documentation notebooks to use new callback pattern
+- Updated old type annotations to use Python 3.10+ syntax, e.g., `List[str]` -> `list[str]` and `Optional[list]` -> `list | None`
+
 ## [0.0.6] - 2025-05-28
 
 ### Added
@@ -60,6 +71,7 @@ result = await graph.execute(input=data, callback=cb)
 ### Security
 - No security-related changes in this release
 
+[0.0.7]: https://github.com/aurelio-labs/graphai/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/aurelio-labs/graphai/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/aurelio-labs/graphai/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/aurelio-labs/graphai/compare/v0.0.3...v0.0.4

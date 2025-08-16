@@ -20,7 +20,7 @@ class Graph()
 #### get\_state
 
 ```python
-def get_state() -> Dict[str, Any]
+def get_state() -> dict[str, Any]
 ```
 
 Get the current graph state.
@@ -28,7 +28,7 @@ Get the current graph state.
 #### set\_state
 
 ```python
-def set_state(state: Dict[str, Any])
+def set_state(state: dict[str, Any]) -> "Graph"
 ```
 
 Set the graph state.
@@ -36,7 +36,7 @@ Set the graph state.
 #### update\_state
 
 ```python
-def update_state(values: Dict[str, Any])
+def update_state(values: dict[str, Any]) -> "Graph"
 ```
 
 Update the graph state with new values.
@@ -44,7 +44,7 @@ Update the graph state with new values.
 #### reset\_state
 
 ```python
-def reset_state()
+def reset_state() -> "Graph"
 ```
 
 Reset the graph state to an empty dict.
@@ -52,7 +52,8 @@ Reset the graph state to an empty dict.
 #### add\_edge
 
 ```python
-def add_edge(source: NodeProtocol | str, destination: NodeProtocol | str)
+def add_edge(source: NodeProtocol | str,
+             destination: NodeProtocol | str) -> "Graph"
 ```
 
 Adds an edge between two nodes that already exist in the graph.
@@ -77,7 +78,7 @@ Get a new instance of the callback class.
 #### set\_callback
 
 ```python
-def set_callback(callback_class: Type[Callback])
+def set_callback(callback_class: type[Callback]) -> "Graph"
 ```
 
 Set the callback class that is returned by the `get_callback` method and used
