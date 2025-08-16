@@ -1,6 +1,6 @@
 See below for all notable changes to the GraphAI library.
 
-## [0.0.7] - 2025-08-16
+## [0.0.8] - 2025-08-16
 
 ### Added
 - Graph constructor methods [`add_node`, `add_router`, `add_edge`, `set_callback`, `set_state`, `update_state`, `reset_state`, `set_start_node`, `set_end_node`, `compile`] can now be chained
@@ -11,6 +11,8 @@ See below for all notable changes to the GraphAI library.
 - Dropped `networkx`, `matplotlib`, and `colorlog` dependencies (note if using `Graph.visualize` one of `networkx` or `matplotlib` must be installed)
 - Updated documentation notebooks to use new callback pattern
 - Updated old type annotations to use Python 3.10+ syntax, e.g., `List[str]` -> `list[str]` and `Optional[list]` -> `list | None`
+
+## [0.0.7] - Removed
 
 ## [0.0.6] - 2025-05-28
 
