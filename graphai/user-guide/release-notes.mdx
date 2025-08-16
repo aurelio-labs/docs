@@ -5,6 +5,7 @@ See below for all notable changes to the GraphAI library.
 ### Added
 - Graph constructor methods [`add_node`, `add_router`, `add_edge`, `set_callback`, `set_state`, `update_state`, `reset_state`, `set_start_node`, `set_end_node`, `compile`] can now be chained
 - Moved `Callback` class to top-level import, you can now import it with `from graphai import Callback`
+- Environment variable `GRAPHAI_LOG_LEVEL` for controlling log output level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
 
 ### Changed
 - Dropped `networkx`, `matplotlib`, and `colorlog` dependencies (note if using `Graph.visualize` one of `networkx` or `matplotlib` must be installed)
