@@ -66,15 +66,15 @@ Adds an edge between two nodes that already exist in the graph.
 #### compile
 
 ```python
-def compile() -> "Graph"
+def compile(*, strict: bool = False) -> Graph
 ```
 
 Validate the graph:
 - exactly one start node present (or Graph.start_node set)
 - at least one end node present
 - all edges reference known nodes
-- no cycles
 - all nodes reachable from the start
+  (optional) **no cycles** when strict=True
 Returns self on success; raises GraphCompileError otherwise.
 
 #### get\_callback
