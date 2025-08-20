@@ -3,16 +3,84 @@ sidebarTitle: callback
 title: graphai.callback
 ---
 
+## GraphEvent Objects
+
+```python
+@dataclass
+class GraphEvent()
+```
+
+A graph event emitted for specific graph events such as start node or end node,
+
+and used by the callback to emit user-defined events.
+
+**Arguments**:
+
+- `type` (`GraphEventType`): The type of event, can be start_node, end_node, or callback.
+- `identifier` (`str`): The identifier of the event, this is set typically by a callback
+handler and can be used to distinguish between different events. For example, a
+conversation/session ID could be used.
+- `token` (`str | None`): The token associated with the event, such as LLM streamed output.
+- `params` (`dict[str, Any] | None`): The parameters associated with the event, such as tool call parameters
+or event metadata.
+
 ## Callback Objects
 
 ```python
 class Callback()
 ```
 
+The original callback handler class. Outputs a stream of structured text
+tokens. It is recommended to use the newer `EventCallback` handler instead.
+
 #### aiter
 
 ```python
 async def aiter() -> AsyncIterator[str]
+```
+
+Used by receiver to get the tokens from the stream queue. Creates
+a generator that yields tokens from the queue until the END token is
+received.
+
+#### start\_node
+
+```python
+async def start_node(node_name: str, active: bool = True)
+```
+
+Starts a new node and emits the start token.
+
+#### end\_node
+
+```python
+async def end_node(node_name: str)
+```
+
+Emits the end token for the current node.
+
+#### close
+
+```python
+async def close()
+```
+
+Close the stream and prevent further tokens from being added.
+This will send an END token and set the done flag to True.
+
+## EventCallback Objects
+
+```python
+class EventCallback(Callback)
+```
+
+The event callback handler class. Outputs a stream of structured text
+tokens. It is recommended to use the newer `EventCallback` handler instead.
+
+#### aiter
+
+```python
+async def aiter() -> AsyncIterator[GraphEvent]
 ```
 
 Used by receiver to get the tokens from the stream queue. Creates

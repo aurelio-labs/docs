@@ -1,5 +1,38 @@
 See below for all notable changes to the GraphAI library.
 
+## [0.0.9] - TBD
+
+### Added
+- Enhanced `FunctionSchema.from_pydantic()` method with full Pydantic v2 support
+  - Correctly extracts field types, descriptions, and default values from Pydantic models
+  - Handles `Optional` types and complex type annotations
+  - Properly identifies required vs optional fields using `PydanticUndefined`
+- New `to_openai()` method on FunctionSchema for OpenAI API format support
+  - Supports both `completions` and `responses` API endpoints
+  - Export schemas for either nested or flat format structures
+- New `EventCallback` class for object-based callback handling
+  - Outputs structured `GraphEvent` objects instead of formatted strings
+  - Provides `GraphEventType` enum for event type identification
+  - Better structured data with `type`, `identifier`, `token`, and `params` fields
+  - Maintains backward compatibility with existing callback interface
+- Comprehensive graph compilation validation
+  - Stricter validation of node connections and dependencies
+  - Better error messages for graph construction issues
+  - Cycle detection with clear `GraphCompileError` reporting
+
+### Changed
+- Graph compilation now validates execution order at compile time
+- Graphs with cycles now raise `GraphCompileError` during compilation to ensure predictable execution order
+
+### Deprecated
+- `Callback` class is deprecated and will be removed in v0.1.0 - use `EventCallback` instead
+- `special_token_format` and `token_format` parameters in `EventCallback` exist for backwards compatibility but are deprecated and will be removed in v0.1.0
+
+### Fixed
+- Added Python 3.10 compatibility for `StrEnum` with fallback implementation
+- Fixed type annotation issues with `default_factory` in Pydantic field definitions
+- Improved type extraction for complex Pydantic field types including `Union` and `Optional`
+
 ## [0.0.8] - 2025-08-16
 
 ### Added
