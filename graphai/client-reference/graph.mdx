@@ -28,7 +28,7 @@ Get the current graph state.
 #### set\_state
 
 ```python
-def set_state(state: dict[str, Any]) -> "Graph"
+def set_state(state: dict[str, Any]) -> Graph
 ```
 
 Set the graph state.
@@ -36,7 +36,7 @@ Set the graph state.
 #### update\_state
 
 ```python
-def update_state(values: dict[str, Any]) -> "Graph"
+def update_state(values: dict[str, Any]) -> Graph
 ```
 
 Update the graph state with new values.
@@ -44,7 +44,7 @@ Update the graph state with new values.
 #### reset\_state
 
 ```python
-def reset_state() -> "Graph"
+def reset_state() -> Graph
 ```
 
 Reset the graph state to an empty dict.
@@ -53,7 +53,7 @@ Reset the graph state to an empty dict.
 
 ```python
 def add_edge(source: NodeProtocol | str,
-             destination: NodeProtocol | str) -> "Graph"
+             destination: NodeProtocol | str) -> Graph
 ```
 
 Adds an edge between two nodes that already exist in the graph.
@@ -62,6 +62,20 @@ Adds an edge between two nodes that already exist in the graph.
 
 - `source` - The source node or its name.
 - `destination` - The destination node or its name.
+
+#### compile
+
+```python
+def compile() -> "Graph"
+```
+
+Validate the graph:
+- exactly one start node present (or Graph.start_node set)
+- at least one end node present
+- all edges reference known nodes
+- no cycles
+- all nodes reachable from the start
+Returns self on success; raises GraphCompileError otherwise.
 
 #### get\_callback
 
@@ -88,4 +102,14 @@ as the default callback when no callback is passed to the `execute` method.
 **Arguments**:
 
 - `callback_class` (`Type[Callback]`): The callback class to use as the default callback.
+
+#### visualize
+
+```python
+def visualize(*, save_path: str | None = None)
+```
+
+Render the current graph. If matplotlib is not installed,
+raise a helpful error telling users to install the viz extra.
+Optionally save to a file via `save_path`.
 
