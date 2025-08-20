@@ -3,6 +3,14 @@ sidebarTitle: utils
 title: graphai.utils
 ---
 
+## StrEnum Objects
+
+```python
+class StrEnum(str, Enum)
+```
+
+Backport of StrEnum for Python &lt; 3.11
+
 ## ColoredFormatter Objects
 
 ```python
@@ -78,4 +86,39 @@ Initialize the FunctionSchema.
 **Arguments**:
 
 - `function` (`Callable`): The function to consume.
+
+#### from\_pydantic
+
+```python
+@classmethod
+def from_pydantic(cls, model: type[BaseModel]) -> "FunctionSchema"
+```
+
+Create a FunctionSchema from a Pydantic model class.
+
+**Arguments**:
+
+- `model` (`type[BaseModel]`): The Pydantic model class to convert
+
+**Returns**:
+
+`FunctionSchema`: FunctionSchema instance
+
+#### to\_openai
+
+```python
+def to_openai(api: OpenAIAPI = OpenAIAPI.COMPLETIONS) -> dict[str, Any]
+```
+
+Convert the function schema into OpenAI-compatible formats. Supports
+
+both completions and responses APIs.
+
+**Arguments**:
+
+- `api` (`OpenAIAPI`): The API to convert to.
+
+**Returns**:
+
+`dict`: The function schema in OpenAI-compatible format.
 
