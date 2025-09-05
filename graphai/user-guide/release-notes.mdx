@@ -1,6 +1,6 @@
 See below for all notable changes to the GraphAI library.
 
-## [0.0.9] - TBD
+## [0.0.9] - 2025-09-05
 
 ### Added
 - Enhanced `FunctionSchema.from_pydantic()` method with full Pydantic v2 support
@@ -19,6 +19,10 @@ See below for all notable changes to the GraphAI library.
   - Stricter validation of node connections and dependencies
   - Better error messages for graph construction issues
   - Cycle detection with clear `GraphCompileError` reporting
+- New `execute_many()` method for concurrent graph execution
+  - Execute the graph on multiple inputs concurrently
+  - Configurable concurrency level to control parallel execution
+  - Preserves input order in results for predictable output
 
 ### Changed
 - Graph compilation now validates execution order at compile time
