@@ -77,6 +77,28 @@ Validate the graph:
   (optional) **no cycles** when strict=True
 Returns self on success; raises GraphCompileError otherwise.
 
+#### execute\_many
+
+```python
+async def execute_many(inputs: Iterable[dict[str, Any]],
+                       *,
+                       concurrency: int = 5) -> list[Any]
+```
+
+Execute the graph on many inputs concurrently.
+
+**Arguments**:
+
+- `inputs` (`Iterable[dict]`): An iterable of input dicts to feed into the graph.
+- `concurrency` (`int`): Maximum number of graph executions to run at once.
+- `state` (`Optional[Any]`): Optional shared state to pass to each execution.
+If you want isolated state per execution, pass None
+and the graph&#x27;s normal semantics will apply.
+
+**Returns**:
+
+`list[Any]`: The list of results in the same order as ``inputs``.
+
 #### get\_callback
 
 ```python
