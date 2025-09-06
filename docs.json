@@ -185,6 +185,7 @@
           {
             "group": "User Guide",
             "pages": [
+              "graphai/user-guide/faqs",
               "graphai/user-guide/release-notes",
               {
                 "group": "Components",
