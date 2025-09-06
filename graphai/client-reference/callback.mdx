@@ -24,6 +24,20 @@ conversation/session ID could be used.
 - `params` (`dict[str, Any] | None`): The parameters associated with the event, such as tool call parameters
 or event metadata.
 
+#### encode
+
+```python
+def encode(charset: str = "utf-8") -> bytes
+```
+
+Encodes the event as a JSON string, important for compatability with FastAPI
+
+and starlette.
+
+**Arguments**:
+
+- `charset` (`str`): The character set to use for encoding the event.
+
 ## Callback Objects
 
 ```python
