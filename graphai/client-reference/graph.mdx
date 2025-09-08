@@ -25,6 +25,10 @@ def get_state() -> dict[str, Any]
 
 Get the current graph state.
 
+**Returns**:
+
+  The current graph state.
+
 #### set\_state
 
 ```python
@@ -32,6 +36,15 @@ def set_state(state: dict[str, Any]) -> Graph
 ```
 
 Set the graph state.
+
+**Arguments**:
+
+- `state` - The new state to set for the graph.
+  
+
+**Returns**:
+
+  The graph instance.
 
 #### update\_state
 
@@ -41,6 +54,15 @@ def update_state(values: dict[str, Any]) -> Graph
 
 Update the graph state with new values.
 
+**Arguments**:
+
+- `values` - The new values to update the graph state with.
+  
+
+**Returns**:
+
+  The graph instance.
+
 #### reset\_state
 
 ```python
@@ -48,6 +70,23 @@ def reset_state() -> Graph
 ```
 
 Reset the graph state to an empty dict.
+
+#### add\_node
+
+```python
+def add_node(node: NodeProtocol) -> Graph
+```
+
+Adds a node to the graph.
+
+**Arguments**:
+
+- `node` - The node to add to the graph.
+  
+
+**Raises**:
+
+- `Exception` - If a node with the same name already exists in the graph.
 
 #### add\_edge
 
@@ -62,6 +101,22 @@ Adds an edge between two nodes that already exist in the graph.
 
 - `source` - The source node or its name.
 - `destination` - The destination node or its name.
+
+#### add\_router
+
+```python
+def add_router(sources: list[NodeProtocol], router: NodeProtocol,
+               destinations: list[NodeProtocol]) -> Graph
+```
+
+Adds a router node, allowing for a decision to be made on which branch to
+follow based on the `choice` output of the router node.
+
+**Arguments**:
+
+- `sources` - The list of source nodes for the router.
+- `router` - The router node.
+- `destinations` - The list of destination nodes for the router.
 
 #### compile
 
@@ -124,6 +179,34 @@ as the default callback when no callback is passed to the `execute` method.
 **Arguments**:
 
 - `callback_class` (`type[Callback]`): The callback class to use as the default callback.
+
+#### add\_parallel
+
+```python
+def add_parallel(source: NodeProtocol | str,
+                 destinations: list[NodeProtocol | str])
+```
+
+Add multiple outgoing edges from a single source node to be executed in parallel.
+
+**Arguments**:
+
+- `source` - The source node for the parallel branches.
+- `destinations` - The list of destination nodes for the parallel branches.
+
+#### add\_join
+
+```python
+def add_join(sources: list[NodeProtocol | str],
+             destination: NodeProtocol | str)
+```
+
+Joins multiple parallel branches into a single branch.
+
+**Arguments**:
+
+- `sources` - The list of source nodes for the join.
+- `destination` - The destination node for the join.
 
 #### visualize
 

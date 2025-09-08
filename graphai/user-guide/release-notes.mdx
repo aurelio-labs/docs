@@ -1,5 +1,20 @@
 See below for all notable changes to the GraphAI library.
 
+## [0.0.10] - TBD
+
+### Added
+- Direct Starlette support for `GraphEvent` and `EventCallback` objects
+- Parallel node execution for graphs with multiple outgoing edges from a single node
+  - Automatic concurrent execution when a node has multiple successors
+  - State merging from parallel branches
+  - Configurable through standard `add_edge()` calls
+- New `add_join()` method for explicit convergence of parallel branches
+  - Synchronizes multiple parallel branches to a single destination node
+  - Ensures convergence node executes only once with merged state
+  - Prevents duplicate execution of downstream nodes
+- New `add_parallel()` convenience method for creating parallel branches
+  - Syntactic sugar for adding multiple edges from one source to multiple destinations
+
 ## [0.0.9] - 2025-09-05
 
 ### Added
