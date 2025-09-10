@@ -16,7 +16,7 @@ and used by the callback to emit user-defined events.
 
 **Arguments**:
 
-- `type` (`GraphEventType`): The type of event, can be start_node, end_node, or callback.
+- `type` (`GraphEventType | str`): The type of event, can be start_node, end_node, callback, or a custom str.
 - `identifier` (`str`): The identifier of the event, this is set typically by a callback
 handler and can be used to distinguish between different events. For example, a
 conversation/session ID could be used.
@@ -37,6 +37,15 @@ and starlette.
 **Arguments**:
 
 - `charset` (`str`): The character set to use for encoding the event.
+
+## CallbackProtocol Objects
+
+```python
+@runtime_checkable
+class CallbackProtocol(Protocol)
+```
+
+Protocol defining the interface for callback handlers.
 
 ## Callback Objects
 
@@ -85,11 +94,33 @@ This will send an END token and set the done flag to True.
 ## EventCallback Objects
 
 ```python
-class EventCallback(Callback)
+class EventCallback()
 ```
 
 The event callback handler class. Outputs a stream of structured text
 tokens. It is recommended to use the newer `EventCallback` handler instead.
+
+#### \_\_call\_\_
+
+```python
+def __call__(token: str | None = None,
+             type: GraphEventType | str = GraphEventType.CALLBACK,
+             identifier: str | None = None,
+             params: dict[str, Any] | None = None)
+```
+
+Builds a GraphEvent object and adds it to the queue.
+
+#### acall
+
+```python
+async def acall(token: str | None = None,
+                type: GraphEventType | str = GraphEventType.CALLBACK,
+                identifier: str | None = None,
+                params: dict[str, Any] | None = None)
+```
+
+Builds a GraphEvent object and adds it to the queue.
 
 #### aiter
 
