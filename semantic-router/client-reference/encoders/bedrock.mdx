@@ -52,6 +52,7 @@ embeddings = encoder(["document1", "document2"])
 def __init__(name: str = EncoderDefault.BEDROCK.value["embedding_model"],
              input_type: Optional[str] = "search_query",
              score_threshold: float = 0.3,
+             client: Optional[Any] = None,
              access_key_id: Optional[str] = None,
              secret_access_key: Optional[str] = None,
              session_token: Optional[str] = None,
