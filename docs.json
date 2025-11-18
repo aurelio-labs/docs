@@ -21,67 +21,6 @@
             ]
           },
           {
-            "group": "User Guide",
-            "pages": [
-              "semantic-router/user-guide/changelog",
-              {
-                "group": "Components",
-                "pages": [
-                  "semantic-router/user-guide/components/encoders",
-                  "semantic-router/user-guide/components/indexes",
-                  "semantic-router/user-guide/components/routers"
-                ]
-              },
-              {
-                "group": "Concepts",
-                "pages": [
-                  "semantic-router/user-guide/concepts/architecture",
-                  "semantic-router/user-guide/concepts/overview"
-                ]
-              },
-              {
-                "group": "Features",
-                "pages": [
-                  "semantic-router/user-guide/features/dynamic-routes",
-                  "semantic-router/user-guide/features/route-filter",
-                  "semantic-router/user-guide/features/sync",
-                  "semantic-router/user-guide/features/threshold-optimization"
-                ]
-              },
-              {
-                "group": "Guides",
-                "pages": [
-                  "semantic-router/user-guide/guides/configuration",
-                  "semantic-router/user-guide/guides/local-execution",
-                  "semantic-router/user-guide/guides/migration-to-v1",
-                  "semantic-router/user-guide/guides/save-load-from-file",
-                  "semantic-router/user-guide/guides/semantic-router"
-                ]
-              }
-            ]
-          },
-          {
-            "group": "Integrations",
-            "pages": [
-              "semantic-router/integrations/aurelio",
-              "semantic-router/integrations/bedrock",
-              "semantic-router/integrations/cohere",
-              "semantic-router/integrations/integrations",
-              "semantic-router/integrations/jina",
-              "semantic-router/integrations/litellm",
-              "semantic-router/integrations/local",
-              "semantic-router/integrations/mistral",
-              "semantic-router/integrations/nvidia",
-              "semantic-router/integrations/ollama",
-              "semantic-router/integrations/openai",
-              "semantic-router/integrations/pinecone",
-              "semantic-router/integrations/postgres",
-              "semantic-router/integrations/pydantic-ai",
-              "semantic-router/integrations/qdrant",
-              "semantic-router/integrations/voyage"
-            ]
-          },
-          {
             "group": "Client Reference",
             "pages": [
               "semantic-router/client-reference/linear",
@@ -154,6 +93,46 @@
                 ]
               }
             ]
+          },
+          {
+            "group": "User Guide",
+            "pages": [
+              "semantic-router/user-guide/changelog",
+              {
+                "group": "Components",
+                "pages": [
+                  "semantic-router/user-guide/components/encoders",
+                  "semantic-router/user-guide/components/indexes",
+                  "semantic-router/user-guide/components/routers"
+                ]
+              },
+              {
+                "group": "Concepts",
+                "pages": [
+                  "semantic-router/user-guide/concepts/architecture",
+                  "semantic-router/user-guide/concepts/overview"
+                ]
+              },
+              {
+                "group": "Features",
+                "pages": [
+                  "semantic-router/user-guide/features/dynamic-routes",
+                  "semantic-router/user-guide/features/route-filter",
+                  "semantic-router/user-guide/features/sync",
+                  "semantic-router/user-guide/features/threshold-optimization"
+                ]
+              },
+              {
+                "group": "Guides",
+                "pages": [
+                  "semantic-router/user-guide/guides/configuration",
+                  "semantic-router/user-guide/guides/local-execution",
+                  "semantic-router/user-guide/guides/migration-to-v1",
+                  "semantic-router/user-guide/guides/save-load-from-file",
+                  "semantic-router/user-guide/guides/semantic-router"
+                ]
+              }
+            ]
           }
         ]
       },
@@ -204,6 +183,14 @@
             ]
           },
           {
+            "group": "Client Reference",
+            "pages": [
+              "graphai/client-reference/callback",
+              "graphai/client-reference/graph",
+              "graphai/client-reference/utils"
+            ]
+          },
+          {
             "group": "User Guide",
             "pages": [
               "graphai/user-guide/faqs",
@@ -218,14 +205,6 @@
                   "graphai/user-guide/components/state"
                 ]
               }
-            ]
-          },
-          {
-            "group": "Client Reference",
-            "pages": [
-              "graphai/client-reference/callback",
-              "graphai/client-reference/graph",
-              "graphai/client-reference/utils"
             ]
           }
         ]
