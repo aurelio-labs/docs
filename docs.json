@@ -202,6 +202,7 @@
                   "graphai/user-guide/components/function-schema",
                   "graphai/user-guide/components/graphs",
                   "graphai/user-guide/components/nodes",
+                  "graphai/user-guide/components/parallel-execution",
                   "graphai/user-guide/components/state"
                 ]
               }
