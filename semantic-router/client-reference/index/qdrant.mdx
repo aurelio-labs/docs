@@ -44,10 +44,7 @@ Gets a list of route and utterance objects currently stored in the index.
 
 **Arguments**:
 
-- `include_metadata` (`bool`): Whether to include function schemas and metadata in
-the returned Utterance objects - QdrantIndex does not currently support this
-parameter so it is ignored. If required for your use-case please reach out to
-semantic-router maintainers on GitHub via an issue or PR.
+- `include_metadata` (`bool`): Whether to include metadata in the returned Utterance objects.
 
 **Returns**:
 
@@ -137,17 +134,31 @@ Asynchronously query the index.
 
 `Tuple[np.ndarray, List[str]]`: A tuple of the scores and route names.
 
-#### aget\_routes
+#### get\_routes\_tuples
 
 ```python
-def aget_routes()
+def get_routes_tuples() -> list[tuple]
 ```
 
-Asynchronously get all routes from the index.
+Synchronously get route and utterance objects as tuples.
 
 **Returns**:
 
-`List[str]`: A list of routes.
+`list[tuple]`: A list of (route_name, utterance, function_schemas, metadata) tuples.
+
+#### aget\_routes
+
+```python
+async def aget_routes() -> list[tuple]
+```
+
+Asynchronously get a list of route and utterance objects currently
+
+stored in the index.
+
+**Returns**:
+
+`list[tuple]`: A list of (route_name, utterance, function_schemas, metadata) tuples.
 
 #### delete\_index
 
@@ -247,5 +258,13 @@ Asynchronously add records to the index, including metadata in the payload.
 async def aget_utterances(include_metadata: bool = False) -> List[Utterance]
 ```
 
-Asynchronously gets a list of route and utterance objects currently stored in the index, including metadata.
+Asynchronously gets a list of route and utterance objects currently stored in the index.
+
+**Arguments**:
+
+- `include_metadata` (`bool`): Whether to include metadata in the returned Utterance objects.
+
+**Returns**:
+
+`List[Utterance]`: A list of Utterance objects.
 
