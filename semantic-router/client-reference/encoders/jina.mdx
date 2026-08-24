@@ -5,27 +5,89 @@ title: semantic_router.encoders.jina
 
 This file contains the JinaEncoder class which is used to encode text using Jina
 
+#### jina\_to\_list
+
+```python
+def jina_to_list(embeds: CreateEmbeddingResponse) -> list[list[float]]
+```
+
+Convert a Jina embedding response to a list of embeddings.
+
+**Arguments**:
+
+- `embeds` (`CreateEmbeddingResponse`): The embedding response returned by the Jina API.
+
+**Returns**:
+
+`list[list[float]]`: One embedding per input document.
+
 ## JinaEncoder Objects
 
 ```python
-class JinaEncoder(LiteLLMEncoder)
+class JinaEncoder(DenseEncoder, AsymmetricDenseMixin)
 ```
 
 Class to encode text using Jina. Requires a Jina API key from
 https://jina.ai/api-keys/
+
+Jina exposes an OpenAI-compatible embeddings endpoint, so this encoder drives it
+with the OpenAI SDK pointed at ``https://api.jina.ai/v1`` rather than depending on
+LiteLLM.
 
 #### \_\_init\_\_
 
 ```python
 def __init__(name: str | None = None,
              api_key: str | None = None,
-             score_threshold: float = 0.4)
+             score_threshold: float = 0.4,
+             base_url: str | None = None)
 ```
 
 Initialize the JinaEncoder.
 
 **Arguments**:
 
-- `name`: The name of the embedding model to use such as &quot;jina-embeddings-v3&quot;.
-- `jina_api_key` (`str`): The Jina API key.
+- `name` (`str`): The name of the embedding model to use such as
+&quot;jina-embeddings-v3&quot;.
+- `api_key` (`str`): The Jina API key, can also be set via the JINA_API_KEY or
+JINA_AI_API_KEY environment variable.
+- `score_threshold` (`float`): The score threshold for the embeddings.
+- `base_url` (`str`): Override the Jina API base URL, can also be set via the
+JINA_BASE_URL or JINA_AI_API_BASE environment variable.
+
+**Raises**:
+
+- `ValueError`: If no API key is provided or found in the environment.
+
+#### \_\_call\_\_
+
+```python
+def __call__(docs: list[Any], **kwargs) -> list[list[float]]
+```
+
+Encode a list of text documents into embeddings using Jina.
+
+**Arguments**:
+
+- `docs` (`list[Any]`): List of text documents to encode.
+
+**Returns**:
+
+`list[list[float]]`: List of embeddings for each document.
+
+#### acall
+
+```python
+async def acall(docs: list[Any], **kwargs) -> list[list[float]]
+```
+
+Encode a list of text documents into embeddings using Jina asynchronously.
+
+**Arguments**:
+
+- `docs` (`list[Any]`): List of text documents to encode.
+
+**Returns**:
+
+`list[list[float]]`: List of embeddings for each document.
 

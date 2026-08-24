@@ -6,7 +6,7 @@ title: semantic_router.encoders.litellm
 #### litellm\_to\_list
 
 ```python
-def litellm_to_list(embeds: litellm.EmbeddingResponse) -> list[list[float]]
+def litellm_to_list(embeds: "litellm.EmbeddingResponse") -> list[list[float]]
 ```
 
 Convert a LiteLLM embedding response to a list of embeddings.
@@ -31,6 +31,9 @@ The LiteLLMEncoder class is a subclass of DenseEncoder and utilizes the LiteLLM 
 to generate embeddings for given documents. It supports all encoders supported by LiteLLM
 and supports customization of the score threshold for filtering or processing the embeddings.
 
+litellm is an optional dependency: install it with
+``pip install &quot;semantic-router[litellm]&quot;``.
+
 #### \_\_init\_\_
 
 ```python
@@ -46,6 +49,10 @@ Initialize the LiteLLMEncoder.
 - `name` (`str`): The name of the embedding model to use. Must use LiteLLM naming
 convention (e.g. &quot;openai/text-embedding-3-small&quot; or &quot;mistral/mistral-embed&quot;).
 - `score_threshold` (`float`): The score threshold for the embeddings.
+
+**Raises**:
+
+- `ImportError`: If litellm is not installed.
 
 #### \_\_call\_\_
 

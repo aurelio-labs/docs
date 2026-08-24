@@ -5,27 +5,96 @@ title: semantic_router.encoders.nvidia_nim
 
 This file contains the NimEncoder class which is used to encode text using Nim
 
+#### nim\_to\_list
+
+```python
+def nim_to_list(embeds: CreateEmbeddingResponse) -> list[list[float]]
+```
+
+Convert a NVIDIA NIM embedding response to a list of embeddings.
+
+**Arguments**:
+
+- `embeds` (`CreateEmbeddingResponse`): The embedding response returned by the NIM API.
+
+**Returns**:
+
+`list[list[float]]`: One embedding per input document.
+
 ## NimEncoder Objects
 
 ```python
-class NimEncoder(LiteLLMEncoder)
+class NimEncoder(DenseEncoder, AsymmetricDenseMixin)
 ```
 
 Class to encode text using Nvidia NIM. Requires a Nim API key from
-https://nim.ai/api-keys/
+https://build.nvidia.com/
+
+NVIDIA NIM exposes an OpenAI-compatible embeddings endpoint, so this encoder drives
+it with the OpenAI SDK pointed at ``https://integrate.api.nvidia.com/v1`` rather than
+depending on LiteLLM. Point ``base_url`` at your own host to use a self-hosted NIM.
+
+NVIDIA&#x27;s ``nv-embedqa`` models are asymmetric: queries must be embedded with
+``input_type=&quot;query&quot;`` and stored documents with ``input_type=&quot;passage&quot;``, so
+:meth:``0 and :meth:``1 differ accordingly.
 
 #### \_\_init\_\_
 
 ```python
 def __init__(name: str | None = None,
              api_key: str | None = None,
-             score_threshold: float = 0.4)
+             score_threshold: float = 0.4,
+             base_url: str | None = None)
 ```
 
 Initialize the NimEncoder.
 
 **Arguments**:
 
-- `name` (`str`): The name of the embedding model to use such as &quot;nv-embedqa-e5-v5&quot;.
-- `nim_api_key` (`str`): The Nim API key.
+- `name` (`str`): The name of the embedding model to use such as
+&quot;nvidia/nv-embedqa-e5-v5&quot;.
+- `api_key` (`str`): The Nim API key, can also be set via the NVIDIA_NIM_API_KEY
+environment variable.
+- `score_threshold` (`float`): The score threshold for the embeddings.
+- `base_url` (`str`): Override the NIM API base URL, can also be set via the
+NVIDIA_NIM_API_BASE environment variable. Use this to target a
+self-hosted NIM container.
+
+**Raises**:
+
+- `ValueError`: If no API key is provided or found in the environment.
+
+#### \_\_call\_\_
+
+```python
+def __call__(docs: list[Any], **kwargs) -> list[list[float]]
+```
+
+Encode a list of text documents into embeddings using NVIDIA NIM.
+
+**Arguments**:
+
+- `docs` (`list[Any]`): List of text documents to encode.
+
+**Returns**:
+
+`list[list[float]]`: List of embeddings for each document.
+
+#### acall
+
+```python
+async def acall(docs: list[Any], **kwargs) -> list[list[float]]
+```
+
+Encode a list of text documents into embeddings using NVIDIA NIM
+
+asynchronously.
+
+**Arguments**:
+
+- `docs` (`list[Any]`): List of text documents to encode.
+
+**Returns**:
+
+`list[list[float]]`: List of embeddings for each document.
 

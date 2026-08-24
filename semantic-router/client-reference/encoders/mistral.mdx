@@ -5,14 +5,30 @@ title: semantic_router.encoders.mistral
 
 This file contains the MistralEncoder class which is used to encode text using MistralAI
 
+#### mistral\_to\_list
+
+```python
+def mistral_to_list(embeds: EmbeddingResponse) -> list[list[float]]
+```
+
+Convert a Mistral embedding response to a list of embeddings.
+
+**Arguments**:
+
+- `embeds` (`EmbeddingResponse`): The Mistral embedding response.
+
+**Returns**:
+
+`list[list[float]]`: One embedding per input document.
+
 ## MistralEncoder Objects
 
 ```python
-class MistralEncoder(LiteLLMEncoder)
+class MistralEncoder(DenseEncoder, AsymmetricDenseMixin)
 ```
 
-Class to encode text using MistralAI. Requires a MistralAI API key from
-https://console.mistral.ai/api-keys/
+Class to encode text using MistralAI and SDK.
+Requires a MistralAI API key from https://console.mistral.ai/api-keys/
 
 #### \_\_init\_\_
 
@@ -29,4 +45,36 @@ Initialize the MistralEncoder.
 - `name` (`str`): The name of the embedding model to use such as &quot;mistral-embed&quot;.
 - `mistralai_api_key` (`str`): The MistralAI API key.
 - `score_threshold`: The score threshold for the embeddings.
+
+#### \_\_call\_\_
+
+```python
+def __call__(docs: list[Any], **kwargs) -> list[list[float]]
+```
+
+Encode a list of text documents into embeddings using MistralAI.
+
+**Arguments**:
+
+- `docs` (`list[Any]`): List of text documents to encode.
+
+**Returns**:
+
+`list[list[float]]`: List of embeddings for each document.
+
+#### acall
+
+```python
+async def acall(docs: list[Any], **kwargs) -> list[list[float]]
+```
+
+Encode a list of text documents into embeddings using MistralAI asynchronously.
+
+**Arguments**:
+
+- `docs` (`list[Any]`): List of text documents to encode.
+
+**Returns**:
+
+`list[list[float]]`: List of embeddings for each document.
 
