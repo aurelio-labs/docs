@@ -198,11 +198,13 @@
               {
                 "group": "Components",
                 "pages": [
+                  "graphai/user-guide/components/branches",
                   "graphai/user-guide/components/callbacks",
                   "graphai/user-guide/components/function-schema",
                   "graphai/user-guide/components/graphs",
                   "graphai/user-guide/components/nodes",
                   "graphai/user-guide/components/parallel-execution",
+                  "graphai/user-guide/components/parallel-vs-branching",
                   "graphai/user-guide/components/state"
                 ]
               }
