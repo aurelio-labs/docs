@@ -11,6 +11,16 @@ class NodeProtocol(Protocol)
 
 Protocol defining the interface of a decorated node.
 
+## BranchError Objects
+
+```python
+@dataclass
+class BranchError()
+```
+
+A failure inside a branch pipeline, recorded instead of raised so the
+main path is never taken down by a side pipeline.
+
 ## Graph Objects
 
 ```python
@@ -102,6 +112,39 @@ Adds an edge between two nodes that already exist in the graph.
 - `source` - The source node or its name.
 - `destination` - The destination node or its name.
 
+#### add\_branch
+
+```python
+def add_branch(source: NodeProtocol | str,
+               destination: NodeProtocol | str,
+               *,
+               condition: BranchCondition | None = None,
+               wait: bool = True) -> Graph
+```
+
+Adds a branch edge: a side pipeline that starts at `destination`
+once `source` has run, without becoming a fork of the main path.
+
+Regular edges out of a node with two or more successors fork the main
+path and expect a join. A branch edge instead runs `destination` and
+whatever regular edges follow it as an isolated pipeline: it needs no
+join and no end node, it stops at the first node with no successors
+(or one whose output has `success: False`), and an exception inside it
+is recorded in `branch_errors` rather than raised. Branches may
+themselves have branches.
+
+**Arguments**:
+
+- `source` - The node whose completion starts the branch.
+- `destination` - The first node of the branch pipeline.
+- `condition` - Optional callable `(output, state) -> bool` (may be
+  async) evaluated with the source node&#x27;s output; the branch is
+  skipped when it returns a falsy value.
+- `wait` - When True (default) the main path waits for the branch to
+  finish before moving on. When False the branch runs as a
+  detached task; `source`0 still waits for all detached
+  branches before returning.
+
 #### add\_router
 
 ```python
@@ -131,6 +174,16 @@ Validate the graph:
 - all nodes reachable from the start
   (optional) **no cycles** when strict=True
 Returns self on success; raises GraphCompileError otherwise.
+
+#### wait\_for\_branches
+
+```python
+async def wait_for_branches() -> None
+```
+
+Wait for every detached branch pipeline started by this graph.
+Called by execute() before it returns; exposed for callers that drive
+`_execute_branch` themselves.
 
 #### execute\_many
 
@@ -217,4 +270,13 @@ def visualize(*, save_path: str | None = None)
 Render the current graph. If matplotlib is not installed,
 raise a helpful error telling users to install the viz extra.
 Optionally save to a file via `save_path`.
+
+## BranchEdge Objects
+
+```python
+class BranchEdge()
+```
+
+Side edge from `source` to the first node of an isolated pipeline.
+See `Graph.add_branch`.
 
