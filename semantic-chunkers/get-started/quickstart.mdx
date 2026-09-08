@@ -1,0 +1,59 @@
+To get started with *semantic-chunkers* we install it like so:
+
+```bash
+pip install -qU semantic-chunkers
+```
+
+## Basic Usage
+
+We begin by initializing an encoder and a chunker. The encoder converts text into vectors, and the chunker uses those vectors to find optimal split points.
+
+```python
+from semantic_chunkers import StatisticalChunker
+from semantic_router.encoders import OpenAIEncoder
+import os
+
+os.environ["OPENAI_API_KEY"] = "<YOUR_API_KEY>"
+
+encoder = OpenAIEncoder()
+chunker = StatisticalChunker(encoder=encoder)
+```
+
+## Chunking Text
+
+Now we can chunk some text. Let's try with a simple example:
+
+```python
+chunks = chunker(docs=["your long document text goes here..."])
+```
+
+Each item in `chunks` is a list of `Chunk` objects containing the split text with semantic boundaries preserved.
+
+## Chunking Strategies
+
+Semantic Chunkers provides several strategies:
+
+- **`StatisticalChunker`**: Uses statistical analysis of similarity scores to find optimal split points
+- **`ConsecutiveChunker`**: Groups consecutive sentences that remain above a similarity threshold
+- **`CumulativeChunker`**: Accumulates sentences into a chunk until the semantic similarity drops
+
+```python
+from semantic_chunkers import (
+    StatisticalChunker,
+    ConsecutiveChunker,
+    CumulativeChunker,
+)
+
+# Statistical chunking (recommended for most use cases)
+chunker = StatisticalChunker(encoder=encoder)
+
+# Consecutive chunking
+chunker = ConsecutiveChunker(encoder=encoder, score_threshold=0.3)
+
+# Cumulative chunking
+chunker = CumulativeChunker(encoder=encoder, score_threshold=0.3)
+```
+
+## Next Steps
+
+Explore the different chunking strategies and find the one that works best for your use case.
