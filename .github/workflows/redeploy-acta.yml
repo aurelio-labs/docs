@@ -1,0 +1,28 @@
+name: Redeploy acta docs site
+
+# Docs content lives here, but the site is built by the `acta` project on
+# Vercel (which clones this repo at build time). Vercel only auto-builds on
+# pushes to the `acta` repo, so a content push here must poke acta's deploy
+# hook to publish the change to docs.aurelio.ai.
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: redeploy-acta
+  cancel-in-progress: false
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger acta deploy hook
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "VERCEL_DEPLOY_HOOK_URL secret not set; skipping."
+            exit 0
+          fi
+          curl -fsS -X POST "$HOOK" > /dev/null && echo "Triggered acta redeploy."
