@@ -1,25 +1,22 @@
-Semantic Chunkers is a library for splitting text into meaningful chunks based on semantic similarity. Rather than splitting on fixed character counts or simple delimiters, it uses embedding models to identify natural breakpoints in your text.
+Semantic Chunkers splits text into chunks based on *meaning*. Instead of cutting every N characters or at every newline, it uses an embedding model to find the places where the topic actually shifts — and splits there.
 
-## What is Semantic Chunkers?
+That matters most for retrieval. A chunk that starts mid-thought and ends mid-thought is a bad search result. A chunk that holds one coherent idea is a good one. Better chunks mean better RAG.
 
-Semantic Chunkers enables:
+## How it works
 
-- **Meaningful splits**: Break text at natural semantic boundaries rather than arbitrary positions
-- **Better retrieval**: Chunks that preserve context lead to more accurate search and RAG pipelines
-- **Flexible chunking**: Multiple chunking strategies to suit different content types
-- **Easy integration**: Works with popular embedding providers like OpenAI, Cohere, and local models
+The library splits a document into sentences, embeds them, and looks at how similar each sentence is to its neighbours. Where similarity drops, a new chunk begins. You choose how that decision gets made:
 
-## Key Features
+- **`StatisticalChunker`** — the most robust option and the one to start with. It sets the similarity threshold dynamically per document, so it adapts to the text instead of relying on a fixed number. Text only.
+- **`ConsecutiveChunker`** — the simplest. Groups consecutive sentences while they stay above a fixed similarity threshold. Works on more than just text.
+- **`CumulativeChunker`** — accumulates sentences and compares each new one against everything gathered so far. More stable and noise-resistant, but the most expensive in time and, with API encoders, money.
+- **`RegexChunker`** — no embeddings at all. Splits on delimiters up to a token budget. Fast and free, for when semantics don't matter.
 
-- **Statistical chunking**: Split based on statistical analysis of embedding similarities
-- **Consecutive chunking**: Group consecutive sentences that are semantically similar
-- **Cumulative chunking**: Build chunks by accumulating sentences until a semantic shift
-- **Multiple encoders**: Support for OpenAI, Cohere, Hugging Face, and more
+The semantic chunkers take an encoder from [Semantic Router](../../semantic-router), so you can use OpenAI, Cohere, Hugging Face, FastEmbed, and the rest.
 
-## Getting Started
+## Start here
 
-For a quick introduction to using Semantic Chunkers, check out our [quickstart guide](quickstart).
+The [quickstart](quickstart) chunks a document in a few lines and compares the strategies.
 
 ## Resources
 
-- [GitHub Repository](https://github.com/aurelio-labs/semantic-chunkers)
+- [GitHub repository](https://github.com/aurelio-labs/semantic-chunkers)
