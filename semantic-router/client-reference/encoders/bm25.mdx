@@ -19,16 +19,56 @@ Concept:
 - we train a BM25 encoder&#x27;s normalization parameters on a sufficiently large corpus to capture target language distribution
 - these trained parameter allow us to balance TF &amp; IDF of query &amp; documents for retrieval (read more on how BM25 fixes issues with TF-IDF)
 
+The reference formula is section 4.1 of the ATIRE paper:
+
+    RSV_d = Σ_{t ∈ q} log(N / df_t) · (k1 + 1) · tf_td
+                       / (k1 · ((1 - b) + b · L_d / L_avg) + tf_td)
+
+Deviations from the paper
+-------------------------
+This implementation is faithful to the formula above on the document side,
+but deviates from it in three documented ways. Each is deliberate; see the
+inline comments at the point of use for the details.
+
+1. IDF smoothing. We compute `log((N + 1) / (df_t + 0.5))` rather than
+   `log(N / df_t)`, to avoid a division by zero for unseen terms. This
+   preserves the strictly-positive IDF that the ATIRE variant exists for.
+
+2. Query weight normalization. The paper produces an unbounded relevance
+   score, which is fine for a search engine that only ranks within a single
+   query. A router instead compares scores against a fixed
+   `score_threshold`, so scores must be comparable *across* queries. We
+   therefore L1-normalize the query weights and scale them by
+   `1 / (k1 + 1)`, which bounds the query·document dot product to [0, 1] --
+   the same range as the cosine similarity returned by the dense encoders,
+   so the two can be blended in `encode_documents`0 and thresholded alike.
+
+   This is ranking-neutral within a query (it is a single positive constant
+   per query) but it does discard cross-query IDF magnitude: two queries
+   with different total IDF mass can produce the same score.
+
+3. Parameter defaults. We default to `encode_documents`1 rather than the
+   paper&#x27;s `encode_documents`2. See the `encode_documents`3 and `encode_documents`4 parameter docs below.
+
 ATIRE Paper: https://www.cs.otago.ac.nz/research/student-publications/atire-opensource.pdf
 Pinecone Implementation: https://github.com/pinecone-io/pinecone-text/blob/8399f9ff28c4652766c35165c0db9b0eff309077/pinecone_text/sparse/bm25_encoder.py
 
 **Arguments**:
 
-- `k1` (`float`): normalizer parameter that limits how much a single query term `q_i ∈ q` can affect score for document `D_n`
-- `encode_documents`0 (`float`): normalizer parameter that balances the effect of a single document length compared to the average document length
-- `encode_documents`2 (`encode_documents`3): number of documents in the trained corpus
-- `encode_documents`4 (`encode_documents`5): float representing the average document length in the trained corpus
-- `encode_documents`6 (`encode_documents`7numpy.ndarray`encode_documents`8): (1, tokenizer.vocab_size) shaped array, denoting how many documents contain `encode_documents`9
+- `encode_documents`3 (`encode_documents`6): normalizer parameter that limits how much a single query term `encode_documents`7 can affect score for document `encode_documents`8.
+Defaults to 1.5, the standard Robertson value, *not* the 0.9 reported in the ATIRE paper. The paper&#x27;s value was
+trained on the INEX 2008 Wikipedia collection, whose documents average 878 words (paper table 5), whereas this
+encoder is fitted on route utterances averaging on the order of ten tokens. Transferring the paper&#x27;s parameters
+to utterance-length text is not obviously more correct, and changing the default would silently shift the scores
+that existing `score_threshold` values were tuned against.
+- `encode_documents`4 (`encode_documents`6): normalizer parameter that balances the effect of a single document length compared to the average document
+length. Defaults to 0.75 rather than the paper&#x27;s 0.4, for the same reason as `encode_documents`3. Note that `encode_documents`4 is considerably
+more influential on short text: over utterances spanning 0.3x to 2.2x the average length, `encode_queries(q)`4 spreads the
+document factor by ~2.2x versus ~1.4x for `encode_queries(q)`5. Lower it towards the paper&#x27;s value if length is over-weighted
+for your route set.
+- `encode_queries(q)`6 (`encode_queries(q)`7): number of documents in the trained corpus
+- `encode_queries(q)`8 (`encode_queries(q)`9): float representing the average document length in the trained corpus
+- `encode_documents([D_0, D_1, ...])`0 (`encode_documents([D_0, D_1, ...])`1numpy.ndarray`encode_documents([D_0, D_1, ...])`2): (1, tokenizer.vocab_size) shaped array, denoting how many documents contain `encode_documents([D_0, D_1, ...])`3
 
 #### fit
 
@@ -69,7 +109,7 @@ Returns document term frequency normed by itself &amp; average trained corpus le
 
 (This is the right-hand side of the BM25 equation, which gets matmul-ed with the query IDF component)
 
-LaTeX: $\frac{f(d_i, D)}{f(d_i, D) + k_1 \times (1 - b + b \times \frac{|D|}{avgdl})}$
+LaTeX: $\frac{(k_1 + 1) \times f(d_i, D)}{f(d_i, D) + k_1 \times (1 - b + b \times \frac{|D|}{avgdl})}$
 where:
     f(d_i, D) is frequency of term `d_i ∈ D`
     |D| is the document length
