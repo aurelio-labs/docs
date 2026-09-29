@@ -52,3 +52,26 @@ Embed a list of documents. Supports text only.
 
 `List[List[float]]`: The vector embeddings of the documents.
 
+#### acall
+
+```python
+async def acall(docs: List[str]) -> List[List[float]]
+```
+
+Embed a list of documents asynchronously. Supports text only.
+
+FastEmbed itself is synchronous, so this offloads the embedding call to a
+thread to avoid blocking the event loop.
+
+**Arguments**:
+
+- `docs` (`List[str]`): The documents to embed.
+
+**Raises**:
+
+- `ValueError`: If the embedding fails.
+
+**Returns**:
+
+`List[List[float]]`: The vector embeddings of the documents.
+
