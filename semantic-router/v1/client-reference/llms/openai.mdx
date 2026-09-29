@@ -1,0 +1,140 @@
+---
+sidebarTitle: openai
+title: semantic_router.llms.openai
+---
+
+## OpenAILLM Objects
+
+```python
+class OpenAILLM(BaseLLM)
+```
+
+LLM for OpenAI. Requires an OpenAI API key from https://platform.openai.com/api-keys.
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: Optional[str] = None,
+             openai_api_key: Optional[str] = None,
+             temperature: float = 0.01,
+             max_tokens: int = 200)
+```
+
+Initialize the OpenAILLM.
+
+**Arguments**:
+
+- `name` (`Optional[str]`): The name of the OpenAI model to use.
+- `openai_api_key` (`Optional[str]`): The OpenAI API key.
+- `temperature` (`float`): The temperature of the LLM.
+- `max_tokens` (`int`): The maximum number of tokens to generate.
+
+#### async\_extract\_tool\_calls\_info
+
+```python
+async def async_extract_tool_calls_info(
+        tool_calls: List[ChatCompletionMessageToolCall]
+) -> List[Dict[str, Any]]
+```
+
+Extract the tool calls information from the tool calls.
+
+**Arguments**:
+
+- `tool_calls` (`List[ChatCompletionMessageToolCall]`): The tool calls to extract the information from.
+
+**Returns**:
+
+`List[Dict[str, Any]]`: The tool calls information.
+
+#### \_\_call\_\_
+
+```python
+def __call__(messages: List[Message],
+             function_schemas: Optional[List[Dict[str, Any]]] = None) -> str
+```
+
+Call the OpenAILLM.
+
+**Arguments**:
+
+- `messages` (`List[Message]`): The messages to pass to the OpenAILLM.
+- `function_schemas` (`Optional[List[Dict[str, Any]]]`): The function schemas to pass to the OpenAILLM.
+
+**Returns**:
+
+`str`: The response from the OpenAILLM.
+
+#### acall
+
+```python
+async def acall(
+        messages: List[Message],
+        function_schemas: Optional[List[Dict[str, Any]]] = None) -> str
+```
+
+Call the OpenAILLM asynchronously.
+
+**Arguments**:
+
+- `messages` (`List[Message]`): The messages to pass to the OpenAILLM.
+- `function_schemas` (`Optional[List[Dict[str, Any]]]`): The function schemas to pass to the OpenAILLM.
+
+**Returns**:
+
+`str`: The response from the OpenAILLM.
+
+#### extract\_function\_inputs
+
+```python
+def extract_function_inputs(
+        query: str, function_schemas: List[Dict[str,
+                                                Any]]) -> List[Dict[str, Any]]
+```
+
+Extract the function inputs from the query.
+
+**Arguments**:
+
+- `query` (`str`): The query to extract the function inputs from.
+- `function_schemas` (`List[Dict[str, Any]]`): The function schemas to extract the function inputs from.
+
+**Returns**:
+
+`List[Dict[str, Any]]`: The function inputs.
+
+#### async\_extract\_function\_inputs
+
+```python
+async def async_extract_function_inputs(
+        query: str, function_schemas: List[Dict[str,
+                                                Any]]) -> List[Dict[str, Any]]
+```
+
+Extract the function inputs from the query asynchronously.
+
+**Arguments**:
+
+- `query` (`str`): The query to extract the function inputs from.
+- `function_schemas` (`List[Dict[str, Any]]`): The function schemas to extract the function inputs from.
+
+**Returns**:
+
+`List[Dict[str, Any]]`: The function inputs.
+
+#### get\_schemas\_openai
+
+```python
+def get_schemas_openai(items: List[Callable]) -> List[Dict[str, Any]]
+```
+
+Get function schemas for the OpenAI LLM from a list of functions.
+
+**Arguments**:
+
+- `items` (`List[Callable]`): The functions to get function schemas for.
+
+**Returns**:
+
+`List[Dict[str, Any]]`: The schemas for the OpenAI LLM.
+

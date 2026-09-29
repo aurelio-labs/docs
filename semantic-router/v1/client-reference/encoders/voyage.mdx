@@ -1,0 +1,69 @@
+---
+sidebarTitle: voyage
+title: semantic_router.encoders.voyage
+---
+
+This file contains the VoyageEncoder class which is used to encode text using Voyage
+
+## VoyageEncoder Objects
+
+```python
+class VoyageEncoder(DenseEncoder, AsymmetricDenseMixin)
+```
+
+Class to encode text using Voyage and VoyageAI SDK.
+Requires a Voyage API key from https://voyageai.com/api-keys/
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: str | None = None,
+             api_key: str | None = None,
+             score_threshold: float = 0.4)
+```
+
+Initialize the VoyageEncoder.
+
+**Arguments**:
+
+- `name` (`str`): The name of the embedding model to use such as &quot;voyage-3-lite&quot;.
+- `api_key` (`str`): The Voyage API key, can also be set via the VOYAGE_API_KEY
+environment variable.
+- `score_threshold` (`float`): The score threshold for the embeddings.
+
+**Raises**:
+
+- `ValueError`: If no API key is provided or found in the environment.
+
+#### \_\_call\_\_
+
+```python
+def __call__(docs: list[Any], **kwargs) -> list[list[float]]
+```
+
+Encode a list of text documents into embeddings using Voyage.
+
+**Arguments**:
+
+- `docs` (`list[Any]`): List of text documents to encode.
+
+**Returns**:
+
+`list[list[float]]`: List of embeddings for each document.
+
+#### acall
+
+```python
+async def acall(docs: list[Any], **kwargs) -> list[list[float]]
+```
+
+Encode a list of text documents into embeddings using Voyage asynchronously.
+
+**Arguments**:
+
+- `docs` (`list[Any]`): List of text documents to encode.
+
+**Returns**:
+
+`list[list[float]]`: List of embeddings for each document.
+

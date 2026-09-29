@@ -12,124 +12,259 @@
     "tabs": [
       {
         "tab": "Semantic Router",
-        "groups": [
+        "versions": [
           {
-            "group": "Get Started",
-            "pages": [
-              "semantic-router/get-started/introduction",
-              "semantic-router/get-started/quickstart"
-            ]
-          },
-          {
-            "group": "Client Reference",
-            "pages": [
-              "semantic-router/client-reference/linear",
-              "semantic-router/client-reference/route",
-              "semantic-router/client-reference/schema",
-              "semantic-router/client-reference/tokenizers",
+            "version": "v1",
+            "tag": "dev",
+            "groups": [
               {
-                "group": "encoders",
+                "group": "Get Started",
                 "pages": [
-                  "semantic-router/client-reference/encoders/aurelio",
-                  "semantic-router/client-reference/encoders/azure_openai",
-                  "semantic-router/client-reference/encoders/base",
-                  "semantic-router/client-reference/encoders/bedrock",
-                  "semantic-router/client-reference/encoders/bm25",
-                  "semantic-router/client-reference/encoders/clip",
-                  "semantic-router/client-reference/encoders/cohere",
-                  "semantic-router/client-reference/encoders/fastembed",
-                  "semantic-router/client-reference/encoders/google",
-                  "semantic-router/client-reference/encoders/huggingface",
-                  "semantic-router/client-reference/encoders/jina",
-                  "semantic-router/client-reference/encoders/litellm",
-                  "semantic-router/client-reference/encoders/local",
-                  "semantic-router/client-reference/encoders/mistral",
-                  "semantic-router/client-reference/encoders/nvidia_nim",
-                  "semantic-router/client-reference/encoders/ollama",
-                  "semantic-router/client-reference/encoders/openai",
-                  "semantic-router/client-reference/encoders/tfidf",
-                  "semantic-router/client-reference/encoders/vit",
-                  "semantic-router/client-reference/encoders/voyage"
+                  "semantic-router/v1/get-started/introduction",
+                  "semantic-router/v1/get-started/quickstart",
+                  "semantic-router/v1/get-started/versions"
                 ]
               },
               {
-                "group": "index",
+                "group": "Client Reference",
                 "pages": [
-                  "semantic-router/client-reference/index/base",
-                  "semantic-router/client-reference/index/hybrid_local",
-                  "semantic-router/client-reference/index/local",
-                  "semantic-router/client-reference/index/pinecone",
-                  "semantic-router/client-reference/index/postgres",
-                  "semantic-router/client-reference/index/qdrant"
+                  "semantic-router/v1/client-reference/linear",
+                  "semantic-router/v1/client-reference/route",
+                  "semantic-router/v1/client-reference/schema",
+                  "semantic-router/v1/client-reference/tokenizers",
+                  {
+                    "group": "encoders",
+                    "pages": [
+                      "semantic-router/v1/client-reference/encoders/aurelio",
+                      "semantic-router/v1/client-reference/encoders/azure_openai",
+                      "semantic-router/v1/client-reference/encoders/base",
+                      "semantic-router/v1/client-reference/encoders/bedrock",
+                      "semantic-router/v1/client-reference/encoders/bm25",
+                      "semantic-router/v1/client-reference/encoders/clip",
+                      "semantic-router/v1/client-reference/encoders/cohere",
+                      "semantic-router/v1/client-reference/encoders/fastembed",
+                      "semantic-router/v1/client-reference/encoders/google",
+                      "semantic-router/v1/client-reference/encoders/huggingface",
+                      "semantic-router/v1/client-reference/encoders/jina",
+                      "semantic-router/v1/client-reference/encoders/litellm",
+                      "semantic-router/v1/client-reference/encoders/local",
+                      "semantic-router/v1/client-reference/encoders/mistral",
+                      "semantic-router/v1/client-reference/encoders/nvidia_nim",
+                      "semantic-router/v1/client-reference/encoders/ollama",
+                      "semantic-router/v1/client-reference/encoders/openai",
+                      "semantic-router/v1/client-reference/encoders/tfidf",
+                      "semantic-router/v1/client-reference/encoders/vit",
+                      "semantic-router/v1/client-reference/encoders/voyage"
+                    ]
+                  },
+                  {
+                    "group": "index",
+                    "pages": [
+                      "semantic-router/v1/client-reference/index/base",
+                      "semantic-router/v1/client-reference/index/hybrid_local",
+                      "semantic-router/v1/client-reference/index/local",
+                      "semantic-router/v1/client-reference/index/pinecone",
+                      "semantic-router/v1/client-reference/index/postgres",
+                      "semantic-router/v1/client-reference/index/qdrant"
+                    ]
+                  },
+                  {
+                    "group": "llms",
+                    "pages": [
+                      "semantic-router/v1/client-reference/llms/base",
+                      "semantic-router/v1/client-reference/llms/cohere",
+                      "semantic-router/v1/client-reference/llms/llamacpp",
+                      "semantic-router/v1/client-reference/llms/mistral",
+                      "semantic-router/v1/client-reference/llms/ollama",
+                      "semantic-router/v1/client-reference/llms/openai",
+                      "semantic-router/v1/client-reference/llms/openrouter",
+                      "semantic-router/v1/client-reference/llms/zure"
+                    ]
+                  },
+                  {
+                    "group": "routers",
+                    "pages": [
+                      "semantic-router/v1/client-reference/routers/base",
+                      "semantic-router/v1/client-reference/routers/hybrid",
+                      "semantic-router/v1/client-reference/routers/semantic"
+                    ]
+                  },
+                  {
+                    "group": "utils",
+                    "pages": [
+                      "semantic-router/v1/client-reference/utils/defaults",
+                      "semantic-router/v1/client-reference/utils/function_call",
+                      "semantic-router/v1/client-reference/utils/logger"
+                    ]
+                  }
                 ]
               },
               {
-                "group": "llms",
+                "group": "User Guide",
                 "pages": [
-                  "semantic-router/client-reference/llms/base",
-                  "semantic-router/client-reference/llms/cohere",
-                  "semantic-router/client-reference/llms/llamacpp",
-                  "semantic-router/client-reference/llms/mistral",
-                  "semantic-router/client-reference/llms/ollama",
-                  "semantic-router/client-reference/llms/openai",
-                  "semantic-router/client-reference/llms/openrouter",
-                  "semantic-router/client-reference/llms/zure"
-                ]
-              },
-              {
-                "group": "routers",
-                "pages": [
-                  "semantic-router/client-reference/routers/base",
-                  "semantic-router/client-reference/routers/hybrid",
-                  "semantic-router/client-reference/routers/semantic"
-                ]
-              },
-              {
-                "group": "utils",
-                "pages": [
-                  "semantic-router/client-reference/utils/defaults",
-                  "semantic-router/client-reference/utils/function_call",
-                  "semantic-router/client-reference/utils/logger"
+                  "semantic-router/v1/user-guide/changelog",
+                  {
+                    "group": "Components",
+                    "pages": [
+                      "semantic-router/v1/user-guide/components/encoders",
+                      "semantic-router/v1/user-guide/components/indexes",
+                      "semantic-router/v1/user-guide/components/routers"
+                    ]
+                  },
+                  {
+                    "group": "Concepts",
+                    "pages": [
+                      "semantic-router/v1/user-guide/concepts/architecture",
+                      "semantic-router/v1/user-guide/concepts/overview"
+                    ]
+                  },
+                  {
+                    "group": "Features",
+                    "pages": [
+                      "semantic-router/v1/user-guide/features/dynamic-routes",
+                      "semantic-router/v1/user-guide/features/route-filter",
+                      "semantic-router/v1/user-guide/features/sync",
+                      "semantic-router/v1/user-guide/features/threshold-optimization"
+                    ]
+                  },
+                  {
+                    "group": "Guides",
+                    "pages": [
+                      "semantic-router/v1/user-guide/guides/configuration",
+                      "semantic-router/v1/user-guide/guides/local-execution",
+                      "semantic-router/v1/user-guide/guides/migration-to-v0-1",
+                      "semantic-router/v1/user-guide/guides/save-load-from-file",
+                      "semantic-router/v1/user-guide/guides/semantic-router"
+                    ]
+                  }
                 ]
               }
             ]
           },
           {
-            "group": "User Guide",
-            "pages": [
-              "semantic-router/user-guide/changelog",
+            "version": "v0",
+            "default": true,
+            "groups": [
               {
-                "group": "Components",
+                "group": "Get Started",
                 "pages": [
-                  "semantic-router/user-guide/components/encoders",
-                  "semantic-router/user-guide/components/indexes",
-                  "semantic-router/user-guide/components/routers"
+                  "semantic-router/v0/get-started/introduction",
+                  "semantic-router/v0/get-started/quickstart",
+                  "semantic-router/v0/get-started/versions"
                 ]
               },
               {
-                "group": "Concepts",
+                "group": "Client Reference",
                 "pages": [
-                  "semantic-router/user-guide/concepts/architecture",
-                  "semantic-router/user-guide/concepts/overview"
+                  "semantic-router/v0/client-reference/linear",
+                  "semantic-router/v0/client-reference/route",
+                  "semantic-router/v0/client-reference/schema",
+                  "semantic-router/v0/client-reference/tokenizers",
+                  {
+                    "group": "encoders",
+                    "pages": [
+                      "semantic-router/v0/client-reference/encoders/aurelio",
+                      "semantic-router/v0/client-reference/encoders/azure_openai",
+                      "semantic-router/v0/client-reference/encoders/base",
+                      "semantic-router/v0/client-reference/encoders/bedrock",
+                      "semantic-router/v0/client-reference/encoders/bm25",
+                      "semantic-router/v0/client-reference/encoders/clip",
+                      "semantic-router/v0/client-reference/encoders/cohere",
+                      "semantic-router/v0/client-reference/encoders/fastembed",
+                      "semantic-router/v0/client-reference/encoders/google",
+                      "semantic-router/v0/client-reference/encoders/huggingface",
+                      "semantic-router/v0/client-reference/encoders/jina",
+                      "semantic-router/v0/client-reference/encoders/litellm",
+                      "semantic-router/v0/client-reference/encoders/local",
+                      "semantic-router/v0/client-reference/encoders/mistral",
+                      "semantic-router/v0/client-reference/encoders/nvidia_nim",
+                      "semantic-router/v0/client-reference/encoders/ollama",
+                      "semantic-router/v0/client-reference/encoders/openai",
+                      "semantic-router/v0/client-reference/encoders/tfidf",
+                      "semantic-router/v0/client-reference/encoders/vit",
+                      "semantic-router/v0/client-reference/encoders/voyage"
+                    ]
+                  },
+                  {
+                    "group": "index",
+                    "pages": [
+                      "semantic-router/v0/client-reference/index/base",
+                      "semantic-router/v0/client-reference/index/hybrid_local",
+                      "semantic-router/v0/client-reference/index/local",
+                      "semantic-router/v0/client-reference/index/pinecone",
+                      "semantic-router/v0/client-reference/index/postgres",
+                      "semantic-router/v0/client-reference/index/qdrant"
+                    ]
+                  },
+                  {
+                    "group": "llms",
+                    "pages": [
+                      "semantic-router/v0/client-reference/llms/base",
+                      "semantic-router/v0/client-reference/llms/cohere",
+                      "semantic-router/v0/client-reference/llms/llamacpp",
+                      "semantic-router/v0/client-reference/llms/mistral",
+                      "semantic-router/v0/client-reference/llms/ollama",
+                      "semantic-router/v0/client-reference/llms/openai",
+                      "semantic-router/v0/client-reference/llms/openrouter",
+                      "semantic-router/v0/client-reference/llms/zure"
+                    ]
+                  },
+                  {
+                    "group": "routers",
+                    "pages": [
+                      "semantic-router/v0/client-reference/routers/base",
+                      "semantic-router/v0/client-reference/routers/hybrid",
+                      "semantic-router/v0/client-reference/routers/semantic"
+                    ]
+                  },
+                  {
+                    "group": "utils",
+                    "pages": [
+                      "semantic-router/v0/client-reference/utils/defaults",
+                      "semantic-router/v0/client-reference/utils/function_call",
+                      "semantic-router/v0/client-reference/utils/logger"
+                    ]
+                  }
                 ]
               },
               {
-                "group": "Features",
+                "group": "User Guide",
                 "pages": [
-                  "semantic-router/user-guide/features/dynamic-routes",
-                  "semantic-router/user-guide/features/route-filter",
-                  "semantic-router/user-guide/features/sync",
-                  "semantic-router/user-guide/features/threshold-optimization"
-                ]
-              },
-              {
-                "group": "Guides",
-                "pages": [
-                  "semantic-router/user-guide/guides/configuration",
-                  "semantic-router/user-guide/guides/local-execution",
-                  "semantic-router/user-guide/guides/migration-to-v1",
-                  "semantic-router/user-guide/guides/save-load-from-file",
-                  "semantic-router/user-guide/guides/semantic-router"
+                  "semantic-router/v0/user-guide/changelog",
+                  {
+                    "group": "Components",
+                    "pages": [
+                      "semantic-router/v0/user-guide/components/encoders",
+                      "semantic-router/v0/user-guide/components/indexes",
+                      "semantic-router/v0/user-guide/components/routers"
+                    ]
+                  },
+                  {
+                    "group": "Concepts",
+                    "pages": [
+                      "semantic-router/v0/user-guide/concepts/architecture",
+                      "semantic-router/v0/user-guide/concepts/overview"
+                    ]
+                  },
+                  {
+                    "group": "Features",
+                    "pages": [
+                      "semantic-router/v0/user-guide/features/dynamic-routes",
+                      "semantic-router/v0/user-guide/features/route-filter",
+                      "semantic-router/v0/user-guide/features/sync",
+                      "semantic-router/v0/user-guide/features/threshold-optimization"
+                    ]
+                  },
+                  {
+                    "group": "Guides",
+                    "pages": [
+                      "semantic-router/v0/user-guide/guides/configuration",
+                      "semantic-router/v0/user-guide/guides/local-execution",
+                      "semantic-router/v0/user-guide/guides/migration-to-v0-1",
+                      "semantic-router/v0/user-guide/guides/save-load-from-file",
+                      "semantic-router/v0/user-guide/guides/semantic-router"
+                    ]
+                  }
                 ]
               }
             ]
@@ -231,5 +366,251 @@
       "linkedin": "https://linkedin.com/company/aurelio-ai",
       "youtube": "https://www.youtube.com/@jamesbriggs"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/semantic-router/get-started/introduction",
+      "destination": "/semantic-router/v0/get-started/introduction"
+    },
+    {
+      "source": "/semantic-router/get-started/quickstart",
+      "destination": "/semantic-router/v0/get-started/quickstart"
+    },
+    {
+      "source": "/semantic-router/client-reference/linear",
+      "destination": "/semantic-router/v0/client-reference/linear"
+    },
+    {
+      "source": "/semantic-router/client-reference/route",
+      "destination": "/semantic-router/v0/client-reference/route"
+    },
+    {
+      "source": "/semantic-router/client-reference/schema",
+      "destination": "/semantic-router/v0/client-reference/schema"
+    },
+    {
+      "source": "/semantic-router/client-reference/tokenizers",
+      "destination": "/semantic-router/v0/client-reference/tokenizers"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/aurelio",
+      "destination": "/semantic-router/v0/client-reference/encoders/aurelio"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/azure_openai",
+      "destination": "/semantic-router/v0/client-reference/encoders/azure_openai"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/base",
+      "destination": "/semantic-router/v0/client-reference/encoders/base"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/bedrock",
+      "destination": "/semantic-router/v0/client-reference/encoders/bedrock"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/bm25",
+      "destination": "/semantic-router/v0/client-reference/encoders/bm25"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/clip",
+      "destination": "/semantic-router/v0/client-reference/encoders/clip"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/cohere",
+      "destination": "/semantic-router/v0/client-reference/encoders/cohere"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/fastembed",
+      "destination": "/semantic-router/v0/client-reference/encoders/fastembed"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/google",
+      "destination": "/semantic-router/v0/client-reference/encoders/google"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/huggingface",
+      "destination": "/semantic-router/v0/client-reference/encoders/huggingface"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/jina",
+      "destination": "/semantic-router/v0/client-reference/encoders/jina"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/litellm",
+      "destination": "/semantic-router/v0/client-reference/encoders/litellm"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/local",
+      "destination": "/semantic-router/v0/client-reference/encoders/local"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/mistral",
+      "destination": "/semantic-router/v0/client-reference/encoders/mistral"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/nvidia_nim",
+      "destination": "/semantic-router/v0/client-reference/encoders/nvidia_nim"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/ollama",
+      "destination": "/semantic-router/v0/client-reference/encoders/ollama"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/openai",
+      "destination": "/semantic-router/v0/client-reference/encoders/openai"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/tfidf",
+      "destination": "/semantic-router/v0/client-reference/encoders/tfidf"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/vit",
+      "destination": "/semantic-router/v0/client-reference/encoders/vit"
+    },
+    {
+      "source": "/semantic-router/client-reference/encoders/voyage",
+      "destination": "/semantic-router/v0/client-reference/encoders/voyage"
+    },
+    {
+      "source": "/semantic-router/client-reference/index/base",
+      "destination": "/semantic-router/v0/client-reference/index/base"
+    },
+    {
+      "source": "/semantic-router/client-reference/index/hybrid_local",
+      "destination": "/semantic-router/v0/client-reference/index/hybrid_local"
+    },
+    {
+      "source": "/semantic-router/client-reference/index/local",
+      "destination": "/semantic-router/v0/client-reference/index/local"
+    },
+    {
+      "source": "/semantic-router/client-reference/index/pinecone",
+      "destination": "/semantic-router/v0/client-reference/index/pinecone"
+    },
+    {
+      "source": "/semantic-router/client-reference/index/postgres",
+      "destination": "/semantic-router/v0/client-reference/index/postgres"
+    },
+    {
+      "source": "/semantic-router/client-reference/index/qdrant",
+      "destination": "/semantic-router/v0/client-reference/index/qdrant"
+    },
+    {
+      "source": "/semantic-router/client-reference/llms/base",
+      "destination": "/semantic-router/v0/client-reference/llms/base"
+    },
+    {
+      "source": "/semantic-router/client-reference/llms/cohere",
+      "destination": "/semantic-router/v0/client-reference/llms/cohere"
+    },
+    {
+      "source": "/semantic-router/client-reference/llms/llamacpp",
+      "destination": "/semantic-router/v0/client-reference/llms/llamacpp"
+    },
+    {
+      "source": "/semantic-router/client-reference/llms/mistral",
+      "destination": "/semantic-router/v0/client-reference/llms/mistral"
+    },
+    {
+      "source": "/semantic-router/client-reference/llms/ollama",
+      "destination": "/semantic-router/v0/client-reference/llms/ollama"
+    },
+    {
+      "source": "/semantic-router/client-reference/llms/openai",
+      "destination": "/semantic-router/v0/client-reference/llms/openai"
+    },
+    {
+      "source": "/semantic-router/client-reference/llms/openrouter",
+      "destination": "/semantic-router/v0/client-reference/llms/openrouter"
+    },
+    {
+      "source": "/semantic-router/client-reference/llms/zure",
+      "destination": "/semantic-router/v0/client-reference/llms/zure"
+    },
+    {
+      "source": "/semantic-router/client-reference/routers/base",
+      "destination": "/semantic-router/v0/client-reference/routers/base"
+    },
+    {
+      "source": "/semantic-router/client-reference/routers/hybrid",
+      "destination": "/semantic-router/v0/client-reference/routers/hybrid"
+    },
+    {
+      "source": "/semantic-router/client-reference/routers/semantic",
+      "destination": "/semantic-router/v0/client-reference/routers/semantic"
+    },
+    {
+      "source": "/semantic-router/client-reference/utils/defaults",
+      "destination": "/semantic-router/v0/client-reference/utils/defaults"
+    },
+    {
+      "source": "/semantic-router/client-reference/utils/function_call",
+      "destination": "/semantic-router/v0/client-reference/utils/function_call"
+    },
+    {
+      "source": "/semantic-router/client-reference/utils/logger",
+      "destination": "/semantic-router/v0/client-reference/utils/logger"
+    },
+    {
+      "source": "/semantic-router/user-guide/changelog",
+      "destination": "/semantic-router/v0/user-guide/changelog"
+    },
+    {
+      "source": "/semantic-router/user-guide/components/encoders",
+      "destination": "/semantic-router/v0/user-guide/components/encoders"
+    },
+    {
+      "source": "/semantic-router/user-guide/components/indexes",
+      "destination": "/semantic-router/v0/user-guide/components/indexes"
+    },
+    {
+      "source": "/semantic-router/user-guide/components/routers",
+      "destination": "/semantic-router/v0/user-guide/components/routers"
+    },
+    {
+      "source": "/semantic-router/user-guide/concepts/architecture",
+      "destination": "/semantic-router/v0/user-guide/concepts/architecture"
+    },
+    {
+      "source": "/semantic-router/user-guide/concepts/overview",
+      "destination": "/semantic-router/v0/user-guide/concepts/overview"
+    },
+    {
+      "source": "/semantic-router/user-guide/features/dynamic-routes",
+      "destination": "/semantic-router/v0/user-guide/features/dynamic-routes"
+    },
+    {
+      "source": "/semantic-router/user-guide/features/route-filter",
+      "destination": "/semantic-router/v0/user-guide/features/route-filter"
+    },
+    {
+      "source": "/semantic-router/user-guide/features/sync",
+      "destination": "/semantic-router/v0/user-guide/features/sync"
+    },
+    {
+      "source": "/semantic-router/user-guide/features/threshold-optimization",
+      "destination": "/semantic-router/v0/user-guide/features/threshold-optimization"
+    },
+    {
+      "source": "/semantic-router/user-guide/guides/configuration",
+      "destination": "/semantic-router/v0/user-guide/guides/configuration"
+    },
+    {
+      "source": "/semantic-router/user-guide/guides/local-execution",
+      "destination": "/semantic-router/v0/user-guide/guides/local-execution"
+    },
+    {
+      "source": "/semantic-router/user-guide/guides/migration-to-v1",
+      "destination": "/semantic-router/v0/user-guide/guides/migration-to-v0-1"
+    },
+    {
+      "source": "/semantic-router/user-guide/guides/save-load-from-file",
+      "destination": "/semantic-router/v0/user-guide/guides/save-load-from-file"
+    },
+    {
+      "source": "/semantic-router/user-guide/guides/semantic-router",
+      "destination": "/semantic-router/v0/user-guide/guides/semantic-router"
+    }
+  ]
 }
