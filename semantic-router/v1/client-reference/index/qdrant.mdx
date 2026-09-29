@@ -1,0 +1,270 @@
+---
+sidebarTitle: qdrant
+title: semantic_router.index.qdrant
+---
+
+## QdrantIndex Objects
+
+```python
+class QdrantIndex(BaseIndex)
+```
+
+The name of the collection to use
+
+#### add
+
+```python
+def add(embeddings: List[List[float]],
+        routes: List[str],
+        utterances: List[str],
+        function_schemas: Optional[List[Dict[str, Any]]] = None,
+        metadata_list: List[Dict[str, Any]] = [],
+        batch_size: int = DEFAULT_UPLOAD_BATCH_SIZE,
+        **kwargs)
+```
+
+Add records to the index.
+
+**Arguments**:
+
+- `embeddings` (`List[List[float]]`): The embeddings to add.
+- `routes` (`List[str]`): The routes to add.
+- `utterances` (`List[str]`): The utterances to add.
+- `function_schemas` (`Optional[List[Dict[str, Any]]]`): The function schemas to add.
+- `metadata_list` (`List[Dict[str, Any]]`): The metadata to add.
+- `List[List[float]]`0 (`List[List[float]]`1): The batch size to use for the upload.
+
+#### get\_utterances
+
+```python
+def get_utterances(include_metadata: bool = False) -> List[Utterance]
+```
+
+Gets a list of route and utterance objects currently stored in the index.
+
+**Arguments**:
+
+- `include_metadata` (`bool`): Whether to include metadata in the returned Utterance objects.
+
+**Returns**:
+
+`List[Utterance]`: A list of Utterance objects.
+
+#### delete
+
+```python
+def delete(route_name: str)
+```
+
+Delete records from the index.
+
+**Arguments**:
+
+- `route_name` (`str`): The name of the route to delete.
+
+#### describe
+
+```python
+def describe() -> IndexConfig
+```
+
+Describe the index.
+
+**Returns**:
+
+`IndexConfig`: The index configuration.
+
+#### is\_ready
+
+```python
+def is_ready() -> bool
+```
+
+Checks if the index is ready to be used.
+
+**Returns**:
+
+`bool`: True if the index is ready, False otherwise.
+
+#### query
+
+```python
+def query(
+    vector: np.ndarray,
+    top_k: int = 5,
+    route_filter: Optional[List[str]] = None,
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None
+) -> Tuple[np.ndarray, List[str]]
+```
+
+Query the index.
+
+**Arguments**:
+
+- `vector` (`np.ndarray`): The vector to query.
+- `top_k` (`int`): The number of results to return.
+- `route_filter` (`Optional[List[str]]`): The route filter to apply.
+- `sparse_vector` (`dict[int, float] | SparseEmbedding | None`): The sparse vector to query.
+
+**Returns**:
+
+`Tuple[np.ndarray, List[str]]`: A tuple of the scores and route names.
+
+#### aquery
+
+```python
+async def aquery(
+    vector: np.ndarray,
+    top_k: int = 5,
+    route_filter: Optional[List[str]] = None,
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None
+) -> Tuple[np.ndarray, List[str]]
+```
+
+Asynchronously query the index.
+
+**Arguments**:
+
+- `vector` (`np.ndarray`): The vector to query.
+- `top_k` (`int`): The number of results to return.
+- `route_filter` (`Optional[List[str]]`): The route filter to apply.
+- `sparse_vector` (`dict[int, float] | SparseEmbedding | None`): The sparse vector to query.
+
+**Returns**:
+
+`Tuple[np.ndarray, List[str]]`: A tuple of the scores and route names.
+
+#### get\_routes\_tuples
+
+```python
+def get_routes_tuples() -> list[tuple]
+```
+
+Synchronously get route and utterance objects as tuples.
+
+**Returns**:
+
+`list[tuple]`: A list of (route_name, utterance, function_schemas, metadata) tuples.
+
+#### aget\_routes
+
+```python
+async def aget_routes() -> list[tuple]
+```
+
+Asynchronously get a list of route and utterance objects currently
+
+stored in the index.
+
+**Returns**:
+
+`list[tuple]`: A list of (route_name, utterance, function_schemas, metadata) tuples.
+
+#### delete\_index
+
+```python
+def delete_index()
+```
+
+Delete the index.
+
+**Returns**:
+
+`None`: None
+
+#### convert\_metric
+
+```python
+def convert_metric(metric: Metric)
+```
+
+Convert the metric to a Qdrant distance metric.
+
+**Arguments**:
+
+- `metric` (`Metric`): The metric to convert.
+
+**Returns**:
+
+`Distance`: The converted metric.
+
+#### \_\_len\_\_
+
+```python
+def __len__()
+```
+
+Returns the total number of vectors in the index. If the index is not initialized
+
+returns 0.
+
+**Returns**:
+
+`int`: The total number of vectors.
+
+#### adelete
+
+```python
+async def adelete(route_name: str) -> list[str]
+```
+
+Asynchronously delete records from the index by route name.
+
+**Arguments**:
+
+- `route_name` (`str`): The name of the route to delete.
+
+**Returns**:
+
+`list[str]`: List of IDs of the vectors deleted (empty list, as Qdrant does not return IDs).
+
+#### adelete\_index
+
+```python
+async def adelete_index()
+```
+
+Asynchronously delete the index (collection) from Qdrant.
+
+**Returns**:
+
+`None`: None
+
+#### ais\_ready
+
+```python
+async def ais_ready() -> bool
+```
+
+Checks if the index is ready to be used asynchronously.
+
+#### aadd
+
+```python
+async def aadd(embeddings: List[List[float]],
+               routes: List[str],
+               utterances: List[str],
+               function_schemas: Optional[List[Dict[str, Any]]] = None,
+               metadata_list: List[Dict[str, Any]] = [],
+               batch_size: int = DEFAULT_UPLOAD_BATCH_SIZE,
+               **kwargs)
+```
+
+Asynchronously add records to the index, including metadata in the payload.
+
+#### aget\_utterances
+
+```python
+async def aget_utterances(include_metadata: bool = False) -> List[Utterance]
+```
+
+Asynchronously gets a list of route and utterance objects currently stored in the index.
+
+**Arguments**:
+
+- `include_metadata` (`bool`): Whether to include metadata in the returned Utterance objects.
+
+**Returns**:
+
+`List[Utterance]`: A list of Utterance objects.
+

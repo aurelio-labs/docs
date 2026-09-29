@@ -1,0 +1,88 @@
+---
+sidebarTitle: cohere
+title: semantic_router.encoders.cohere
+---
+
+#### docs2cohere\_embed\_input
+
+```python
+def docs2cohere_embed_input(docs: list[str]) -> list[dict[str, Any]]
+```
+
+Convert a list of texts into Cohere&#x27;s ``inputs`` format.
+
+The Cohere ``embed`` endpoint expects one ``EmbedInput`` per embedding, each
+holding its own ``content`` array, so a list of N texts becomes N inputs.
+
+**Arguments**:
+
+- `docs` (`list[str]`): The texts to embed.
+
+**Returns**:
+
+``0: One embed input per text.
+
+## CohereEncoder Objects
+
+```python
+class CohereEncoder(DenseEncoder, AsymmetricDenseMixin)
+```
+
+Dense encoder that uses Cohere API and SDK to embed documents.
+Supports text only.
+Requires a Cohere API key from https://dashboard.cohere.com/api-keys.
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: str | None = None,
+             cohere_api_key: str | None = None,
+             score_threshold: float = 0.3)
+```
+
+Initialize the Cohere encoder.
+
+**Arguments**:
+
+- `name` (`str`): The name of the embedding model to use such as &quot;embed-english-v3.0&quot; or
+&quot;embed-multilingual-v3.0&quot;.
+- `cohere_api_key` (`str`): The API key for the Cohere client, can also
+be set via the COHERE_API_KEY environment variable.
+- `score_threshold` (`float`): The threshold for the score of the embedding.
+
+**Raises**:
+
+- `ValueError`: If no API key is provided or found in the environment.
+
+#### \_\_call\_\_
+
+```python
+def __call__(docs: list[Any], **kwargs) -> list[list[float]]
+```
+
+Encode a list of text documents into embeddings using Cohere.
+
+**Arguments**:
+
+- `docs` (`list[Any]`): List of text documents to encode.
+
+**Returns**:
+
+`list[list[float]]`: List of embeddings for each document.
+
+#### acall
+
+```python
+async def acall(docs: list[Any], **kwargs) -> list[list[float]]
+```
+
+Encode a list of text documents into embeddings using Cohere asynchronously.
+
+**Arguments**:
+
+- `docs` (`list[Any]`): List of text documents to encode.
+
+**Returns**:
+
+`list[list[float]]`: List of embeddings for each document.
+
