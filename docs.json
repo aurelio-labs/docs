@@ -104,37 +104,36 @@
                 "pages": [
                   "semantic-router/v1/user-guide/changelog",
                   {
-                    "group": "Components",
+                    "group": "Concepts",
                     "pages": [
-                      "semantic-router/v1/user-guide/components/encoders",
-                      "semantic-router/v1/user-guide/components/indexes",
-                      "semantic-router/v1/user-guide/components/routers"
+                      "semantic-router/v1/user-guide/concepts/overview",
+                      "semantic-router/v1/user-guide/concepts/architecture"
                     ]
                   },
                   {
-                    "group": "Concepts",
+                    "group": "Components",
                     "pages": [
-                      "semantic-router/v1/user-guide/concepts/architecture",
-                      "semantic-router/v1/user-guide/concepts/overview"
+                      "semantic-router/v1/user-guide/components/routes",
+                      "semantic-router/v1/user-guide/components/routers",
+                      "semantic-router/v1/user-guide/components/encoders",
+                      "semantic-router/v1/user-guide/components/indexes"
                     ]
                   },
                   {
                     "group": "Features",
                     "pages": [
-                      "semantic-router/v1/user-guide/features/dynamic-routes",
-                      "semantic-router/v1/user-guide/features/route-filter",
-                      "semantic-router/v1/user-guide/features/sync",
-                      "semantic-router/v1/user-guide/features/threshold-optimization"
+                      "semantic-router/v1/user-guide/features/calibration",
+                      "semantic-router/v1/user-guide/features/decision-models",
+                      "semantic-router/v1/user-guide/features/composition"
                     ]
                   },
                   {
                     "group": "Guides",
                     "pages": [
-                      "semantic-router/v1/user-guide/guides/configuration",
-                      "semantic-router/v1/user-guide/guides/local-execution",
-                      "semantic-router/v1/user-guide/guides/migration-to-v0-1",
+                      "semantic-router/v1/user-guide/guides/migration-to-v1",
                       "semantic-router/v1/user-guide/guides/save-load-from-file",
-                      "semantic-router/v1/user-guide/guides/semantic-router"
+                      "semantic-router/v1/user-guide/guides/local-execution",
+                      "semantic-router/v1/user-guide/guides/configuration"
                     ]
                   }
                 ]
@@ -602,7 +601,7 @@
     },
     {
       "source": "/semantic-router/user-guide/guides/migration-to-v1",
-      "destination": "/semantic-router/v0/user-guide/guides/migration-to-v0-1"
+      "destination": "/semantic-router/v1/user-guide/guides/migration-to-v1"
     },
     {
       "source": "/semantic-router/user-guide/guides/save-load-from-file",
@@ -611,6 +610,30 @@
     {
       "source": "/semantic-router/user-guide/guides/semantic-router",
       "destination": "/semantic-router/v0/user-guide/guides/semantic-router"
+    },
+    {
+      "source": "/semantic-router/v1/user-guide/features/dynamic-routes",
+      "destination": "/semantic-router/v1/user-guide/guides/migration-to-v1"
+    },
+    {
+      "source": "/semantic-router/v1/user-guide/features/route-filter",
+      "destination": "/semantic-router/v1/user-guide/guides/migration-to-v1"
+    },
+    {
+      "source": "/semantic-router/v1/user-guide/features/sync",
+      "destination": "/semantic-router/v1/user-guide/components/indexes"
+    },
+    {
+      "source": "/semantic-router/v1/user-guide/features/threshold-optimization",
+      "destination": "/semantic-router/v1/user-guide/features/calibration"
+    },
+    {
+      "source": "/semantic-router/v1/user-guide/guides/migration-to-v0-1",
+      "destination": "/semantic-router/v0/user-guide/guides/migration-to-v0-1"
+    },
+    {
+      "source": "/semantic-router/v1/user-guide/guides/semantic-router",
+      "destination": "/semantic-router/v1/user-guide/components/routers"
     }
   ]
 }
