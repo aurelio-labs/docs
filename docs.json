@@ -15,7 +15,8 @@
         "versions": [
           {
             "version": "v1",
-            "tag": "dev",
+            "default": true,
+            "tag": "latest",
             "groups": [
               {
                 "group": "Get Started",
@@ -131,7 +132,7 @@
           },
           {
             "version": "v0",
-            "default": true,
+            "tag": "0.x",
             "groups": [
               {
                 "group": "Get Started",
