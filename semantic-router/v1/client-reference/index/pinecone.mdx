@@ -7,12 +7,11 @@ title: semantic_router.index.pinecone
 
 ```python
 def build_records(
-    embeddings: List[List[float]],
-    routes: List[str],
-    utterances: List[str],
-    function_schemas: Optional[Optional[List[Dict[str, Any]]]] = None,
-    metadata_list: List[Dict[str, Any]] = [],
-    sparse_embeddings: Optional[Optional[List[SparseEmbedding]]] = None
+        embeddings: List[List[float]],
+        routes: List[str],
+        utterances: List[str],
+        metadata_list: Optional[List[Dict[str, Any]]] = None,
+        sparse_embeddings: Optional[List[SparseEmbedding]] = None
 ) -> List[Dict]
 ```
 
@@ -23,13 +22,12 @@ Build records for Pinecone upsert.
 - `embeddings` (`List[List[float]]`): List of embeddings to upsert.
 - `routes` (`List[str]`): List of routes to upsert.
 - `utterances` (`List[str]`): List of utterances to upsert.
-- `function_schemas` (`Optional[List[Dict[str, Any]]]`): List of function schemas to upsert.
-- `metadata_list` (`List[Dict[str, Any]]`): List of metadata to upsert.
-- `List[List[float]]`0 (`List[List[float]]`1): List of sparse embeddings to upsert.
+- `metadata_list` (`Optional[List[Dict[str, Any]]]`): List of metadata to upsert.
+- `sparse_embeddings` (`Optional[List[SparseEmbedding]]`): List of sparse embeddings to upsert.
 
 **Returns**:
 
-`List[List[float]]`2: List of records to upsert.
+`List[List[float]]`0: List of records to upsert.
 
 ## PineconeRecord Objects
 
@@ -107,50 +105,45 @@ Initialize PineconeIndex.
 def add(embeddings: List[List[float]],
         routes: List[str],
         utterances: List[str],
-        function_schemas: Optional[Optional[List[Dict[str, Any]]]] = None,
-        metadata_list: List[Dict[str, Any]] = [],
+        metadata_list: Optional[List[Dict[str, Any]]] = None,
+        sparse_embeddings: Optional[List[SparseEmbedding]] = None,
         batch_size: int = 100,
-        sparse_embeddings: Optional[Optional[List[SparseEmbedding]]] = None,
         **kwargs)
 ```
 
-Add vectors to Pinecone in batches.
+Upsert vectors into Pinecone in batches, one per (route, utterance) pair.
 
 **Arguments**:
 
 - `embeddings` (`List[List[float]]`): List of embeddings to upsert.
 - `routes` (`List[str]`): List of routes to upsert.
 - `utterances` (`List[str]`): List of utterances to upsert.
-- `function_schemas` (`Optional[List[Dict[str, Any]]]`): List of function schemas to upsert.
-- `metadata_list` (`List[Dict[str, Any]]`): List of metadata to upsert.
+- `metadata_list` (`Optional[List[Dict[str, Any]]]`): List of metadata to upsert.
+- `sparse_embeddings` (`Optional[List[SparseEmbedding]]`): List of sparse embeddings to upsert.
 - `List[List[float]]`0 (`List[List[float]]`1): Number of vectors to upsert in a single batch.
-- `List[List[float]]`2 (`List[List[float]]`3): List of sparse embeddings to upsert.
 
 #### aadd
 
 ```python
-async def aadd(
-        embeddings: List[List[float]],
-        routes: List[str],
-        utterances: List[str],
-        function_schemas: Optional[Optional[List[Dict[str, Any]]]] = None,
-        metadata_list: List[Dict[str, Any]] = [],
-        batch_size: int = 100,
-        sparse_embeddings: Optional[Optional[List[SparseEmbedding]]] = None,
-        **kwargs)
+async def aadd(embeddings: List[List[float]],
+               routes: List[str],
+               utterances: List[str],
+               metadata_list: Optional[List[Dict[str, Any]]] = None,
+               sparse_embeddings: Optional[List[SparseEmbedding]] = None,
+               batch_size: int = 100,
+               **kwargs)
 ```
 
-Add vectors to Pinecone in batches.
+Upsert vectors into Pinecone in batches, one per (route, utterance) pair.
 
 **Arguments**:
 
 - `embeddings` (`List[List[float]]`): List of embeddings to upsert.
 - `routes` (`List[str]`): List of routes to upsert.
 - `utterances` (`List[str]`): List of utterances to upsert.
-- `function_schemas` (`Optional[List[Dict[str, Any]]]`): List of function schemas to upsert.
-- `metadata_list` (`List[Dict[str, Any]]`): List of metadata to upsert.
+- `metadata_list` (`Optional[List[Dict[str, Any]]]`): List of metadata to upsert.
+- `sparse_embeddings` (`Optional[List[SparseEmbedding]]`): List of sparse embeddings to upsert.
 - `List[List[float]]`0 (`List[List[float]]`1): Number of vectors to upsert in a single batch.
-- `List[List[float]]`2 (`List[List[float]]`3): List of sparse embeddings to upsert.
 
 #### delete
 
@@ -281,20 +274,6 @@ Asynchronously search the index for the query vector and return the top_k result
 **Returns**:
 
 `np.ndarray`1: A tuple containing an array of scores and a list of route names.
-
-#### aget\_routes
-
-```python
-async def aget_routes() -> list[tuple]
-```
-
-Asynchronously get a list of route and utterance objects currently
-
-stored in the index.
-
-**Returns**:
-
-`List[Tuple]`: A list of (route_name, utterance) objects.
 
 #### delete\_index
 

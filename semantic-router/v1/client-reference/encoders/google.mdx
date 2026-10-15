@@ -13,7 +13,7 @@ GoogleEncoder class for generating embeddings using Google&#x27;s AI Platform.
 
 The GoogleEncoder class is a subclass of DenseEncoder and utilizes the TextEmbeddingModel from the
 Google AI Platform to generate embeddings for given documents. It requires a Google Cloud project ID
-and supports customization of the pre-trained model, score threshold, location, and API endpoint.
+and supports customization of the pre-trained model, location, and API endpoint.
 
 Example usage:
 
@@ -34,7 +34,6 @@ embeddings = encoder(["document1", "document2"])
 
 ```python
 def __init__(name: Optional[str] = None,
-             score_threshold: float = 0.75,
              project_id: Optional[str] = None,
              location: Optional[str] = None,
              api_endpoint: Optional[str] = None)
@@ -47,7 +46,6 @@ Initializes the GoogleEncoder.
 - `model_name` (`str`): The name of the pre-trained model to use for embedding.
 If not provided, the default model specified in EncoderDefault will
 be used.
-- `score_threshold` (`float`): The threshold for similarity scores.
 - `project_id` (`str`): The Google Cloud project ID.
 If not provided, it will be retrieved from the GOOGLE_PROJECT_ID
 environment variable.
@@ -60,7 +58,7 @@ environment variable.
 
 **Raises**:
 
-- `str`0: If the Google Project ID is not provided or if the AI Platform
+- `ValueError`: If the Google Project ID is not provided or if the AI Platform
 client fails to initialize.
 
 #### \_\_call\_\_

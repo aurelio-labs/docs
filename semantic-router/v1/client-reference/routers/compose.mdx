@@ -1,0 +1,23 @@
+---
+sidebarTitle: compose
+title: semantic_router.routers.compose
+---
+
+compose routers: fall through a chain, or merge several opinions into one.
+
+## Chain Objects
+
+```python
+class Chain(BaseRouter)
+```
+
+try routers in order; the first whose best confidence clears its bar answers.
+
+## Merge Objects
+
+```python
+class Merge(BaseRouter)
+```
+
+ask every router at once and take a weighted mean of their confidences per route.
+

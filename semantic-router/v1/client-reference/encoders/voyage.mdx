@@ -17,9 +17,7 @@ Requires a Voyage API key from https://voyageai.com/api-keys/
 #### \_\_init\_\_
 
 ```python
-def __init__(name: str | None = None,
-             api_key: str | None = None,
-             score_threshold: float = 0.4)
+def __init__(name: str | None = None, api_key: str | None = None)
 ```
 
 Initialize the VoyageEncoder.
@@ -29,7 +27,6 @@ Initialize the VoyageEncoder.
 - `name` (`str`): The name of the embedding model to use such as &quot;voyage-3-lite&quot;.
 - `api_key` (`str`): The Voyage API key, can also be set via the VOYAGE_API_KEY
 environment variable.
-- `score_threshold` (`float`): The score threshold for the embeddings.
 
 **Raises**:
 

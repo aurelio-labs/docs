@@ -14,67 +14,23 @@ class HybridLocalIndex(LocalIndex)
 ```python
 def add(embeddings: List[List[float]],
         routes: List[str],
-        utterances: List[str],
-        function_schemas: Optional[List[Dict[str, Any]]] = None,
-        metadata_list: List[Dict[str, Any]] = [],
+        utterances: List[Any],
+        metadata_list: Optional[List[Dict[str, Any]]] = None,
         sparse_embeddings: Optional[List[SparseEmbedding]] = None,
         **kwargs)
 ```
 
-Add embeddings to the index.
+Upsert records into the index, one per (route, utterance) pair. A pair
+
+that is already stored has its embeddings and metadata replaced.
 
 **Arguments**:
 
 - `embeddings` (`List[List[float]]`): List of embeddings to add to the index.
 - `routes` (`List[str]`): List of routes to add to the index.
 - `utterances` (`List[str]`): List of utterances to add to the index.
-- `function_schemas` (`Optional[List[Dict[str, Any]]]`): List of function schemas to add to the index.
-- `metadata_list` (`List[Dict[str, Any]]`): List of metadata to add to the index.
-- `List[List[float]]`0 (`List[List[float]]`1): List of sparse embeddings to add to the index.
-
-#### aadd
-
-```python
-async def aadd(embeddings: List[List[float]],
-               routes: List[str],
-               utterances: List[str],
-               function_schemas: Optional[List[Dict[str, Any]]] = None,
-               metadata_list: List[Dict[str, Any]] = [],
-               sparse_embeddings: Optional[List[SparseEmbedding]] = None,
-               **kwargs)
-```
-
-Add embeddings to the index - note that this is not truly async as it is a
-
-local index and there is no sense to make this method async. Instead, it will
-call the sync `add` method.
-
-**Arguments**:
-
-- `embeddings` (`List[List[float]]`): List of embeddings to add to the index.
-- `routes` (`List[str]`): List of routes to add to the index.
-- `utterances` (`List[str]`): List of utterances to add to the index.
-- `function_schemas` (`Optional[List[Dict[str, Any]]]`): List of function schemas to add to the index.
-- `metadata_list` (`embeddings`0): List of metadata to add to the index.
-- `embeddings`1 (`embeddings`2): List of sparse embeddings to add to the index.
-
-#### get\_utterances
-
-```python
-def get_utterances(include_metadata: bool = False) -> List[Utterance]
-```
-
-Gets a list of route and utterance objects currently stored in the index.
-
-**Arguments**:
-
-- `include_metadata` (`bool`): Whether to include function schemas and metadata in
-the returned Utterance objects - HybridLocalIndex doesn&#x27;t include metadata so
-this parameter is ignored.
-
-**Returns**:
-
-`List[Utterance]`: A list of Utterance objects.
+- `metadata_list` (`Optional[List[Dict[str, Any]]]`): List of metadata to add to the index.
+- `sparse_embeddings` (`Optional[List[SparseEmbedding]]`): List of sparse embeddings to add to the index.
 
 #### query
 
@@ -118,30 +74,6 @@ and so no benefit can be gained from making this async.
 - `top_k` (`int, optional`): The number of top results to return, defaults to 5.
 - `route_filter` (`Optional[List[str]], optional`): A list of route names to filter the search results, defaults to None.
 - `sparse_vector` (`dict[int, float]`): The sparse vector to search for, must be provided.
-
-#### aget\_routes
-
-```python
-def aget_routes()
-```
-
-Get all routes from the index.
-
-**Returns**:
-
-`List[str]`: A list of routes.
-
-#### delete
-
-```python
-def delete(route_name: str)
-```
-
-Delete all records of a specific route from the index.
-
-**Arguments**:
-
-- `route_name` (`str`): The name of the route to delete.
 
 #### delete\_index
 

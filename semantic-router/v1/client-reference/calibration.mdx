@@ -1,0 +1,23 @@
+---
+sidebarTitle: calibration
+title: semantic_router.calibration
+---
+
+turn a raw router score into P(route is correct). monotonic, so ranking never changes.
+
+## Calibrator Objects
+
+```python
+class Calibrator()
+```
+
+a fitted score -&gt; probability map. build one with `Calibrator.fit`.
+
+#### ece
+
+```python
+def ece(probs: np.ndarray, correct: np.ndarray, bins: int = 10) -> float
+```
+
+expected calibration error: bin-weighted gap between stated confidence and observed accuracy.
+

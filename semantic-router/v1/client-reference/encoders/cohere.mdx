@@ -35,9 +35,7 @@ Requires a Cohere API key from https://dashboard.cohere.com/api-keys.
 #### \_\_init\_\_
 
 ```python
-def __init__(name: str | None = None,
-             cohere_api_key: str | None = None,
-             score_threshold: float = 0.3)
+def __init__(name: str | None = None, cohere_api_key: str | None = None)
 ```
 
 Initialize the Cohere encoder.
@@ -48,7 +46,6 @@ Initialize the Cohere encoder.
 &quot;embed-multilingual-v3.0&quot;.
 - `cohere_api_key` (`str`): The API key for the Cohere client, can also
 be set via the COHERE_API_KEY environment variable.
-- `score_threshold` (`float`): The threshold for the score of the embedding.
 
 **Raises**:
 

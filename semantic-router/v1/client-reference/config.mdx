@@ -1,0 +1,50 @@
+---
+sidebarTitle: config
+title: semantic_router.config
+---
+
+save a router to a yaml or json file and load it back. `router_type` picks the shape.
+
+keys and secrets are never written: a loaded router reads them from the environment
+(`OPENAI_API_KEY`, `JEV_API_KEY`, `PINECONE_API_KEY`...), as it would if built in code.
+
+an indexed router on a remote index (pinecone, postgres, a qdrant server) is saved without
+its routes: the index holds them and stays the single source of truth, so the file only
+names the index. an in-memory index keeps nothing between runs, so its file carries routes.
+
+#### to\_config
+
+```python
+def to_config(router: BaseRouter) -> RouterConfig
+```
+
+describe a router as a config, the shape a file holds. keys and secrets are left out.
+
+#### from\_config
+
+```python
+def from_config(config: RouterConfig | dict[str, Any]) -> BaseRouter
+```
+
+build the router a config describes. keys and secrets come from the environment.
+
+#### save\_router
+
+```python
+def save_router(router: BaseRouter,
+                path: str | Path,
+                format: Format | None = None) -> None
+```
+
+write a router to a file; the format follows the extension unless given.
+
+#### load\_router
+
+```python
+def load_router(path: str | Path) -> BaseRouter
+```
+
+build a router from a yaml or json file written by `to_yaml` or `to_json`.
+
+the file&#x27;s `router_type` picks the class: IndexedRouter, DecisionRouter, Chain or Merge.
+

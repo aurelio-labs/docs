@@ -31,9 +31,7 @@ embeddings = encoder(["document1", "document2"])
 #### \_\_init\_\_
 
 ```python
-def __init__(name: Optional[str] = None,
-             score_threshold: float = 0.5,
-             base_url: str | None = None)
+def __init__(name: Optional[str] = None, base_url: str | None = None)
 ```
 
 Initializes the OllamaEncoder.
@@ -43,7 +41,6 @@ Initializes the OllamaEncoder.
 - `name` (`str`): The name of the pre-trained model to use for embedding.
 If not provided, the default model specified in EncoderDefault will
 be used.
-- `score_threshold` (`float`): The threshold for similarity scores.
 - `base_url` (`str`): The API endpoint for OLLAMA.
 If not provided, it will be retrieved from the `OLLAMA_BASE_URL` environment variable.
 

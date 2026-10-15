@@ -14,34 +14,60 @@ class LocalIndex(BaseIndex)
 ```python
 def add(embeddings: List[List[float]],
         routes: List[str],
-        utterances: List[str],
-        function_schemas: Optional[List[Dict[str, Any]]] = None,
-        metadata_list: List[Dict[str, Any]] = [],
+        utterances: List[Any],
+        metadata_list: Optional[List[Dict[str, Any]]] = None,
+        sparse_embeddings: Optional[List[SparseEmbedding]] = None,
         **kwargs)
 ```
 
-Add embeddings to the index.
+Upsert records into the index, one per (route, utterance) pair. A pair
+
+that is already stored has its embedding and metadata replaced.
 
 **Arguments**:
 
 - `embeddings` (`List[List[float]]`): List of embeddings to add to the index.
 - `routes` (`List[str]`): List of routes to add to the index.
 - `utterances` (`List[str]`): List of utterances to add to the index.
-- `function_schemas` (`Optional[List[Dict[str, Any]]]`): List of function schemas to add to the index.
-- `metadata_list` (`List[Dict[str, Any]]`): List of metadata to add to the index.
+- `metadata_list` (`Optional[List[Dict[str, Any]]]`): List of metadata to add to the index.
+- `sparse_embeddings` (`Optional[List[SparseEmbedding]]`): Not supported, use HybridLocalIndex.
+
+#### aadd
+
+```python
+async def aadd(embeddings: List[List[float]],
+               routes: List[str],
+               utterances: List[Any],
+               metadata_list: Optional[List[Dict[str, Any]]] = None,
+               sparse_embeddings: Optional[List[SparseEmbedding]] = None,
+               **kwargs)
+```
+
+Upsert records into the index. Note that this just points to the sync add
+method as async makes no difference for the local computations of the
+LocalIndex.
 
 #### get\_utterances
 
 ```python
-def get_utterances(include_metadata: bool = False) -> List[Utterance]
+def get_utterances() -> List[Utterance]
 ```
 
-Gets a list of route and utterance objects currently stored in the index.
+Gets every record stored in the index as an Utterance.
 
-**Arguments**:
+**Returns**:
 
-- `include_metadata`: Whether to include function schemas and metadata in
-the returned Utterance objects - LocalIndex now includes metadata if present.
+`List[Utterance]`: A list of Utterance objects.
+
+#### aget\_utterances
+
+```python
+async def aget_utterances() -> List[Utterance]
+```
+
+Gets every record stored in the index as an Utterance. Note that this just
+
+points to the sync get_utterances method.
 
 **Returns**:
 
@@ -118,7 +144,9 @@ async def aquery(
 ) -> Tuple[np.ndarray, List[str]]
 ```
 
-Search the index for the query and return top_k results.
+Search the index for the query and return top_k results. Note that this
+
+just points to the sync query method, the computation is local and CPU-bound.
 
 **Arguments**:
 
@@ -130,18 +158,6 @@ Search the index for the query and return top_k results.
 **Returns**:
 
 `Tuple[np.ndarray, List[str]]`: A tuple containing the query vector and a list of route names.
-
-#### aget\_routes
-
-```python
-async def aget_routes()
-```
-
-Get all routes from the index.
-
-**Returns**:
-
-`List[str]`: A list of routes.
 
 #### delete
 
@@ -177,6 +193,18 @@ def delete_index()
 ```
 
 Deletes the index, effectively clearing it and setting it to None.
+
+**Returns**:
+
+`None`: None
+
+#### delete\_all
+
+```python
+def delete_all()
+```
+
+Deletes all records from the index.
 
 **Returns**:
 

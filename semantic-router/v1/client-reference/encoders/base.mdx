@@ -9,23 +9,6 @@ title: semantic_router.encoders.base
 class DenseEncoder(BaseModel)
 ```
 
-#### set\_score\_threshold
-
-```python
-@field_validator("score_threshold")
-def set_score_threshold(cls, v: float | None) -> float | None
-```
-
-Set the score threshold. If None, the score threshold is not used.
-
-**Arguments**:
-
-- `v` (`float | None`): The score threshold.
-
-**Returns**:
-
-`float | None`: The score threshold.
-
 #### \_\_call\_\_
 
 ```python

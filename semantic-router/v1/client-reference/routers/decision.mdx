@@ -1,0 +1,34 @@
+---
+sidebarTitle: decision
+title: semantic_router.routers.decision
+---
+
+a router that asks a system one model which route applies. one call answers many questions.
+
+## DecisionRouter Objects
+
+```python
+class DecisionRouter(BaseRouter)
+```
+
+#### probabilistic
+
+the model returns a probability per route, not a similarity
+
+#### route\_question
+
+```python
+def route_question() -> Question
+```
+
+the choice question for the current route set; descriptions beat utterance samples
+
+#### aask
+
+```python
+async def aask(state: object, questions: dict[str,
+                                              Question]) -> dict[str, Answer]
+```
+
+answer several typed questions about one state in a single model pass.
+

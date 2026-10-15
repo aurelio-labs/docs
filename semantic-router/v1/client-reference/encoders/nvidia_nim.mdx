@@ -43,7 +43,6 @@ NVIDIA&#x27;s ``nv-embedqa`` models are asymmetric: queries must be embedded wit
 ```python
 def __init__(name: str | None = None,
              api_key: str | None = None,
-             score_threshold: float = 0.4,
              base_url: str | None = None)
 ```
 
@@ -52,10 +51,9 @@ Initialize the NimEncoder.
 **Arguments**:
 
 - `name` (`str`): The name of the embedding model to use such as
-&quot;nvidia/nv-embedqa-e5-v5&quot;.
+&quot;nvidia/nv-embedqa-mistral-7b-v2&quot;.
 - `api_key` (`str`): The Nim API key, can also be set via the NVIDIA_NIM_API_KEY
 environment variable.
-- `score_threshold` (`float`): The score threshold for the embeddings.
 - `base_url` (`str`): Override the NIM API base URL, can also be set via the
 NVIDIA_NIM_API_BASE environment variable. Use this to target a
 self-hosted NIM container.

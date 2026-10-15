@@ -28,6 +28,8 @@
               {
                 "group": "Client Reference",
                 "pages": [
+                  "semantic-router/v1/client-reference/calibration",
+                  "semantic-router/v1/client-reference/config",
                   "semantic-router/v1/client-reference/linear",
                   "semantic-router/v1/client-reference/route",
                   "semantic-router/v1/client-reference/schema",
@@ -69,31 +71,18 @@
                     ]
                   },
                   {
-                    "group": "llms",
-                    "pages": [
-                      "semantic-router/v1/client-reference/llms/base",
-                      "semantic-router/v1/client-reference/llms/cohere",
-                      "semantic-router/v1/client-reference/llms/llamacpp",
-                      "semantic-router/v1/client-reference/llms/mistral",
-                      "semantic-router/v1/client-reference/llms/ollama",
-                      "semantic-router/v1/client-reference/llms/openai",
-                      "semantic-router/v1/client-reference/llms/openrouter",
-                      "semantic-router/v1/client-reference/llms/zure"
-                    ]
-                  },
-                  {
                     "group": "routers",
                     "pages": [
                       "semantic-router/v1/client-reference/routers/base",
-                      "semantic-router/v1/client-reference/routers/hybrid",
-                      "semantic-router/v1/client-reference/routers/semantic"
+                      "semantic-router/v1/client-reference/routers/compose",
+                      "semantic-router/v1/client-reference/routers/decision",
+                      "semantic-router/v1/client-reference/routers/indexed"
                     ]
                   },
                   {
                     "group": "utils",
                     "pages": [
                       "semantic-router/v1/client-reference/utils/defaults",
-                      "semantic-router/v1/client-reference/utils/function_call",
                       "semantic-router/v1/client-reference/utils/logger"
                     ]
                   }

@@ -33,9 +33,7 @@ Requires a MistralAI API key from https://console.mistral.ai/api-keys/
 #### \_\_init\_\_
 
 ```python
-def __init__(name: str | None = None,
-             mistralai_api_key: str | None = None,
-             score_threshold: float = 0.4)
+def __init__(name: str | None = None, mistralai_api_key: str | None = None)
 ```
 
 Initialize the MistralEncoder.
@@ -44,7 +42,6 @@ Initialize the MistralEncoder.
 
 - `name` (`str`): The name of the embedding model to use such as &quot;mistral-embed&quot;.
 - `mistralai_api_key` (`str`): The MistralAI API key.
-- `score_threshold`: The score threshold for the embeddings.
 
 #### \_\_call\_\_
 

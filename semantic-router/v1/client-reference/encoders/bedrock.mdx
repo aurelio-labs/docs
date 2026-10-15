@@ -7,7 +7,7 @@ This module provides the BedrockEncoder class for generating embeddings using Am
 
 The BedrockEncoder class is a subclass of DenseEncoder and utilizes the TextEmbeddingModel from the
 Amazon&#x27;s Bedrock Platform to generate embeddings for given documents. It requires an AWS Access Key ID
-and AWS Secret Access Key and supports customization of the pre-trained model, score threshold, and region.
+and AWS Secret Access Key and supports customization of the pre-trained model and region.
 
 Example usage:
 
@@ -30,8 +30,7 @@ and AWS Secret Access Key.
 
 The BedrockEncoder class is a subclass of DenseEncoder and utilizes the
 TextEmbeddingModel from the Amazon&#x27;s Bedrock Platform to generate embeddings for
-given documents. It supports customization of the pre-trained model, score
-threshold, and region.
+given documents. It supports customization of the pre-trained model and region.
 
 Example usage:
 
@@ -51,7 +50,6 @@ embeddings = encoder(["document1", "document2"])
 ```python
 def __init__(name: str = EncoderDefault.BEDROCK.value["embedding_model"],
              input_type: Optional[str] = "search_query",
-             score_threshold: float = 0.3,
              client: Optional[Any] = None,
              access_key_id: Optional[str] = None,
              secret_access_key: Optional[str] = None,
@@ -69,23 +67,22 @@ be used.
 - `input_type` (`str`): The type of input to use for the embedding.
 If not provided, the default input type specified in EncoderDefault will
 be used.
-- `score_threshold` (`float`): The threshold for similarity scores.
 - `access_key_id` (`str`): The AWS access key id for an IAM principle.
 If not provided, it will be retrieved from the access_key_id
 environment variable.
 - `secret_access_key` (`str`): The secret access key for an IAM principle.
 If not provided, it will be retrieved from the AWS_SECRET_KEY
 environment variable.
-- `str`0: The session token for an IAM principle.
+- `session_token`: The session token for an IAM principle.
 If not provided, it will be retrieved from the AWS_SESSION_TOKEN
 environment variable.
-- `str`1 (`str`): The location of the Bedrock resources.
+- `region` (`str`): The location of the Bedrock resources.
 If not provided, it will be retrieved from the AWS_REGION
 environment variable, defaulting to &quot;us-west-1&quot;
 
 **Raises**:
 
-- `str`3: If the Bedrock Platform client fails to initialize.
+- `str`1: If the Bedrock Platform client fails to initialize.
 
 #### \_\_call\_\_
 

@@ -119,48 +119,32 @@ Initializes the Postgres index with the specified parameters.
 - `Optional[str]`0 (`Optional[str]`): An optional namespace for the index.
 - `Optional[str]`2 (`Optional[str]`3): Whether to initialize the index asynchronously.
 
-#### setup\_index
-
-```python
-@deprecated(
-    "Use _init_index or sync methods such as `auto_sync` (read more "
-    "https://docs.aurelio.ai/semantic-router/user-guide/features/sync). "
-    "This method will be removed in 0.2.0")
-def setup_index() -> None
-```
-
-Sets up the index by creating the table and vector extension if they do not exist.
-
-**Raises**:
-
-- `ValueError`: If the existing table&#x27;s vector dimensions do not match the expected dimensions.
-- `TypeError`: If the database connection is not established.
-
 #### add
 
 ```python
 def add(embeddings: List[List[float]],
         routes: List[str],
         utterances: List[str],
-        function_schemas: Optional[List[Dict[str, Any]]] = None,
-        metadata_list: List[Dict[str, Any]] = [],
+        metadata_list: Optional[List[Dict[str, Any]]] = None,
+        sparse_embeddings: Optional[List[SparseEmbedding]] = None,
         **kwargs) -> None
 ```
 
-Adds records to the index.
+Upserts records into the index, one per (route, utterance) pair. The table
+
+is created on first use.
 
 **Arguments**:
 
 - `embeddings` (`List[List[float]]`): A list of vector embeddings to add.
 - `routes` (`List[str]`): A list of route names corresponding to the embeddings.
 - `utterances` (`List[Any]`): A list of utterances corresponding to the embeddings.
-- `function_schemas` (`Optional[List[Dict[str, Any]]]`): A list of function schemas corresponding to the embeddings.
-- `metadata_list` (`List[Dict[str, Any]]`): A list of metadata corresponding to the embeddings.
+- `metadata_list` (`Optional[List[Dict[str, Any]]]`): A list of metadata corresponding to the embeddings.
+- `sparse_embeddings` (`Optional[List[SparseEmbedding]]`): Not supported, PostgresIndex is dense only.
 
 **Raises**:
 
 - `List[List[float]]`0: If the vector embeddings being added do not match the expected dimensions.
-- `List[List[float]]`1: If the database connection is not established.
 
 #### aadd
 
@@ -168,27 +152,28 @@ Adds records to the index.
 async def aadd(embeddings: List[List[float]],
                routes: List[str],
                utterances: List[str],
-               function_schemas: Optional[List[Dict[str, Any]]] = None,
-               metadata_list: List[Dict[str, Any]] = [],
+               metadata_list: Optional[List[Dict[str, Any]]] = None,
+               sparse_embeddings: Optional[List[SparseEmbedding]] = None,
                batch_size: int = 100,
                **kwargs) -> None
 ```
 
-Asynchronously adds records to the index in batches.
+Asynchronously upserts records into the index in batches, one per (route,
+
+utterance) pair. The table is created on first use.
 
 **Arguments**:
 
 - `embeddings`: A list of vector embeddings to add.
 - `routes`: A list of route names corresponding to the embeddings.
 - `utterances`: A list of utterances corresponding to the embeddings.
-- `function_schemas`: (Optional) List of function schemas.
 - `metadata_list`: (Optional) List of metadata dictionaries.
+- `sparse_embeddings`: Not supported, PostgresIndex is dense only.
 - `batch_size`: Number of records per batch insert.
 
 **Raises**:
 
 - `ValueError`: If the vector embeddings don&#x27;t match expected dimensions.
-- `TypeError`: If connection is not an async Postgres connection.
 
 #### delete
 
@@ -201,10 +186,6 @@ Deletes records with the specified route name.
 **Arguments**:
 
 - `route_name` (`str`): The name of the route to delete records for.
-
-**Raises**:
-
-- `TypeError`: If the database connection is not established.
 
 #### adelete
 
@@ -278,11 +259,7 @@ Searches the index for the query vector and returns the top_k results.
 - `vector` (`np.ndarray`): The query vector.
 - `top_k` (`int`): The number of top results to return.
 - `route_filter` (`Optional[List[str]]`): Optional list of routes to filter the results by.
-- `sparse_vector` (`dict[int, float] | SparseEmbedding | None`): Optional sparse vector to filter the results by.
-
-**Raises**:
-
-- `TypeError`: If the database connection is not established.
+- `sparse_vector` (`dict[int, float] | SparseEmbedding | None`): Not used, PostgresIndex is dense only.
 
 **Returns**:
 
@@ -306,11 +283,7 @@ Asynchronously search the index for the query vector and return the top_k result
 - `vector` (`np.ndarray`): The query vector to search for.
 - `top_k` (`int, optional`): The number of top results to return, defaults to 5.
 - `route_filter` (`Optional[List[str]], optional`): A list of route names to filter the search results, defaults to None.
-- `sparse_vector` (`dict[int, float] | SparseEmbedding | None`): An optional sparse vector to include in the query.
-
-**Raises**:
-
-- `TypeError`: If the database connection is not established.
+- `sparse_vector` (`dict[int, float] | SparseEmbedding | None`): Not used, PostgresIndex is dense only.
 
 **Returns**:
 
@@ -324,10 +297,6 @@ def delete_all()
 
 Deletes all records from the Postgres index.
 
-**Raises**:
-
-- `TypeError`: If the database connection is not established.
-
 #### delete\_index
 
 ```python
@@ -335,10 +304,6 @@ def delete_index() -> None
 ```
 
 Deletes the entire table for the index.
-
-**Raises**:
-
-- `TypeError`: If the database connection is not established.
 
 #### adelete\_index
 
@@ -348,37 +313,15 @@ async def adelete_index() -> None
 
 Asynchronously delete the entire table for the index.
 
-**Raises**:
-
-- `TypeError`: If the async database connection is not established.
-
-#### aget\_routes
-
-```python
-async def aget_routes() -> list[tuple]
-```
-
-Asynchronously get a list of route and utterance objects currently
-
-stored in the index.
-
-**Raises**:
-
-- `TypeError`: If the database connection is not established.
-
-**Returns**:
-
-`List[Tuple]`: A list of (route_name, utterance) objects.
-
 #### \_\_len\_\_
 
 ```python
 def __len__()
 ```
 
-Returns the total number of vectors in the index. If the index is not initialized
+Returns the total number of vectors in the index, 0 if the table does not
 
-returns 0.
+exist yet.
 
 **Returns**:
 

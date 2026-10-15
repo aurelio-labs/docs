@@ -16,39 +16,23 @@ The name of the collection to use
 ```python
 def add(embeddings: List[List[float]],
         routes: List[str],
-        utterances: List[str],
-        function_schemas: Optional[List[Dict[str, Any]]] = None,
-        metadata_list: List[Dict[str, Any]] = [],
+        utterances: List[Any],
+        metadata_list: Optional[List[Dict[str, Any]]] = None,
+        sparse_embeddings: Optional[List[SparseEmbedding]] = None,
         batch_size: int = DEFAULT_UPLOAD_BATCH_SIZE,
         **kwargs)
 ```
 
-Add records to the index.
+Upsert records into the index, one point per (route, utterance) pair.
 
 **Arguments**:
 
 - `embeddings` (`List[List[float]]`): The embeddings to add.
 - `routes` (`List[str]`): The routes to add.
 - `utterances` (`List[str]`): The utterances to add.
-- `function_schemas` (`Optional[List[Dict[str, Any]]]`): The function schemas to add.
-- `metadata_list` (`List[Dict[str, Any]]`): The metadata to add.
+- `metadata_list` (`Optional[List[Dict[str, Any]]]`): The metadata to add.
+- `sparse_embeddings` (`Optional[List[SparseEmbedding]]`): Not supported, QdrantIndex is dense only.
 - `List[List[float]]`0 (`List[List[float]]`1): The batch size to use for the upload.
-
-#### get\_utterances
-
-```python
-def get_utterances(include_metadata: bool = False) -> List[Utterance]
-```
-
-Gets a list of route and utterance objects currently stored in the index.
-
-**Arguments**:
-
-- `include_metadata` (`bool`): Whether to include metadata in the returned Utterance objects.
-
-**Returns**:
-
-`List[Utterance]`: A list of Utterance objects.
 
 #### delete
 
@@ -134,32 +118,6 @@ Asynchronously query the index.
 
 `Tuple[np.ndarray, List[str]]`: A tuple of the scores and route names.
 
-#### get\_routes\_tuples
-
-```python
-def get_routes_tuples() -> list[tuple]
-```
-
-Synchronously get route and utterance objects as tuples.
-
-**Returns**:
-
-`list[tuple]`: A list of (route_name, utterance, function_schemas, metadata) tuples.
-
-#### aget\_routes
-
-```python
-async def aget_routes() -> list[tuple]
-```
-
-Asynchronously get a list of route and utterance objects currently
-
-stored in the index.
-
-**Returns**:
-
-`list[tuple]`: A list of (route_name, utterance, function_schemas, metadata) tuples.
-
 #### delete\_index
 
 ```python
@@ -243,28 +201,13 @@ Checks if the index is ready to be used asynchronously.
 ```python
 async def aadd(embeddings: List[List[float]],
                routes: List[str],
-               utterances: List[str],
-               function_schemas: Optional[List[Dict[str, Any]]] = None,
-               metadata_list: List[Dict[str, Any]] = [],
+               utterances: List[Any],
+               metadata_list: Optional[List[Dict[str, Any]]] = None,
+               sparse_embeddings: Optional[List[SparseEmbedding]] = None,
                batch_size: int = DEFAULT_UPLOAD_BATCH_SIZE,
                **kwargs)
 ```
 
-Asynchronously add records to the index, including metadata in the payload.
-
-#### aget\_utterances
-
-```python
-async def aget_utterances(include_metadata: bool = False) -> List[Utterance]
-```
-
-Asynchronously gets a list of route and utterance objects currently stored in the index.
-
-**Arguments**:
-
-- `include_metadata` (`bool`): Whether to include metadata in the returned Utterance objects.
-
-**Returns**:
-
-`List[Utterance]`: A list of Utterance objects.
+Asynchronously upsert records into the index, one point per (route,
+utterance) pair.
 

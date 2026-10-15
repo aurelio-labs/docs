@@ -1,0 +1,43 @@
+---
+sidebarTitle: indexed
+title: semantic_router.routers.indexed
+---
+
+a router that scores by similarity between the query and stored example utterances.
+
+## IndexedRouter Objects
+
+```python
+class IndexedRouter(BaseRouter)
+```
+
+#### routes
+
+```python
+@property
+def routes() -> list[Route]
+```
+
+the routes in the index, as last read from it.
+
+the index is the only place routes are written, and this view is only ever filled
+from it: on build, after this router&#x27;s add / remove, on refresh(), and per call
+once the cache is older than refresh_interval. a route another router wrote shows
+up here after a refresh, but a query finds it in the index straight away.
+
+#### refresh
+
+```python
+def refresh() -> None
+```
+
+re-read the routes from the index, picking up other writers&#x27; changes.
+
+#### arefresh
+
+```python
+async def arefresh() -> None
+```
+
+re-read the routes from the index, picking up other writers&#x27; changes.
+

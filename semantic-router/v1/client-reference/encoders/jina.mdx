@@ -39,7 +39,6 @@ LiteLLM.
 ```python
 def __init__(name: str | None = None,
              api_key: str | None = None,
-             score_threshold: float = 0.4,
              base_url: str | None = None)
 ```
 
@@ -51,7 +50,6 @@ Initialize the JinaEncoder.
 &quot;jina-embeddings-v3&quot;.
 - `api_key` (`str`): The Jina API key, can also be set via the JINA_API_KEY or
 JINA_AI_API_KEY environment variable.
-- `score_threshold` (`float`): The score threshold for the embeddings.
 - `base_url` (`str`): Override the Jina API base URL, can also be set via the
 JINA_BASE_URL or JINA_AI_API_BASE environment variable.
 
