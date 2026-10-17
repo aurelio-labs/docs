@@ -1,0 +1,48 @@
+---
+sidebarTitle: systemone
+title: semantic_router.decision_models.systemone
+---
+
+decision models served over HTTP at /v1/systemone (TypeSafe&#x27;s Jev, and servers that copy it).
+
+## SystemOneDecisionModel Objects
+
+```python
+class SystemOneDecisionModel(DecisionModel)
+```
+
+any server that speaks /v1/systemone: Jev, Laya, Von, or one of your own.
+
+**Arguments**:
+
+- `name`: The model id sent with every request.
+- `base_url`: The server; requests go to `{base_url}/v1/systemone`.
+- `api_key`: Sent as a Bearer token. Read from `api_key_env` when not given;
+a server that needs no key gets no Authorization header.
+- `timeout`: Seconds per request.
+- `retries`: Retries on rate limits (429, 529), server errors and timeouts.
+- `concurrency`: Requests in flight when answering many states at once. With
+one request per state, this caps a batch&#x27;s throughput.
+- `session`: An aiohttp session to use instead of the model&#x27;s own (tests).
+
+#### aask
+
+```python
+async def aask(state: object, questions: dict[str,
+                                              Question]) -> dict[str, Answer]
+```
+
+answer several typed questions about one state in a single request.
+
+## TypeSafeDecisionModel Objects
+
+```python
+class TypeSafeDecisionModel(SystemOneDecisionModel)
+```
+
+TypeSafe&#x27;s Jev over its API. Reads `JEV_API_KEY` when no key is passed.
+
+**Arguments**:
+
+- `name`: The Jev model to call.
+

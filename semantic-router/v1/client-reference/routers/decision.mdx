@@ -3,7 +3,7 @@ sidebarTitle: decision
 title: semantic_router.routers.decision
 ---
 
-a router that asks a system one model which route applies. one call answers many questions.
+a router that asks a decision model which route applies. one call answers many questions.
 
 ## DecisionRouter Objects
 
@@ -11,9 +11,16 @@ a router that asks a system one model which route applies. one call answers many
 class DecisionRouter(BaseRouter)
 ```
 
-#### probabilistic
+routes by asking a decision model one choice question: which route applies.
 
-the model returns a probability per route, not a similarity
+**Arguments**:
+
+- `model`: The decision model that answers, e.g. `TypeSafeDecisionModel()`
+over HTTP.
+- `routes`: The routes to choose between.
+- `instructions`: The question asked about each query.
+- `confidence_threshold`: The confidence a route needs, unless it sets its own.
+- `calibrator`: A fitted score -&gt; probability map; `fit()` makes one.
 
 #### route\_question
 

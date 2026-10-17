@@ -36,6 +36,13 @@
                   "semantic-router/v1/client-reference/schema",
                   "semantic-router/v1/client-reference/tokenizers",
                   {
+                    "group": "decision_models",
+                    "pages": [
+                      "semantic-router/v1/client-reference/decision_models/base",
+                      "semantic-router/v1/client-reference/decision_models/systemone"
+                    ]
+                  },
+                  {
                     "group": "encoders",
                     "pages": [
                       "semantic-router/v1/client-reference/encoders/aurelio",

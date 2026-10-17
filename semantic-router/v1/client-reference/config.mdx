@@ -7,6 +7,7 @@ save a router to a yaml or json file and load it back. `router_type` picks the s
 
 keys and secrets are never written: a loaded router reads them from the environment
 (`OPENAI_API_KEY`, `JEV_API_KEY`, `PINECONE_API_KEY`...), as it would if built in code.
+a decision router&#x27;s model is saved like an index: its type, and its non-default params.
 
 an indexed router on a remote index (pinecone, postgres, a qdrant server) is saved without
 its routes: the index holds them and stays the single source of truth, so the file only
