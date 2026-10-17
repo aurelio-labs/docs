@@ -1,0 +1,43 @@
+---
+sidebarTitle: gliner2
+title: semantic_router.decision_models.gliner2
+---
+
+GLiNER2 decision models on this machine: fastino/GLiNER2.5-Decide by default.
+
+## GLiNER2DecisionModel Objects
+
+```python
+class GLiNER2DecisionModel(DecisionModel)
+```
+
+A GLiNER2 decision model run in-process with the gliner2 library.
+
+Answers choice, noul and score questions on this machine, with no network calls
+and no key. Requires the `local` extra: `pip install "semantic-router[local]"`.
+
+**Arguments**:
+
+- `name`: The model on the Hugging Face Hub, or a local directory.
+- `device`: `"cuda"`, `"mps"` or `"cpu"`. Left out, the first available.
+- `batch_size`: States per forward pass when answering many at once.
+- `classifier`: A loaded `gliner2.classification.Classifier` to use instead of
+loading `name`, e.g. one with a fine-tuned adapter.
+
+#### ask\_many
+
+```python
+def ask_many(states: Sequence[object],
+             questions: dict[str, Question]) -> list[dict[str, Answer]]
+```
+
+answer the same questions about many states in batched forward passes.
+
+#### ask
+
+```python
+def ask(state: object, questions: dict[str, Question]) -> dict[str, Answer]
+```
+
+answer every question about one state in one forward pass.
+

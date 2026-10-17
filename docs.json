@@ -39,6 +39,7 @@
                     "group": "decision_models",
                     "pages": [
                       "semantic-router/v1/client-reference/decision_models/base",
+                      "semantic-router/v1/client-reference/decision_models/gliner2",
                       "semantic-router/v1/client-reference/decision_models/systemone"
                     ]
                   },
