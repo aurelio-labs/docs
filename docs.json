@@ -105,7 +105,8 @@
                     "group": "Concepts",
                     "pages": [
                       "semantic-router/v1/user-guide/concepts/overview",
-                      "semantic-router/v1/user-guide/concepts/architecture"
+                      "semantic-router/v1/user-guide/concepts/architecture",
+                      "semantic-router/v1/user-guide/concepts/benchmarks"
                     ]
                   },
                   {
