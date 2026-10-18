@@ -15,8 +15,8 @@ routes by asking a decision model one choice question: which route applies.
 
 **Arguments**:
 
-- `model`: The decision model that answers, e.g. `GLiNER2DecisionModel()` on
-this machine or `TypeSafeDecisionModel()` over HTTP.
+- `model`: The decision model that answers, e.g. `GLiNER2DecisionModel()`
+locally or `TypeSafeDecisionModel()` over HTTP.
 - `routes`: The routes to choose between.
 - `instructions`: The question asked about each query.
 - `confidence_threshold`: The confidence a route needs, unless it sets its own.
