@@ -74,6 +74,7 @@
                       "semantic-router/v1/client-reference/index/base",
                       "semantic-router/v1/client-reference/index/hybrid_local",
                       "semantic-router/v1/client-reference/index/local",
+                      "semantic-router/v1/client-reference/index/mongodb",
                       "semantic-router/v1/client-reference/index/pinecone",
                       "semantic-router/v1/client-reference/index/postgres",
                       "semantic-router/v1/client-reference/index/qdrant"

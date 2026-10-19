@@ -1,0 +1,184 @@
+---
+sidebarTitle: mongodb
+title: semantic_router.index.mongodb
+---
+
+MongoDB Atlas Vector Search index.
+
+Records are MongoDB documents, searched with the ``$vectorSearch`` aggregation stage.
+Works with MongoDB Atlas, and with the ``mongodb/mongodb-atlas-local`` image (MongoDB
+with search) that the integration tests run against.
+
+## MongoDbIndex Objects
+
+```python
+class MongoDbIndex(BaseIndex)
+```
+
+MongoDB Atlas Vector Search index.
+
+The first ``add`` creates the collection and its vector search index, with
+``sr_route``, ``namespace`` and ``_id`` as filter fields, and waits until the index
+is queryable. Atlas indexes new documents asynchronously, so ``add`` also waits
+(up to ``sync_timeout`` seconds) until its records are searchable, so a query
+straight after an add sees them.
+
+Scores are on the same scale as the other indexes: Atlas reports cosine and dot
+product scores as ``(1 + similarity) / 2``, which this index maps back to the raw
+similarity. Euclidean scores are Atlas&#x27;s ``1 / (1 + distance)``.
+
+One pymongo client serves everything. The async methods run it in a worker
+thread, so the index works from any event loop and keeps a single connection pool.
+
+**Arguments**:
+
+- ``6: The collection that holds the records.
+- ``7: The database the collection lives in.
+- ``8: The name of the collection&#x27;s vector search index.
+- ``9: The MongoDB connection string. Read from
+``MONGO_CONNECTION_URI`` when not given, and never written to a file.
+- ``2: Scopes every record, query and delete to one tenant.
+- ``3: Seconds ``add`` waits for new records to become searchable;
+0 returns as soon as they are written.
+
+#### add
+
+```python
+def add(embeddings: List[List[float]],
+        routes: List[str],
+        utterances: List[Any],
+        metadata_list: Optional[List[Dict[str, Any]]] = None,
+        sparse_embeddings: Optional[List[SparseEmbedding]] = None,
+        batch_size: int = 200,
+        **kwargs)
+```
+
+Upsert one document per (route, utterance), then wait until they are
+
+searchable.
+
+**Arguments**:
+
+- `embeddings`: The dense vectors.
+- `routes`: The route of each record.
+- `utterances`: The utterance of each record.
+- `metadata_list`: Each record&#x27;s metadata, including the reserved ``sr_``
+route-level keys.
+- `sparse_embeddings`: Not supported: MongoDbIndex stores dense vectors only.
+- `batch_size`: Documents per bulk write.
+
+#### aadd
+
+```python
+async def aadd(embeddings: List[List[float]],
+               routes: List[str],
+               utterances: List[Any],
+               metadata_list: Optional[List[Dict[str, Any]]] = None,
+               sparse_embeddings: Optional[List[SparseEmbedding]] = None,
+               batch_size: int = 200,
+               **kwargs)
+```
+
+Async :meth:`add`.
+
+#### query
+
+```python
+def query(
+    vector: np.ndarray,
+    top_k: int = 5,
+    route_filter: Optional[List[str]] = None,
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None
+) -> Tuple[np.ndarray, List[str]]
+```
+
+Search the index with ``$vectorSearch``.
+
+**Arguments**:
+
+- `vector`: The query vector.
+- `top_k`: The number of results to return.
+- `route_filter`: Only search these routes.
+- `sparse_vector`: Not used: MongoDbIndex is dense only.
+
+**Returns**:
+
+The scores and route names of the top_k results.
+
+#### aquery
+
+```python
+async def aquery(
+    vector: np.ndarray,
+    top_k: int = 5,
+    route_filter: Optional[List[str]] = None,
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None
+) -> Tuple[np.ndarray, List[str]]
+```
+
+Async :meth:`query`.
+
+#### delete
+
+```python
+def delete(route_name: str) -> list[str]
+```
+
+Delete every record of one route. Returns the deleted record ids.
+
+#### adelete
+
+```python
+async def adelete(route_name: str) -> list[str]
+```
+
+Async :meth:`delete`.
+
+#### delete\_all
+
+```python
+def delete_all() -> None
+```
+
+Delete every record in this namespace, keeping the collection.
+
+#### delete\_index
+
+```python
+def delete_index() -> None
+```
+
+Drop the collection, and its vector search index with it.
+
+#### adelete\_index
+
+```python
+async def adelete_index() -> None
+```
+
+Async :meth:`delete_index`.
+
+#### describe
+
+```python
+def describe() -> IndexConfig
+```
+
+The index type, its dimensions and how many records it holds.
+
+#### is\_ready
+
+```python
+def is_ready() -> bool
+```
+
+Whether the vector search index exists and is queryable.
+
+#### ais\_ready
+
+```python
+async def ais_ready() -> bool
+```
+
+Async :meth:`is_ready`.
+
