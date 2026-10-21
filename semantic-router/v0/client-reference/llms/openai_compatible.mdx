@@ -1,0 +1,56 @@
+---
+sidebarTitle: openai_compatible
+title: semantic_router.llms.openai_compatible
+---
+
+## OpenAICompatibleLLM Objects
+
+```python
+class OpenAICompatibleLLM(BaseLLM)
+```
+
+LLM for any OpenAI compatible chat completions endpoint, such as LLM
+routers and proxies. Configure the base URL and the name of the environment
+variable that holds the API key, for example
+OpenAICompatibleLLM(name=&quot;provider/model&quot;, base_url=&quot;https://api.example.com/v1&quot;,
+api_key_var_name=&quot;EXAMPLE_API_KEY&quot;).
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: Optional[str] = None,
+             base_url: Optional[str] = None,
+             api_key: Optional[str] = None,
+             api_key_var_name: Optional[str] = None,
+             temperature: float = 0.01,
+             max_tokens: int = 200)
+```
+
+Initialize the OpenAICompatibleLLM.
+
+**Arguments**:
+
+- `name` (`Optional[str]`): The name of the model to use.
+- `base_url` (`Optional[str]`): The base URL of the OpenAI compatible API.
+- `api_key` (`Optional[str]`): The API key. Takes precedence over api_key_var_name.
+- `api_key_var_name` (`Optional[str]`): The name of the environment variable holding
+the API key, used when api_key is not provided.
+- `temperature` (`float`): The temperature of the LLM.
+- `Optional[str]`0 (`Optional[str]`1): The maximum number of tokens to generate.
+
+#### \_\_call\_\_
+
+```python
+def __call__(messages: List[Message]) -> str
+```
+
+Call the OpenAICompatibleLLM.
+
+**Arguments**:
+
+- `messages` (`List[Message]`): The messages to pass to the OpenAICompatibleLLM.
+
+**Returns**:
+
+`str`: The response from the OpenAICompatibleLLM.
+

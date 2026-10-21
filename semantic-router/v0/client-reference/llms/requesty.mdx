@@ -1,0 +1,38 @@
+---
+sidebarTitle: requesty
+title: semantic_router.llms.requesty
+---
+
+## RequestyLLM Objects
+
+```python
+class RequestyLLM(OpenAICompatibleLLM)
+```
+
+LLM for Requesty, a preset of OpenAICompatibleLLM pointing at the Requesty
+router (https://router.requesty.ai/v1) and reading the API key from
+REQUESTY_API_KEY. See https://docs.requesty.ai for more information and
+https://app.requesty.ai/api-keys to create a key.
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: Optional[str] = None,
+             requesty_api_key: Optional[str] = None,
+             base_url: str = "https://router.requesty.ai/v1",
+             temperature: float = 0.01,
+             max_tokens: int = 200)
+```
+
+Initialize the RequestyLLM.
+
+**Arguments**:
+
+- `name` (`Optional[str]`): The name of the Requesty model to use. Defaults to the
+REQUESTY_CHAT_MODEL_NAME environment variable or openai/gpt-4o-mini.
+- `requesty_api_key` (`Optional[str]`): The Requesty API key. Defaults to the
+REQUESTY_API_KEY environment variable.
+- `base_url` (`str`): The base URL for the Requesty API.
+- `temperature` (`float`): The temperature of the LLM.
+- `max_tokens` (`int`): The maximum number of tokens to generate.
+
