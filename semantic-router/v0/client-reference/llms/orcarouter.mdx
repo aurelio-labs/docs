@@ -1,0 +1,45 @@
+---
+sidebarTitle: orcarouter
+title: semantic_router.llms.orcarouter
+---
+
+## OrcaRouterLLM Objects
+
+```python
+class OrcaRouterLLM(OpenAICompatibleLLM)
+```
+
+LLM for OrcaRouter, a preset of OpenAICompatibleLLM pointing at the
+OrcaRouter gateway (https://api.orcarouter.ai/v1) and reading the API key
+from ORCAROUTER_API_KEY. See https://www.orcarouter.ai for more information.
+
+Limits inherited from semantic-router 0.x:
+
+- Dynamic routes extract function inputs only when called synchronously;
+  an async call returns the route with function_call=None.
+- A router config file saves only the class and model name. Reloading one
+  uses the default base_url and ORCAROUTER_API_KEY, so a custom base_url or
+  a key passed in code is lost.
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: Optional[str] = None,
+             orcarouter_api_key: Optional[str] = None,
+             base_url: str = "https://api.orcarouter.ai/v1",
+             temperature: float = 0.01,
+             max_tokens: int = 200)
+```
+
+Initialize the OrcaRouterLLM.
+
+**Arguments**:
+
+- `name` (`Optional[str]`): The name of the OrcaRouter model to use. Defaults to the
+ORCAROUTER_CHAT_MODEL_NAME environment variable or orcarouter/auto.
+- `orcarouter_api_key` (`Optional[str]`): The OrcaRouter API key. Defaults to the
+ORCAROUTER_API_KEY environment variable.
+- `base_url` (`str`): The base URL for the OrcaRouter API.
+- `temperature` (`float`): The temperature of the LLM.
+- `max_tokens` (`int`): The maximum number of tokens to generate.
+

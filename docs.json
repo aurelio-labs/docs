@@ -206,6 +206,7 @@
                       "semantic-router/v0/client-reference/llms/openai",
                       "semantic-router/v0/client-reference/llms/openai_compatible",
                       "semantic-router/v0/client-reference/llms/openrouter",
+                      "semantic-router/v0/client-reference/llms/orcarouter",
                       "semantic-router/v0/client-reference/llms/requesty",
                       "semantic-router/v0/client-reference/llms/zure"
                     ]
