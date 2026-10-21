@@ -202,6 +202,7 @@
                       "semantic-router/v0/client-reference/llms/base",
                       "semantic-router/v0/client-reference/llms/cohere",
                       "semantic-router/v0/client-reference/llms/llamacpp",
+                      "semantic-router/v0/client-reference/llms/minimax",
                       "semantic-router/v0/client-reference/llms/mistral",
                       "semantic-router/v0/client-reference/llms/ollama",
                       "semantic-router/v0/client-reference/llms/openai",

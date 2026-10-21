@@ -1,0 +1,87 @@
+---
+sidebarTitle: minimax
+title: semantic_router.llms.minimax
+---
+
+## MiniMaxLLM Objects
+
+```python
+class MiniMaxLLM(OpenAICompatibleLLM)
+```
+
+LLM for MiniMax, a preset of OpenAICompatibleLLM pointing at MiniMax&#x27;s
+OpenAI-compatible API (https://api.minimax.io/v1) and reading the API key
+from MINIMAX_API_KEY. Create a key at https://platform.minimax.io.
+
+MiniMax&#x27;s models think before they answer. MiniMax-M3 puts its thinking in
+&lt;think&gt; tags inside the reply, which are stripped from the output, and
+MiniMax-M3.1-Flash returns it in a separate field, which is ignored. Thinking
+counts towards max_tokens, so the default leaves room for it.
+
+Current MiniMax models ignore temperature. It is still clamped to
+(0.0, 1.0], the range older MiniMax models required.
+
+Limits inherited from semantic-router 0.x:
+
+- Dynamic routes extract function inputs only when called synchronously;
+  an async call returns the route with function_call=None. MiniMaxLLM.acall
+  itself works, but routes don&#x27;t use it for extraction.
+- A router config file saves only the class and model name. Reloading one
+  uses the default base_url and MINIMAX_API_KEY, so a custom base_url or a
+  key passed in code is lost.
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: Optional[str] = None,
+             minimax_api_key: Optional[str] = None,
+             base_url: str = "https://api.minimax.io/v1",
+             temperature: float = 0.01,
+             max_tokens: int = 4096)
+```
+
+Initialize the MiniMaxLLM.
+
+**Arguments**:
+
+- `name` (`Optional[str]`): The name of the MiniMax model to use. Defaults to the
+MINIMAX_CHAT_MODEL_NAME environment variable or MiniMax-M3.1-Flash.
+- `minimax_api_key` (`Optional[str]`): The MiniMax API key. Defaults to the
+MINIMAX_API_KEY environment variable.
+- `base_url` (`str`): The base URL for the MiniMax API.
+- `temperature` (`float`): The temperature of the LLM, clamped to (0.0, 1.0].
+- `max_tokens` (`int`): The maximum number of tokens to generate, thinking
+included.
+
+#### \_\_call\_\_
+
+```python
+def __call__(messages: List[Message]) -> str
+```
+
+Call the MiniMaxLLM.
+
+**Arguments**:
+
+- `messages` (`List[Message]`): The messages to pass to the MiniMaxLLM.
+
+**Returns**:
+
+`str`: The response from the MiniMaxLLM, without its thinking.
+
+#### acall
+
+```python
+async def acall(messages: List[Message]) -> str
+```
+
+Call the MiniMaxLLM asynchronously.
+
+**Arguments**:
+
+- `messages` (`List[Message]`): The messages to pass to the MiniMaxLLM.
+
+**Returns**:
+
+`str`: The response from the MiniMaxLLM, without its thinking.
+
