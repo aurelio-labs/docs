@@ -1,0 +1,46 @@
+---
+sidebarTitle: atlascloud
+title: semantic_router.llms.atlascloud
+---
+
+## AtlasCloudLLM Objects
+
+```python
+class AtlasCloudLLM(OpenAICompatibleLLM)
+```
+
+LLM for Atlas Cloud, a preset of OpenAICompatibleLLM pointing at the Atlas
+Cloud gateway (https://api.atlascloud.ai/v1) and reading the API key from
+ATLASCLOUD_API_KEY. See https://docs.atlascloud.ai/ for more information.
+
+Limits inherited from semantic-router 0.x:
+
+- Dynamic routes extract function inputs only when called synchronously;
+  an async call returns the route with function_call=None.
+- A router config file saves only the class and model name. Reloading one
+  uses the default base_url and ATLASCLOUD_API_KEY, so a custom base_url or
+  a key passed in code is lost.
+
+#### \_\_init\_\_
+
+```python
+def __init__(name: Optional[str] = None,
+             atlascloud_api_key: Optional[str] = None,
+             base_url: str = "https://api.atlascloud.ai/v1",
+             temperature: float = 0.01,
+             max_tokens: int = 200)
+```
+
+Initialize the AtlasCloudLLM.
+
+**Arguments**:
+
+- `name` (`Optional[str]`): The name of the Atlas Cloud model to use. Defaults to the
+ATLASCLOUD_CHAT_MODEL_NAME environment variable or
+deepseek-ai/deepseek-v4-flash.
+- `atlascloud_api_key` (`Optional[str]`): The Atlas Cloud API key. Defaults to the
+ATLASCLOUD_API_KEY environment variable.
+- `base_url` (`str`): The base URL for the Atlas Cloud API.
+- `temperature` (`float`): The temperature of the LLM.
+- `max_tokens` (`int`): The maximum number of tokens to generate.
+

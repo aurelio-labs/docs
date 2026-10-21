@@ -198,6 +198,7 @@
                   {
                     "group": "llms",
                     "pages": [
+                      "semantic-router/v0/client-reference/llms/atlascloud",
                       "semantic-router/v0/client-reference/llms/base",
                       "semantic-router/v0/client-reference/llms/cohere",
                       "semantic-router/v0/client-reference/llms/llamacpp",
