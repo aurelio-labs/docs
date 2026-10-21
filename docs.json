@@ -192,7 +192,8 @@
                       "semantic-router/v0/client-reference/index/local",
                       "semantic-router/v0/client-reference/index/pinecone",
                       "semantic-router/v0/client-reference/index/postgres",
-                      "semantic-router/v0/client-reference/index/qdrant"
+                      "semantic-router/v0/client-reference/index/qdrant",
+                      "semantic-router/v0/client-reference/index/redis"
                     ]
                   },
                   {
