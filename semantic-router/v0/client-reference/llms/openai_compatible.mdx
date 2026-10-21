@@ -15,6 +15,15 @@ variable that holds the API key, for example
 OpenAICompatibleLLM(name=&quot;provider/model&quot;, base_url=&quot;https://api.example.com/v1&quot;,
 api_key_var_name=&quot;EXAMPLE_API_KEY&quot;).
 
+Limits inherited from semantic-router 0.x:
+
+- Dynamic routes extract function inputs only when called synchronously.
+  BaseLLM has no async extraction, so an async call returns the route with
+  function_call=None and logs an error.
+- A router config file saves only the LLM&#x27;s class and model name, so a
+  router using OpenAICompatibleLLM can&#x27;t be reloaded from one: reloading
+  raises, because there is no base_url.
+
 #### \_\_init\_\_
 
 ```python
