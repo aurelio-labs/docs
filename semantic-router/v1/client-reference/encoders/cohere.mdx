@@ -22,6 +22,24 @@ holding its own ``content`` array, so a list of N texts becomes N inputs.
 
 ``0: One embed input per text.
 
+#### batch\_docs
+
+```python
+def batch_docs(docs: list[str],
+               size: int = COHERE_MAX_EMBED_BATCH) -> list[list[str]]
+```
+
+Split texts into chunks that fit Cohere&#x27;s per-request input limit.
+
+**Arguments**:
+
+- `docs` (`list[str]`): The texts to embed.
+- `size` (`int`): Maximum number of texts per request.
+
+**Returns**:
+
+`list[list[str]]`: The texts split into consecutive chunks of at most ``size``.
+
 ## CohereEncoder Objects
 
 ```python
