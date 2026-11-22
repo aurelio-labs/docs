@@ -5,6 +5,24 @@ title: semantic_router.encoders.voyage
 
 This file contains the VoyageEncoder class which is used to encode text using Voyage
 
+#### batch\_docs
+
+```python
+def batch_docs(docs: list[str],
+               size: int = VOYAGE_MAX_EMBED_BATCH) -> list[list[str]]
+```
+
+Split texts into chunks that fit Voyage&#x27;s per-request input limit.
+
+**Arguments**:
+
+- `docs` (`list[str]`): The texts to embed.
+- `size` (`int`): Maximum number of texts per request.
+
+**Returns**:
+
+`list[list[str]]`: The texts split into consecutive chunks of at most ``size``.
+
 ## VoyageEncoder Objects
 
 ```python
