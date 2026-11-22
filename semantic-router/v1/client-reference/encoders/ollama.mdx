@@ -71,3 +71,24 @@ API call fails.
 `List[List[float]]`: A list of lists, where each inner list contains the embedding values for a
 document.
 
+#### acall
+
+```python
+async def acall(docs: List[str]) -> List[List[float]]
+```
+
+Generates embeddings for the given documents asynchronously.
+
+**Arguments**:
+
+- `docs` (`List[str]`): A list of strings representing the documents to embed.
+
+**Raises**:
+
+- `ValueError`: If the OLLAMA client is not initialized or if the API call fails.
+
+**Returns**:
+
+`List[List[float]]`: A list of lists, where each inner list contains the embedding values for a
+document.
+
