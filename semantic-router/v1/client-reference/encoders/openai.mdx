@@ -3,6 +3,24 @@ sidebarTitle: openai
 title: semantic_router.encoders.openai
 ---
 
+#### batch\_docs
+
+```python
+def batch_docs(docs: List[str],
+               size: int = OPENAI_MAX_EMBED_BATCH) -> List[List[str]]
+```
+
+Split texts into chunks that fit the per-request input limit.
+
+**Arguments**:
+
+- `docs` (`List[str]`): The texts to embed.
+- `size` (`int`): Maximum number of texts per request.
+
+**Returns**:
+
+`List[List[str]]`: The texts split into consecutive chunks of at most ``size``.
+
 ## OpenAIEncoder Objects
 
 ```python
