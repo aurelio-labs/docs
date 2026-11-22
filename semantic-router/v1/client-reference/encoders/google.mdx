@@ -3,6 +3,22 @@ sidebarTitle: google
 title: semantic_router.encoders.google
 ---
 
+#### max\_embed\_batch
+
+```python
+def max_embed_batch(model_name: str) -> int
+```
+
+Return the most input texts one embedding request may hold for a model.
+
+**Arguments**:
+
+- `model_name` (`str`): The name of the embedding model.
+
+**Returns**:
+
+`int`: The maximum number of texts per request.
+
 ## GoogleEncoder Objects
 
 ```python
