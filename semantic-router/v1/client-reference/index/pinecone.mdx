@@ -224,8 +224,9 @@ def query(
     vector: np.ndarray,
     top_k: int = 5,
     route_filter: Optional[List[str]] = None,
-    sparse_vector: dict[int, float] | SparseEmbedding | None = None
-) -> Tuple[np.ndarray, List[str]]
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None,
+    return_utterances: bool = False
+) -> Tuple[np.ndarray, List[str]] | Tuple[np.ndarray, List[str], List[str]]
 ```
 
 Search the index for the query vector and return the top_k results.
@@ -236,7 +237,7 @@ Search the index for the query vector and return the top_k results.
 - `top_k` (`int, optional`): The number of top results to return, defaults to 5.
 - `route_filter` (`Optional[List[str]], optional`): A list of route names to filter the search results, defaults to None.
 - `sparse_vector` (`Optional[SparseEmbedding]`): An optional sparse vector to include in the query.
-- `kwargs` (`Any`): Additional keyword arguments for the query, including sparse_vector.
+- `return_utterances` (`bool`): If True, also return the matched utterance texts.
 
 **Raises**:
 
@@ -244,7 +245,8 @@ Search the index for the query vector and return the top_k results.
 
 **Returns**:
 
-`np.ndarray`1: A tuple containing an array of scores and a list of route names.
+`np.ndarray`1: `np.ndarray`2(scores, route_names)`np.ndarray`2 by default, or `np.ndarray`2(scores, route_names, utterances)`np.ndarray`2
+when `np.ndarray`2return_utterances=True`np.ndarray`2.
 
 #### aquery
 
@@ -253,8 +255,9 @@ async def aquery(
     vector: np.ndarray,
     top_k: int = 5,
     route_filter: Optional[List[str]] = None,
-    sparse_vector: dict[int, float] | SparseEmbedding | None = None
-) -> Tuple[np.ndarray, List[str]]
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None,
+    return_utterances: bool = False
+) -> Tuple[np.ndarray, List[str]] | Tuple[np.ndarray, List[str], List[str]]
 ```
 
 Asynchronously search the index for the query vector and return the top_k results.
@@ -264,8 +267,8 @@ Asynchronously search the index for the query vector and return the top_k result
 - `vector` (`np.ndarray`): The query vector to search for.
 - `top_k` (`int, optional`): The number of top results to return, defaults to 5.
 - `route_filter` (`Optional[List[str]], optional`): A list of route names to filter the search results, defaults to None.
-- `kwargs` (`Any`): Additional keyword arguments for the query, including sparse_vector.
 - `sparse_vector` (`Optional[dict]`): An optional sparse vector to include in the query.
+- `return_utterances` (`bool`): If True, also return the matched utterance texts.
 
 **Raises**:
 
@@ -273,7 +276,8 @@ Asynchronously search the index for the query vector and return the top_k result
 
 **Returns**:
 
-`np.ndarray`1: A tuple containing an array of scores and a list of route names.
+`np.ndarray`1: `np.ndarray`2(scores, route_names)`np.ndarray`2 by default, or `np.ndarray`2(scores, route_names, utterances)`np.ndarray`2
+when `np.ndarray`2return_utterances=True`np.ndarray`2.
 
 #### delete\_index
 

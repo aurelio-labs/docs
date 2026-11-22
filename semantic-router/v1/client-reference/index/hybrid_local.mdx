@@ -39,8 +39,9 @@ def query(
     vector: np.ndarray,
     top_k: int = 5,
     route_filter: Optional[List[str]] = None,
-    sparse_vector: dict[int, float] | SparseEmbedding | None = None
-) -> Tuple[np.ndarray, List[str]]
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None,
+    return_utterances: bool = False
+) -> Tuple[np.ndarray, List[str]] | Tuple[np.ndarray, List[str], List[str]]
 ```
 
 Search the index for the query and return top_k results.
@@ -51,6 +52,7 @@ Search the index for the query and return top_k results.
 - `top_k` (`int, optional`): The number of top results to return, defaults to 5.
 - `route_filter` (`Optional[List[str]], optional`): A list of route names to filter the search results, defaults to None.
 - `sparse_vector` (`dict[int, float]`): The sparse vector to search for, must be provided.
+- `return_utterances` (`bool`): If True, also return the matched utterance texts.
 
 #### aquery
 
@@ -59,8 +61,9 @@ async def aquery(
     vector: np.ndarray,
     top_k: int = 5,
     route_filter: Optional[List[str]] = None,
-    sparse_vector: dict[int, float] | SparseEmbedding | None = None
-) -> Tuple[np.ndarray, List[str]]
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None,
+    return_utterances: bool = False
+) -> Tuple[np.ndarray, List[str]] | Tuple[np.ndarray, List[str], List[str]]
 ```
 
 Search the index for the query and return top_k results. This method calls the
@@ -74,6 +77,7 @@ and so no benefit can be gained from making this async.
 - `top_k` (`int, optional`): The number of top results to return, defaults to 5.
 - `route_filter` (`Optional[List[str]], optional`): A list of route names to filter the search results, defaults to None.
 - `sparse_vector` (`dict[int, float]`): The sparse vector to search for, must be provided.
+- `return_utterances` (`vector`0): If True, also return the matched utterance texts.
 
 #### delete\_index
 

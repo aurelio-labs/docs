@@ -42,6 +42,21 @@ top-1 accuracy on queries that have a route, before any threshold
 
 calibration error of the stated confidences
 
+## QueryResult Objects
+
+```python
+@dataclass(frozen=True)
+class QueryResult()
+```
+
+what scoring one query gives: the raw score per route, and the matches behind it.
+
+**Arguments**:
+
+- `scores`: The raw score for every route, higher means more likely.
+- `matched_utterances`: The stored utterances that matched, per route, when
+asked for and the router can say. `None` when it can&#x27;t.
+
 ## BaseRouter Objects
 
 ```python
@@ -51,6 +66,28 @@ class BaseRouter(ABC)
 #### concurrency
 
 cap on in-flight requests when scoring many queries
+
+#### acall
+
+```python
+async def acall(
+        query: str,
+        limit: int | None = 1,
+        threshold: float | None = None,
+        return_utterances: bool = False) -> RouteChoice | list[RouteChoice]
+```
+
+route one query.
+
+**Arguments**:
+
+- `query`: The text to route.
+- `limit`: How many choices to return, best first: `1` gives one choice,
+`None` every route that clears its threshold.
+- `threshold`: A confidence threshold for this call only, over every
+route&#x27;s and the router&#x27;s.
+- `return_utterances`: Also fill each choice&#x27;s `matched_utterances` with
+the stored utterances that matched the query, where the router can say.
 
 #### afit
 

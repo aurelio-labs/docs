@@ -88,8 +88,9 @@ def query(
     vector: np.ndarray,
     top_k: int = 5,
     route_filter: Optional[List[str]] = None,
-    sparse_vector: dict[int, float] | SparseEmbedding | None = None
-) -> Tuple[np.ndarray, List[str]]
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None,
+    return_utterances: bool = False
+) -> Tuple[np.ndarray, List[str]] | Tuple[np.ndarray, List[str], List[str]]
 ```
 
 Search the index with ``$vectorSearch``.
@@ -100,10 +101,12 @@ Search the index with ``$vectorSearch``.
 - `top_k`: The number of results to return.
 - `route_filter`: Only search these routes.
 - `sparse_vector`: Not used: MongoDbIndex is dense only.
+- `return_utterances`: If True, also return the matched utterance texts.
 
 **Returns**:
 
-The scores and route names of the top_k results.
+The scores and route names of the top_k results, and their
+utterances when ``return_utterances`` is True.
 
 #### aquery
 
@@ -112,8 +115,9 @@ async def aquery(
     vector: np.ndarray,
     top_k: int = 5,
     route_filter: Optional[List[str]] = None,
-    sparse_vector: dict[int, float] | SparseEmbedding | None = None
-) -> Tuple[np.ndarray, List[str]]
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None,
+    return_utterances: bool = False
+) -> Tuple[np.ndarray, List[str]] | Tuple[np.ndarray, List[str], List[str]]
 ```
 
 Async :meth:`query`.

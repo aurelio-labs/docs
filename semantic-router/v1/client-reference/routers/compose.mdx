@@ -13,6 +13,8 @@ class Chain(BaseRouter)
 
 try routers in order; the first whose best confidence clears its bar answers.
 
+Matched utterances, when asked for, are those of the router that answered.
+
 ## Merge Objects
 
 ```python
@@ -20,4 +22,7 @@ class Merge(BaseRouter)
 ```
 
 ask every router at once and take a weighted mean of their confidences per route.
+
+Matched utterances, when asked for, are every router&#x27;s that has them, in router
+order. Each keeps its own router&#x27;s raw score.
 

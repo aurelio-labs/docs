@@ -77,8 +77,9 @@ def query(
     vector: np.ndarray,
     top_k: int = 5,
     route_filter: Optional[List[str]] = None,
-    sparse_vector: dict[int, float] | SparseEmbedding | None = None
-) -> Tuple[np.ndarray, List[str]]
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None,
+    return_utterances: bool = False
+) -> Tuple[np.ndarray, List[str]] | Tuple[np.ndarray, List[str], List[str]]
 ```
 
 Query the index.
@@ -89,10 +90,12 @@ Query the index.
 - `top_k` (`int`): The number of results to return.
 - `route_filter` (`Optional[List[str]]`): The route filter to apply.
 - `sparse_vector` (`dict[int, float] | SparseEmbedding | None`): The sparse vector to query.
+- `return_utterances` (`bool`): If True, also return the matched utterance texts.
 
 **Returns**:
 
-`Tuple[np.ndarray, List[str]]`: A tuple of the scores and route names.
+`np.ndarray`0: `np.ndarray`1(scores, route_names)`np.ndarray`1 by default, or `np.ndarray`1(scores, route_names, utterances)`np.ndarray`1
+when `np.ndarray`1return_utterances=True`np.ndarray`1.
 
 #### aquery
 
@@ -101,8 +104,9 @@ async def aquery(
     vector: np.ndarray,
     top_k: int = 5,
     route_filter: Optional[List[str]] = None,
-    sparse_vector: dict[int, float] | SparseEmbedding | None = None
-) -> Tuple[np.ndarray, List[str]]
+    sparse_vector: dict[int, float] | SparseEmbedding | None = None,
+    return_utterances: bool = False
+) -> Tuple[np.ndarray, List[str]] | Tuple[np.ndarray, List[str], List[str]]
 ```
 
 Asynchronously query the index.
@@ -113,10 +117,12 @@ Asynchronously query the index.
 - `top_k` (`int`): The number of results to return.
 - `route_filter` (`Optional[List[str]]`): The route filter to apply.
 - `sparse_vector` (`dict[int, float] | SparseEmbedding | None`): The sparse vector to query.
+- `return_utterances` (`bool`): If True, also return the matched utterance texts.
 
 **Returns**:
 
-`Tuple[np.ndarray, List[str]]`: A tuple of the scores and route names.
+`np.ndarray`0: `np.ndarray`1(scores, route_names)`np.ndarray`1 by default, or `np.ndarray`1(scores, route_names, utterances)`np.ndarray`1
+when `np.ndarray`1return_utterances=True`np.ndarray`1.
 
 #### delete\_index
 

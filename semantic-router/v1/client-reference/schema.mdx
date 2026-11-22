@@ -19,6 +19,25 @@ class EncoderInfo(BaseModel)
 
 Information about an encoder.
 
+## MatchedUtterance Objects
+
+```python
+class MatchedUtterance(BaseModel)
+```
+
+One stored utterance that matched a query, with its raw similarity score.
+
+Populated by index-backed routers so downstream code can see which training examples
+pulled the route and tune thresholds or debug misrouting.
+
+**Arguments**:
+
+- `text` (`str`): The stored utterance text.
+- `score` (`float`): The raw similarity score between the query embedding and this utterance.
+Higher is more similar; the scale depends on the index metric (cosine, dotproduct,
+etc.) and the aggregation method.
+- `route` (`str`): The route this utterance belongs to.
+
 ## RouteChoice Objects
 
 ```python
@@ -26,6 +45,19 @@ class RouteChoice(BaseModel)
 ```
 
 A route choice output by the routers.
+
+**Arguments**:
+
+- `name`: the chosen route name, or ``None`` when every route missed the
+confidence threshold.
+- `confidence`: the route&#x27;s calibrated confidence (probability) when a
+calibrator is fitted, otherwise the raw score.
+- `calibrated`: whether ``confidence`` is a calibrated probability.
+- `matched_utterances`: utterance-level match details when the caller opts
+in via ``router(..., return_utterances=True)``. Populated by
+``IndexedRouter``, and forwarded by ``Chain`` and ``Merge`` from their
+index-backed sub-routers. ``DecisionRouter`` leaves this as ``None``
+because it never runs an index query itself.
 
 ## Utterance Objects
 
